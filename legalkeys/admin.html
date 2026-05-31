@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | LegalKeys</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖️</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config={theme:{extend:{colors:{primary:'#165DFF',secondary:'#36CFC9',dark:'#1D2129',light:'#F2F3F5',danger:'#F53F3F',success:'#00B42A',warning:'#FF7D00'}}}}
+    </script>
+    <style>.form-focus:focus{border-color:#165DFF;outline:none;box-shadow:0 0 0 2px rgba(22,93,255,0.1);}</style>
+</head>
+<body class="bg-gray-50 font-sans flex flex-col min-h-screen">
+
+<!-- PASSWORD GATE -->
+<div id="passwordGate" class="fixed inset-0 bg-dark z-[9999] flex items-center justify-center">
+    <div class="bg-white rounded-xl p-8 w-full max-w-sm mx-4 shadow-2xl">
+        <div class="text-center mb-6">
+            <img src="logo.png?v=1" alt="LegalKeys" style="height:40px;width:auto;" class="mx-auto mb-4">
+            <h2 class="text-xl font-bold text-dark">Admin Access</h2>
+            <p class="text-gray-500 text-sm mt-1">Enter your admin password to continue.</p>
+        </div>
+        <input type="password" id="adminPass" class="w-full p-3 border rounded-lg form-focus mb-3" placeholder="Password" onkeydown="if(event.key==='Enter')checkPass()">
+        <div id="passError" class="hidden text-danger text-sm text-center mb-3">Incorrect password.</div>
+        <button onclick="checkPass()" class="w-full bg-primary text-white p-3 rounded-lg font-medium hover:bg-primary/90 transition">Enter</button>
+        <p class="text-center mt-4 text-sm"><a href="index.html" class="text-gray-400 hover:text-primary">← Back to site</a></p>
+    </div>
+</div>
+
+<!-- ADMIN CONTENT (hidden until authenticated) -->
+<div id="adminContent" class="hidden flex flex-col min-h-screen">
+
+<header class="bg-white shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between h-16">
+            <a href="index.html"><img src="logo.png?v=1" alt="LegalKeys" style="height:40px;width:auto;"></a>
+            <span class="text-sm font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full"><i class="fa fa-lock mr-1"></i> Admin Panel</span>
+            <a href="index.html" class="text-sm text-gray-500 hover:text-primary">← Back to site</a>
+        </div>
+    </div>
+</header>
+
+<main class="container mx-auto px-4 py-12 max-w-4xl flex-1">
+    <h1 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-dark mb-10">Admin Control Panel</h1>
+
+    <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+            <div class="w-12 h-12 bg-primary/10 text-primary rounded-lg flex items-center justify-center text-xl mb-4"><i class="fa fa-user-check"></i></div>
+            <h3 class="text-xl font-semibold mb-2 text-dark">Seller Verification</h3>
+            <p class="text-gray-600 mb-4">Review pending applications, check documents, approve or reject sellers.</p>
+            <a href="#" class="text-primary font-medium hover:underline">View Pending Applications →</a>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+            <div class="w-12 h-12 bg-primary/10 text-primary rounded-lg flex items-center justify-center text-xl mb-4"><i class="fa fa-shield"></i></div>
+            <h3 class="text-xl font-semibold mb-2 text-dark">Product Moderation</h3>
+            <p class="text-gray-600 mb-4">Ensure all listings are legal and comply with copyright rules. Remove prohibited items.</p>
+            <a href="#" class="text-primary font-medium hover:underline">Moderate Listings →</a>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+            <div class="w-12 h-12 bg-primary/10 text-primary rounded-lg flex items-center justify-center text-xl mb-4"><i class="fa fa-file-text"></i></div>
+            <h3 class="text-xl font-semibold mb-2 text-dark">Orders & Records</h3>
+            <p class="text-gray-600 mb-4">View order history, download records for Self Assessment, and track sales.</p>
+            <a href="#" class="text-primary font-medium hover:underline">View Orders →</a>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+            <div class="w-12 h-12 bg-primary/10 text-primary rounded-lg flex items-center justify-center text-xl mb-4"><i class="fa fa-cog"></i></div>
+            <h3 class="text-xl font-semibold mb-2 text-dark">Settings</h3>
+            <p class="text-gray-600 mb-4">Manage payment providers, platform configuration, and site settings.</p>
+            <a href="#" class="text-primary font-medium hover:underline">Configure →</a>
+        </div>
+    </div>
+</main>
+
+<footer class="bg-dark text-white/80 py-8">
+    <div class="container mx-auto px-4 text-center">
+        <p class="text-sm">© 2026 LegalKeys Admin Panel</p>
+    </div>
+</footer>
+
+</div><!-- end adminContent -->
+
+<script>
+// Simple client-side password gate.
+// NOTE: For stronger protection, use Netlify's built-in password protection:
+// Site settings → Access control → Password protection.
+const ADMIN_PASS = 'legalkeys-admin-2026'; // Change this to your own password
+
+function checkPass() {
+    const val = document.getElementById('adminPass').value;
+    if (val === ADMIN_PASS) {
+        document.getElementById('passwordGate').style.display = 'none';
+        document.getElementById('adminContent').classList.remove('hidden');
+        document.getElementById('adminContent').classList.add('flex');
+        sessionStorage.setItem('lk_admin', '1');
+    } else {
+        document.getElementById('passError').classList.remove('hidden');
+        document.getElementById('adminPass').value = '';
+    }
+}
+
+// Stay logged in within the same browser tab session
+if (sessionStorage.getItem('lk_admin') === '1') {
+    document.getElementById('passwordGate').style.display = 'none';
+    document.getElementById('adminContent').classList.remove('hidden');
+    document.getElementById('adminContent').classList.add('flex');
+}
+</script>
+
+</body>
+</html>

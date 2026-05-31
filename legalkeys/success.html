@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed — LegalKeys</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#165DFF'}}}}</script>
+</head>
+<body class="bg-gray-50 font-sans flex flex-col min-h-screen items-center justify-center">
+    <div class="bg-white rounded-xl shadow p-10 max-w-md w-full text-center">
+        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+        </div>
+        <h1 class="text-2xl font-bold mb-2 text-gray-900">Order Confirmed!</h1>
+        <p class="text-gray-600 mb-6">Thank you for your purchase. Your game key will be delivered to your email shortly.</p>
+        <div id="keyBox" class="bg-gray-100 rounded-lg p-4 mb-6 hidden">
+            <p class="text-xs text-gray-500 mb-1">Your Game Key</p>
+            <p id="keyCode" class="font-mono font-bold text-lg tracking-widest text-primary"></p>
+        </div>
+        <a href="/" class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 inline-block">Back to Store</a>
+    </div>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const orderId = params.get('order');
+        if (orderId) {
+            const p = document.createElement('p');
+            p.className = 'text-xs text-gray-400 mt-4';
+            p.textContent = 'Order reference: #' + orderId;
+            document.querySelector('.bg-white').appendChild(p);
+        }
+    </script>
+</body>
+</html>

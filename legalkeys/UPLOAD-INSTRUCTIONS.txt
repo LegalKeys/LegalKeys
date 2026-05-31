@@ -1,0 +1,108 @@
+=====================================
+LEGALKEYS — NAMECHEAP UPLOAD GUIDE
+=====================================
+
+STEP 1 — BUY HOSTING ON NAMECHEAP
+-----------------------------------
+- Go to namecheap.com → Hosting → Shared Hosting
+- Choose "Stellar" plan (cheapest, fine for starting out)
+- During checkout, select your existing domain: legalkeys.to
+- Complete purchase
+
+STEP 2 — ACCESS CPANEL
+-----------------------
+- Namecheap will email you cPanel login details
+- Log in at: cpanel.legalkeys.to (or via Namecheap dashboard → Hosting → Go to cPanel)
+
+STEP 3 — UPLOAD YOUR FILES
+----------------------------
+1. In cPanel, click "File Manager"
+2. Navigate to the "public_html" folder (this is your website root)
+3. Delete any default files in there (e.g. index.html placeholder)
+4. Click "Upload" and upload ALL files from your legalkeys folder
+   - Make sure hidden files are visible (.htaccess is a hidden file)
+   - In File Manager: Settings → tick "Show Hidden Files"
+5. Upload everything including the Legal/ folder and all PHP files
+
+STEP 4 — RUN THE DATABASE SETUP
+---------------------------------
+1. In your browser, go to:
+   https://legalkeys.to/setup.php?key=legalkeys-setup-2026
+2. You should see a green "Setup Complete" page
+3. IMMEDIATELY go to cPanel File Manager and DELETE setup.php
+4. Log in at https://legalkeys.to/login.php with:
+   Email: admin@legalkeys.to
+   Password: admin123
+5. Change the admin password straight away
+
+STEP 5 — POINT YOUR DOMAIN TO NAMECHEAP HOSTING
+--------------------------------------------------
+(Do this in Namecheap → Domain List → Manage → Nameservers)
+- Change nameservers to Namecheap BasicDNS (or the ones provided in your hosting welcome email)
+- This will also let you add your Private Email MX records directly in Advanced DNS
+- Allow up to 24 hours for DNS to propagate
+
+STEP 6 — SET UP YOUR EMAIL
+----------------------------
+Once DNS is pointing to Namecheap hosting:
+1. Go to Advanced DNS tab for legalkeys.to
+2. Add these records for Private Email:
+   - Type: MX | Host: @ | Value: mx1.privateemail.com | Priority: 10
+   - Type: MX | Host: @ | Value: mx2.privateemail.com | Priority: 10
+   - Type: TXT | Host: @ | Value: v=spf1 include:spf.privateemail.com ~all
+3. Go to Private Email dashboard and create your mailbox
+   (e.g. support@legalkeys.to)
+4. Update the email in about.html to your real address, then re-upload that file
+
+STEP 7 — ENABLE SSL (FREE)
+----------------------------
+1. In cPanel, find "SSL/TLS" or "AutoSSL"
+2. Enable the free Let's Encrypt SSL certificate for legalkeys.to
+3. Once active, uncomment the HTTPS redirect lines in .htaccess
+
+STEP 8 — TEST EVERYTHING
+--------------------------
+□ Homepage loads correctly
+□ Login works
+□ Register works
+□ Checkout page loads
+□ Legal pages load (Terms, Privacy, Copyright, Pricing & Tax)
+□ About/Contact page loads
+□ Mobile menu works
+□ Admin panel is password protected
+
+=====================================
+FILES OVERVIEW
+=====================================
+index.html         — Main homepage
+checkout.html      — Checkout page
+sell.html          — Seller application page
+about.html         — About & Contact page
+admin.html         — Admin panel (password protected)
+login.php          — Login handler
+register.php       — Registration handler
+logout.php         — Logout handler
+process-payment.php — Payment processor
+add-product.php    — Seller product submission
+success.php        — Post-purchase success page
+config.php         — Database config (do not delete)
+setup.php          — Run once then DELETE
+.htaccess          — Security rules (hidden file)
+database.db        — SQLite database (created by setup.php)
+logo.png           — Site logo
+Legal/             — Legal pages folder
+  terms.html
+  privacy.html
+  copyright.html
+  VAT.html
+
+=====================================
+THINGS TO DO AFTER GOING LIVE
+=====================================
+1. Update support email in about.html to your real email
+2. Replace placeholder game prices/products with real Enaba stock
+3. Integrate a real payment provider (Stripe recommended)
+4. Replace hardcoded game key 'ABCD-1234-WXYZ-5678' with real key delivery
+5. Register with ICO for GDPR (ico.org.uk — free for sole traders under £36/year)
+
+=====================================

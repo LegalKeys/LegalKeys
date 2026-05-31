@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell Legally | LegalKeys</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#165DFF',secondary:'#36CFC9',dark:'#1D2129',light:'#F2F3F5',success:'#00B42A'}}}}</script>
+    <style>.form-focus:focus{border-color:#165DFF;outline:none;box-shadow:0 0 0 2px rgba(22,93,255,0.1);}</style>
+</head>
+<body class="bg-gray-50 font-sans flex flex-col min-h-screen">
+
+<header class="bg-white shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between h-16">
+            <a href="index.html"><img src="logo.png?v=1" alt="LegalKeys" style="height:40px;width:auto;"></a>
+            <nav class="hidden md:flex gap-6">
+                <a href="index.html" class="font-medium hover:text-primary">Home</a>
+                <a href="index.html#browse" class="font-medium hover:text-primary">Browse</a>
+                <a href="sell.html" class="font-medium text-primary">Sell Legally</a>
+                <a href="about.html" class="font-medium hover:text-primary">About</a>
+            </nav>
+            <button class="md:hidden text-dark text-2xl" onclick="toggleMobileMenu()" aria-label="Menu">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 py-3 space-y-2">
+        <a href="index.html" class="block py-2 font-medium hover:text-primary">Home</a>
+        <a href="index.html#browse" class="block py-2 font-medium hover:text-primary">Browse</a>
+        <a href="sell.html" class="block py-2 font-medium text-primary">Sell Legally</a>
+        <a href="about.html" class="block py-2 font-medium hover:text-primary">About</a>
+    </div>
+</header>
+
+<main class="container mx-auto px-4 py-12 max-w-2xl">
+    <h1 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-dark mb-3">Sell Game Keys Legally</h1>
+    <p class="text-gray-600 text-lg mb-10">LegalKeys only works with sellers who can demonstrate they have the legal right to resell their products. Here's how to get started.</p>
+
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-10">
+        <h2 class="text-xl font-semibold text-dark mb-6">How It Works</h2>
+        <div class="flex flex-col sm:flex-row gap-6">
+            <div class="flex-1 text-center">
+                <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-3">1</div>
+                <h3 class="font-semibold mb-1">Apply</h3>
+                <p class="text-gray-500 text-sm">Fill in the form below with your business details and proof of authorised supply.</p>
+            </div>
+            <div class="hidden sm:flex items-center text-gray-300 text-2xl">&#8594;</div>
+            <div class="flex-1 text-center">
+                <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-3">2</div>
+                <h3 class="font-semibold mb-1">Get Verified</h3>
+                <p class="text-gray-500 text-sm">We review your documents, usually within 2 business days.</p>
+            </div>
+            <div class="hidden sm:flex items-center text-gray-300 text-2xl">&#8594;</div>
+            <div class="flex-1 text-center">
+                <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-3">3</div>
+                <h3 class="font-semibold mb-1">Start Selling</h3>
+                <p class="text-gray-500 text-sm">Once approved, list your products and start making sales on LegalKeys.</p>
+            </div>
+        </div>
+    </div>
+
+    <form action="/api/add-product" method="POST" class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+        <h2 class="text-xl font-semibold text-dark mb-6">Seller Application</h2>
+        <div class="mb-5">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Company / Trading Name</label>
+            <input type="text" name="company_name" class="w-full p-3 border rounded-lg form-focus" required>
+        </div>
+        <div class="mb-5">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Company Registration Number <span class="text-gray-400 font-normal">(if limited company)</span></label>
+            <input type="text" name="company_number" class="w-full p-3 border rounded-lg form-focus" placeholder="e.g. 12345678">
+        </div>
+        <div class="mb-5">
+            <label class="block text-sm font-medium text-gray-700 mb-2">UTR Number <span class="text-gray-400 font-normal">(if sole trader - optional)</span></label>
+            <input type="text" name="utr_number" class="w-full p-3 border rounded-lg form-focus" placeholder="e.g. 1234567890">
+        </div>
+        <div class="mb-5">
+            <label class="block text-sm font-medium text-gray-700 mb-2">VAT Number <span class="text-gray-400 font-normal">(only if VAT registered)</span></label>
+            <input type="text" name="vat_number" class="w-full p-3 border rounded-lg form-focus" placeholder="e.g. GB123456789">
+        </div>
+        <div class="mb-5">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Describe your products and sources</label>
+            <textarea name="description" rows="4" class="w-full p-3 border rounded-lg form-focus" required placeholder="e.g. PC game keys for Steam and GOG, sourced from Enaba distribution..."></textarea>
+        </div>
+        <div class="mb-6">
+            <label class="flex items-start gap-3 text-gray-700">
+                <input type="checkbox" required class="mt-1">
+                <span class="text-sm">I confirm that all goods I intend to sell are legally sourced, authentic, and I have the right to resell them. I agree to the <a href="Legal/terms.html" class="text-primary hover:underline">Terms of Service</a>.</span>
+            </label>
+        </div>
+        <button type="submit" class="w-full bg-primary text-white p-3 rounded-lg text-lg font-medium hover:bg-primary/90 transition">Submit Application</button>
+    </form>
+
+    <p class="text-center text-sm text-gray-500 mt-6">Questions? <a href="about.html" class="text-primary hover:underline">Contact us</a> before applying.</p>
+</main>
+
+<footer class="bg-dark text-white/80 py-10 mt-auto">
+    <div class="container mx-auto px-4 text-center">
+        <p class="mb-1">&copy; 2026 LegalKeys &#183; All Rights Reserved</p>
+        <p class="text-xs text-white/50 mb-1">LegalKeys is a trading name of a sole trader business based in the United Kingdom.</p>
+        <p class="text-xs text-white/50">Not VAT registered. No VAT is charged on purchases.</p>
+        <div class="mt-5 text-sm flex flex-wrap justify-center gap-x-4 gap-y-1">
+            <a href="Legal/terms.html" class="hover:underline">Terms of Service</a>
+            <a href="Legal/privacy.html" class="hover:underline">Privacy Policy</a>
+            <a href="Legal/copyright.html" class="hover:underline">Copyright Policy</a>
+            <a href="Legal/VAT.html" class="hover:underline">Pricing &amp; Tax</a>
+            <a href="about.html" class="hover:underline">About &amp; Contact</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('hidden'); }
+</script>
+
+</body>
+</html>

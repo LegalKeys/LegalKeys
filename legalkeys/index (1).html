@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalKeys - Buy Game Keys 100% Legally</title>
+    <meta name="impact-site-verification" content="2d9751c8-7e70-4937-b51f-7f4ebd022500" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config={theme:{extend:{colors:{primary:'#165DFF',secondary:'#36CFC9',dark:'#1D2129',light:'#F2F3F5',danger:'#F53F3F',success:'#00B42A',warning:'#FF7D00'}}}}
+    </script>
+    <style>
+        .form-focus:focus{border-color:#165DFF;outline:none;box-shadow:0 0 0 2px rgba(22,93,255,0.1);}
+        .filter-btn.active{background:#165DFF;color:#fff;}
+        .product-card{transition:all 0.2s;}
+    </style>
+</head>
+<body class="bg-gray-50 font-sans flex flex-col min-h-screen">
+
+<!-- HEADER -->
+<header class="bg-white shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between h-16">
+            <a href="index.html"><img src="logo.png?v=1" alt="LegalKeys" style="height:40px;width:auto;"></a>
+            <nav class="hidden md:flex gap-6">
+                <a href="#home" class="font-medium hover:text-primary">Home</a>
+                <a href="#browse" class="font-medium hover:text-primary">Browse</a>
+                <a href="sell.html" class="font-medium hover:text-primary">Sell Legally</a>
+                <a href="#compliance" class="font-medium hover:text-primary">Why Us</a>
+                <a href="about.html" class="font-medium hover:text-primary">About</a>
+            </nav>
+            <div class="flex items-center gap-2">
+                <div class="hidden md:flex gap-2" id="authButtons">
+                    <button onclick="openModal('loginModal')" class="px-4 py-2 rounded-lg hover:bg-gray-100">Login</button>
+                    <button onclick="openModal('registerModal')" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90">Register</button>
+                </div>
+                <button class="md:hidden text-dark text-2xl ml-2" onclick="toggleMobileMenu()" aria-label="Menu">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 py-3 space-y-2">
+        <a href="#home" class="block py-2 font-medium hover:text-primary" onclick="toggleMobileMenu()">Home</a>
+        <a href="#browse" class="block py-2 font-medium hover:text-primary" onclick="toggleMobileMenu()">Browse</a>
+        <a href="sell.html" class="block py-2 font-medium hover:text-primary">Sell Legally</a>
+        <a href="#compliance" class="block py-2 font-medium hover:text-primary" onclick="toggleMobileMenu()">Why Us</a>
+        <a href="about.html" class="block py-2 font-medium hover:text-primary">About</a>
+        <div class="flex gap-2 pt-2 border-t border-gray-100">
+            <button onclick="openModal('loginModal');toggleMobileMenu()" class="flex-1 px-4 py-2 border rounded-lg hover:bg-gray-100 text-sm">Login</button>
+            <button onclick="openModal('registerModal');toggleMobileMenu()" class="flex-1 bg-primary text-white px-4 py-2 rounded-lg text-sm hover:bg-primary/90">Register</button>
+        </div>
+    </div>
+</header>
+
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center">
+    <div class="bg-white rounded-xl w-full max-w-md p-6 m-4">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-bold">Login</h3>
+            <button onclick="closeModal('loginModal')" class="text-gray-500 text-xl">&times;</button>
+        </div>
+        <form action="/api/login" method="POST">
+            <div class="mb-4">
+                <label class="block text-sm font-medium mb-1">Email</label>
+                <input type="email" name="email" class="w-full p-2 border rounded form-focus" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium mb-1">Password</label>
+                <input type="password" name="password" class="w-full p-2 border rounded form-focus" required>
+            </div>
+            <button type="submit" class="w-full bg-primary text-white p-2 rounded hover:bg-primary/90">Login</button>
+        </form>
+    </div>
+</div>
+
+<!-- REGISTER MODAL -->
+<div id="registerModal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center overflow-y-auto">
+    <div class="bg-white rounded-xl w-full max-w-md p-6 m-4">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-bold">Register Account</h3>
+            <button onclick="closeModal('registerModal')" class="text-gray-500 text-xl">&times;</button>
+        </div>
+        <form action="/api/register" method="POST">
+            <div class="mb-3">
+                <label class="block text-sm font-medium mb-1">Full Name</label>
+                <input type="text" name="name" class="w-full p-2 border rounded form-focus" required>
+            </div>
+            <div class="mb-3">
+                <label class="block text-sm font-medium mb-1">Email</label>
+                <input type="email" name="email" class="w-full p-2 border rounded form-focus" required>
+            </div>
+            <div class="mb-3">
+                <label class="block text-sm font-medium mb-1">Password</label>
+                <input type="password" name="password" class="w-full p-2 border rounded form-focus" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium mb-1">Account Type</label>
+                <div class="flex gap-4">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" name="type" value="buyer" checked onchange="toggleSellerFields()"> Buyer
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" name="type" value="seller" onchange="toggleSellerFields()"> Seller (Business)
+                    </label>
+                </div>
+            </div>
+            <div id="sellerFields" class="border-t pt-4 mb-4 hidden">
+                <h4 class="font-semibold text-primary mb-3">Business Details (Required)</h4>
+                <div class="mb-3">
+                    <label class="block text-sm font-medium mb-1">Company / Trading Name</label>
+                    <input type="text" name="company_name" class="w-full p-2 border rounded form-focus">
+                </div>
+                <div class="mb-3">
+                    <label class="block text-sm font-medium mb-1">Company Reg Number (if limited company)</label>
+                    <input type="text" name="company_number" class="w-full p-2 border rounded form-focus">
+                </div>
+                <div class="mb-3">
+                    <label class="block text-sm font-medium mb-1">VAT Number (if VAT registered)</label>
+                    <input type="text" name="vat_number" class="w-full p-2 border rounded form-focus">
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="flex items-start gap-2 text-sm">
+                    <input type="checkbox" required class="mt-1">
+                    <span>I agree to the <a href="Legal/terms.html" class="text-primary hover:underline">Terms of Service</a> and <a href="Legal/privacy.html" class="text-primary hover:underline">Privacy Policy</a>.</span>
+                </label>
+            </div>
+            <button type="submit" class="w-full bg-primary text-white p-2 rounded hover:bg-primary/90">Create Account</button>
+        </form>
+    </div>
+</div>
+
+<!-- HERO -->
+<section id="home" class="bg-gradient-to-r from-primary/20 to-secondary/20 py-20 px-4 text-center">
+    <div class="max-w-3xl mx-auto">
+        <h1 class="text-[clamp(2rem,5vw,3.2rem)] font-bold mb-4 text-dark">Buy Game Keys You Can Actually Trust</h1>
+        <p class="text-gray-600 text-lg mb-8">Every key on LegalKeys comes from authorised distributors. No stolen keys, no scams &#8212; just legitimate digital goods sold transparently by a UK-based business.</p>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+            <a href="#browse" class="bg-primary text-white px-6 py-3 rounded-lg shadow-lg hover:bg-primary/90">Browse Games</a>
+            <a href="sell.html" class="bg-white border border-primary text-primary px-6 py-3 rounded-lg hover:bg-gray-100">Become a Seller</a>
+        </div>
+        <div class="flex flex-wrap justify-center gap-4 mt-10">
+            <span class="bg-white/80 px-3 py-1 rounded-full text-sm"><i class="fa fa-check-circle text-success"></i> GDPR Compliant</span>
+            <span class="bg-white/80 px-3 py-1 rounded-full text-sm"><i class="fa fa-check-circle text-success"></i> Authorised Sources Only</span>
+            <span class="bg-white/80 px-3 py-1 rounded-full text-sm"><i class="fa fa-check-circle text-success"></i> Copyright Safe</span>
+            <span class="bg-white/80 px-3 py-1 rounded-full text-sm"><i class="fa fa-check-circle text-success"></i> UK Based</span>
+        </div>
+    </div>
+</section>
+
+<!-- WHY LEGALKEYS vs COMPETITORS -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-5xl">
+        <h2 class="text-3xl font-bold text-center mb-4">LegalKeys vs the Rest</h2>
+        <p class="text-center text-gray-500 mb-10">Why buy here instead of G2A or Kinguin?</p>
+        <div class="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
+            <table class="w-full text-sm">
+                <thead>
+                    <tr class="bg-gray-50 border-b border-gray-200">
+                        <th class="p-4 text-left font-semibold text-gray-700">Feature</th>
+                        <th class="p-4 text-center font-semibold text-primary">&#9878;&#65039; LegalKeys</th>
+                        <th class="p-4 text-center font-semibold text-gray-400">G2A / Kinguin</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                    <tr><td class="p-4 text-gray-700">Verified authorised supply</td><td class="p-4 text-center text-success font-bold text-lg">&#10003;</td><td class="p-4 text-center text-danger font-bold text-lg">&#10007;</td></tr>
+                    <tr class="bg-gray-50"><td class="p-4 text-gray-700">No stolen / fraudulent keys</td><td class="p-4 text-center text-success font-bold text-lg">&#10003;</td><td class="p-4 text-center text-gray-400">Not guaranteed</td></tr>
+                    <tr><td class="p-4 text-gray-700">UK-based &amp; UK law compliant</td><td class="p-4 text-center text-success font-bold text-lg">&#10003;</td><td class="p-4 text-center text-danger font-bold text-lg">&#10007;</td></tr>
+                    <tr class="bg-gray-50"><td class="p-4 text-gray-700">Clear pricing (no hidden fees)</td><td class="p-4 text-center text-success font-bold text-lg">&#10003;</td><td class="p-4 text-center text-gray-400">Often added at checkout</td></tr>
+                    <tr><td class="p-4 text-gray-700">GDPR compliant data handling</td><td class="p-4 text-center text-success font-bold text-lg">&#10003;</td><td class="p-4 text-center text-danger font-bold text-lg">&#10007;</td></tr>
+                    <tr class="bg-gray-50"><td class="p-4 text-gray-700">Consumer Rights Act protections</td><td class="p-4 text-center text-success font-bold text-lg">&#10003;</td><td class="p-4 text-center text-danger font-bold text-lg">&#10007;</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- COMPLIANCE -->
+<section id="compliance" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4 max-w-6xl">
+        <h2 class="text-3xl font-bold text-center mb-12">How We Keep It Legal</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white p-6 rounded-xl shadow-sm">
+                <div class="w-12 h-12 bg-primary/10 text-primary rounded-lg flex items-center justify-center text-xl mb-4"><i class="fa fa-id-card"></i></div>
+                <h3 class="text-xl font-semibold mb-2">Authorised Sources Only</h3>
+                <p class="text-gray-600">All stock comes from Enaba, a verified game key distributor. No grey market, no anonymous sellers &#8212; every product is traceable back to an authorised source.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm">
+                <div class="w-12 h-12 bg-primary/10 text-primary rounded-lg flex items-center justify-center text-xl mb-4"><i class="fa fa-shield"></i></div>
+                <h3 class="text-xl font-semibold mb-2">Copyright Compliant</h3>
+                <p class="text-gray-600">We only sell keys that are legitimately resaleable. No stolen keys, no chargeback fraud, no region violations. Infringing items are removed immediately.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm">
+                <div class="w-12 h-12 bg-primary/10 text-primary rounded-lg flex items-center justify-center text-xl mb-4"><i class="fa fa-lock"></i></div>
+                <h3 class="text-xl font-semibold mb-2">Your Rights Protected</h3>
+                <p class="text-gray-600">As a UK-based business, we operate under the Consumer Rights Act 2015. If a key is faulty or doesn't work, you get a replacement or full refund &#8212; guaranteed.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="browse" class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-6xl">
+        <h2 class="text-2xl font-bold mb-4">Browse Games</h2>
+        <div class="flex flex-wrap gap-2 mb-8">
+            <button class="filter-btn active px-4 py-2 rounded-full border border-primary text-sm font-medium transition" onclick="filterProducts('all', this)">All Platforms</button>
+            <button class="filter-btn px-4 py-2 rounded-full border border-gray-300 text-sm font-medium hover:border-primary transition" onclick="filterProducts('pc', this)"><i class="fa fa-windows mr-1"></i> PC</button>
+            <button class="filter-btn px-4 py-2 rounded-full border border-gray-300 text-sm font-medium hover:border-primary transition" onclick="filterProducts('ps', this)"><i class="fa fa-gamepad mr-1"></i> PlayStation</button>
+            <button class="filter-btn px-4 py-2 rounded-full border border-gray-300 text-sm font-medium hover:border-primary transition" onclick="filterProducts('xbox', this)">Xbox</button>
+            <button class="filter-btn px-4 py-2 rounded-full border border-gray-300 text-sm font-medium hover:border-primary transition" onclick="filterProducts('nintendo', this)">Nintendo</button>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6" id="productGrid">
+            <div class="product-card bg-white rounded-xl shadow-sm hover:shadow-md transition overflow-hidden border border-gray-100" data-platform="pc">
+                <div class="h-48 bg-gray-200 relative"><img src="https://picsum.photos/id/96/400/300" class="w-full h-full object-cover" alt="Cyberpunk 2077"><span class="absolute top-2 left-2 bg-success text-white text-xs px-2 py-0.5 rounded">VERIFIED</span><span class="absolute top-2 right-2 bg-dark/80 text-white text-xs px-2 py-0.5 rounded"><i class="fa fa-windows mr-1"></i>PC</span></div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg mb-1">Cyberpunk 2077</h3>
+                    <p class="text-gray-500 text-sm mb-3">GOG.com &#183; Authorised Distributor</p>
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-xl">&#163;24.99</span>
+                        <a href="checkout.html?id=1" class="bg-primary text-white px-3 py-1.5 rounded text-sm hover:bg-primary/90">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card bg-white rounded-xl shadow-sm hover:shadow-md transition overflow-hidden border border-gray-100" data-platform="pc">
+                <div class="h-48 bg-gray-200 relative"><img src="https://picsum.photos/id/90/400/300" class="w-full h-full object-cover" alt="Elden Ring DLC"><span class="absolute top-2 left-2 bg-success text-white text-xs px-2 py-0.5 rounded">VERIFIED</span><span class="absolute top-2 right-2 bg-dark/80 text-white text-xs px-2 py-0.5 rounded"><i class="fa fa-windows mr-1"></i>PC</span></div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg mb-1">Elden Ring DLC</h3>
+                    <p class="text-gray-500 text-sm mb-3">Steam &#183; Authorised Distributor</p>
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-xl">&#163;19.99</span>
+                        <a href="checkout.html?id=2" class="bg-primary text-white px-3 py-1.5 rounded text-sm hover:bg-primary/90">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card bg-white rounded-xl shadow-sm hover:shadow-md transition overflow-hidden border border-gray-100" data-platform="pc">
+                <div class="h-48 bg-gray-200 relative"><img src="https://picsum.photos/id/68/400/300" class="w-full h-full object-cover" alt="Red Dead Redemption 2"><span class="absolute top-2 left-2 bg-success text-white text-xs px-2 py-0.5 rounded">VERIFIED</span><span class="absolute top-2 right-2 bg-dark/80 text-white text-xs px-2 py-0.5 rounded"><i class="fa fa-windows mr-1"></i>PC</span></div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg mb-1">Red Dead Redemption 2</h3>
+                    <p class="text-gray-500 text-sm mb-3">Rockstar &#183; Authorised Distributor</p>
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-xl">&#163;29.99</span>
+                        <a href="checkout.html?id=3" class="bg-primary text-white px-3 py-1.5 rounded text-sm hover:bg-primary/90">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card bg-white rounded-xl shadow-sm hover:shadow-md transition overflow-hidden border border-gray-100" data-platform="ps">
+                <div class="h-48 bg-gray-200 relative"><img src="https://picsum.photos/id/119/400/300" class="w-full h-full object-cover" alt="FIFA 25"><span class="absolute top-2 left-2 bg-success text-white text-xs px-2 py-0.5 rounded">VERIFIED</span><span class="absolute top-2 right-2 bg-dark/80 text-white text-xs px-2 py-0.5 rounded"><i class="fa fa-gamepad mr-1"></i>PS5</span></div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg mb-1">FIFA 25</h3>
+                    <p class="text-gray-500 text-sm mb-3">PSN &#183; Authorised Distributor</p>
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-xl">&#163;34.99</span>
+                        <a href="checkout.html?id=4" class="bg-primary text-white px-3 py-1.5 rounded text-sm hover:bg-primary/90">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="noResults" class="hidden text-center py-12 text-gray-400">
+            <i class="fa fa-gamepad text-4xl mb-3"></i>
+            <p>No products in this category yet &#8212; check back soon.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-dark text-white/80 py-10 mt-auto">
+    <div class="container mx-auto px-4 text-center">
+        <a href="index.html"><img src="logo.png?v=1" alt="LegalKeys" style="height:36px;width:auto;" class="mx-auto mb-4 opacity-80"></a>
+        <p class="mb-1">&copy; 2026 LegalKeys &#183; All Rights Reserved</p>
+        <p class="text-xs text-white/50 mb-1">LegalKeys is a trading name of a sole trader business based in the United Kingdom.</p>
+        <p class="text-xs text-white/50">Not VAT registered. No VAT is charged on purchases.</p>
+        <div class="mt-5 text-sm flex flex-wrap justify-center gap-x-4 gap-y-1">
+            <a href="Legal/terms.html" class="hover:underline">Terms of Service</a>
+            <a href="Legal/privacy.html" class="hover:underline">Privacy Policy</a>
+            <a href="Legal/copyright.html" class="hover:underline">Copyright Policy</a>
+            <a href="Legal/VAT.html" class="hover:underline">Pricing &amp; Tax</a>
+            <a href="about.html" class="hover:underline">About &amp; Contact</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+function openModal(id) { document.getElementById(id).classList.remove('hidden'); document.getElementById(id).classList.add('flex'); }
+function closeModal(id) { document.getElementById(id).classList.add('hidden'); document.getElementById(id).classList.remove('flex'); }
+function toggleSellerFields() { const d=document.getElementById('sellerFields'); d.classList.toggle('hidden', event.target.value!=='seller'); }
+function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('hidden'); }
+
+function filterProducts(platform, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active', 'bg-primary', 'text-white'));
+    btn.classList.add('active', 'bg-primary', 'text-white');
+    btn.classList.remove('border-gray-300');
+    const cards = document.querySelectorAll('.product-card');
+    let visible = 0;
+    cards.forEach(card => {
+        const show = platform === 'all' || card.dataset.platform === platform;
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+    });
+    document.getElementById('noResults').classList.toggle('hidden', visible > 0);
+}
+</script>
+
+</body>
+</html>

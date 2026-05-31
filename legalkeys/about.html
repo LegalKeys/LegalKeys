@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About & Contact | LegalKeys</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#165DFF',secondary:'#36CFC9',dark:'#1D2129',light:'#F2F3F5',success:'#00B42A'}}}}</script>
+    <style>.form-focus:focus{border-color:#165DFF;outline:none;box-shadow:0 0 0 2px rgba(22,93,255,0.1);}</style>
+</head>
+<body class="bg-gray-50 font-sans flex flex-col min-h-screen">
+
+<!-- HEADER -->
+<header class="bg-white shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between h-16">
+            <a href="index.html"><img src="logo.png?v=1" alt="LegalKeys" style="height:40px;width:auto;"></a>
+            <nav class="hidden md:flex gap-6" id="desktopNav">
+                <a href="index.html" class="font-medium hover:text-primary">Home</a>
+                <a href="index.html#browse" class="font-medium hover:text-primary">Browse</a>
+                <a href="sell.html" class="font-medium hover:text-primary">Sell Legally</a>
+                <a href="about.html" class="font-medium text-primary">About</a>
+            </nav>
+            <div class="flex items-center gap-3">
+                <button class="md:hidden text-dark text-2xl" onclick="toggleMobileMenu()" aria-label="Menu">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 py-3 space-y-2">
+        <a href="index.html" class="block py-2 font-medium hover:text-primary">Home</a>
+        <a href="index.html#browse" class="block py-2 font-medium hover:text-primary">Browse</a>
+        <a href="sell.html" class="block py-2 font-medium hover:text-primary">Sell Legally</a>
+        <a href="about.html" class="block py-2 font-medium text-primary">About</a>
+    </div>
+</header>
+
+<main class="container mx-auto px-4 py-12 max-w-3xl">
+
+    <h1 class="text-3xl font-bold text-dark mb-2">About LegalKeys</h1>
+    <p class="text-gray-500 mb-10">A transparent, UK-based game key marketplace built on trust and legal compliance.</p>
+
+    <!-- WHO WE ARE -->
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mb-8">
+        <h2 class="text-xl font-semibold text-dark mb-4">Who We Are</h2>
+        <p class="text-gray-700 leading-relaxed mb-4">LegalKeys is a UK-based digital game key marketplace operated as a sole trader. We sell game activation keys for PC, PlayStation, Xbox, and Nintendo platforms, sourcing all stock through authorised distributors.</p>
+        <p class="text-gray-700 leading-relaxed mb-4">Our mission is simple: give gamers a safe, transparent place to buy keys — with none of the uncertainty that comes with unverified grey-market sites like G2A or Kinguin.</p>
+        <p class="text-gray-700 leading-relaxed">We are currently partnered with <strong>Enaba</strong>, an authorised game key distributor, ensuring all products are legitimately sourced.</p>
+    </div>
+
+    <!-- LEGAL DETAILS -->
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mb-8">
+        <h2 class="text-xl font-semibold text-dark mb-4">Legal & Business Details</h2>
+        <p class="text-xs text-gray-400 mb-4">Under the Electronic Commerce (EC Directive) Regulations 2002, we are required to publish the following information.</p>
+        <div class="space-y-3 text-gray-700">
+            <div class="flex gap-3">
+                <i class="fa fa-briefcase text-primary mt-1 w-5"></i>
+                <div>
+                    <p class="font-medium">Trading Name</p>
+                    <p class="text-gray-500">LegalKeys</p>
+                </div>
+            </div>
+            <div class="flex gap-3">
+                <i class="fa fa-user text-primary mt-1 w-5"></i>
+                <div>
+                    <p class="font-medium">Business Structure</p>
+                    <p class="text-gray-500">Sole Trader — not a limited company</p>
+                </div>
+            </div>
+            <div class="flex gap-3">
+                <i class="fa fa-map-marker text-primary mt-1 w-5"></i>
+                <div>
+                    <p class="font-medium">Location</p>
+                    <p class="text-gray-500">United Kingdom</p>
+                </div>
+            </div>
+            <div class="flex gap-3">
+                <i class="fa fa-money text-primary mt-1 w-5"></i>
+                <div>
+                    <p class="font-medium">VAT</p>
+                    <p class="text-gray-500">Not VAT registered. No VAT is charged on purchases.</p>
+                </div>
+            </div>
+            <div class="flex gap-3">
+                <i class="fa fa-gavel text-primary mt-1 w-5"></i>
+                <div>
+                    <p class="font-medium">Governing Law</p>
+                    <p class="text-gray-500">England and Wales</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mb-8">
+        <h2 class="text-xl font-semibold text-dark mb-4">Contact Us</h2>
+        <p class="text-gray-700 mb-6">For order issues, seller enquiries, copyright takedown requests, or any other matter, please use the form below or email us directly.</p>
+
+        <!-- IMPORTANT: Replace with your real email before going live -->
+        <div class="flex items-center gap-3 mb-6 p-4 bg-primary/5 rounded-lg">
+            <i class="fa fa-envelope text-primary text-xl"></i>
+            <div>
+                <p class="font-medium text-dark">Email</p>
+                <a href="mailto:support@legalkeys.co.uk" class="text-primary hover:underline">support@legalkeys.co.uk</a>
+            </div>
+        </div>
+
+        <form class="space-y-4" onsubmit="handleContact(event)">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                <input type="text" class="w-full p-3 border rounded-lg form-focus" required>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Your Email</label>
+                <input type="email" class="w-full p-3 border rounded-lg form-focus" required>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                <select class="w-full p-3 border rounded-lg form-focus">
+                    <option>Order issue / missing key</option>
+                    <option>Seller enquiry</option>
+                    <option>Copyright / takedown request</option>
+                    <option>General question</option>
+                    <option>Other</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                <textarea rows="5" class="w-full p-3 border rounded-lg form-focus" required></textarea>
+            </div>
+            <button type="submit" class="w-full bg-primary text-white p-3 rounded-lg font-medium hover:bg-primary/90 transition">Send Message</button>
+        </form>
+        <div id="contactSuccess" class="hidden mt-4 p-4 bg-success/10 text-success rounded-lg text-center font-medium">
+            <i class="fa fa-check-circle mr-2"></i>Message sent! We aim to respond within 1 business day.
+        </div>
+    </div>
+
+    <!-- RESPONSE TIME -->
+    <p class="text-center text-gray-500 text-sm">We aim to respond to all enquiries within 1 business day.</p>
+
+</main>
+
+<footer class="bg-dark text-white/80 py-8 mt-auto">
+    <div class="container mx-auto px-4 text-center">
+        <p class="mb-2">© 2026 LegalKeys • All Rights Reserved</p>
+        <p class="text-xs text-white/50">LegalKeys is a trading name of a sole trader business based in the United Kingdom.</p>
+        <div class="mt-4 text-sm">
+            <a href="Legal/terms.html" class="hover:underline mx-2">Terms of Service</a>
+            <a href="Legal/privacy.html" class="hover:underline mx-2">Privacy Policy</a>
+            <a href="Legal/copyright.html" class="hover:underline mx-2">Copyright Policy</a>
+            <a href="Legal/VAT.html" class="hover:underline mx-2">Pricing & Tax</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.toggle('hidden');
+}
+function handleContact(e) {
+    e.preventDefault();
+    document.getElementById('contactSuccess').classList.remove('hidden');
+    e.target.reset();
+}
+</script>
+
+</body>
+</html>
