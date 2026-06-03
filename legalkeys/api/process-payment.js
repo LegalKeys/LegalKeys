@@ -1,38 +1,77 @@
-// api/process-payment.js
-// NOTE: This is a stub — integrate Stripe for real payments.
-const { getSupabase, getSession, redirect, htmlError } = require('./_shared/db');
+const https = require('https');
+const querystring = require('querystring');
 
-module.exports = async (req, res) => {
-  if (req.method !== 'POST') return res.status(405).end('Method Not Allowed');
+function stripeRequest(path, data) {
+    return new Promise((resolve, reject) => {
+        const postData = querystring.stringify(data);
+        const options = {
+            hostname: 'api.stripe.com',
+            port: 443,
+            path: path,
+            method: 'POST',
+            headers: {
+                'Authorization': 'Basic ' + Buffer.from(process.env.STRIPE_SECRET_KEY + ':').toString('base64'),
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Length': Buffer.byteLength(postData)
+            }
+        };
+        const req = https.request(options, (res) => {
+            let body = '';
+            res.on('data', chunk => body += chunk);
+            res.on('end', () => resolve(JSON.parse(body)));
+        });
+        req.on('error', reject);
+        req.write(postData);
+        req.end();
+    });
+}
 
-  const session = getSession(req);
-  if (!session) return redirect(res, '/?login=required');
+export default async function handler(req, res) {
+    // Allow CORS for your domain
+    res.setHeader('Access-Control-Allow-Origin', 'https://legalkeys.to');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  const { product_id, total } = req.body || {};
-  const productId = parseInt(product_id || '1', 10);
-  const totalAmount = parseFloat(total || '0');
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
+    }
 
-  if (!productId || totalAmount <= 0) return htmlError(res, 'Invalid order data.', '/checkout.html');
+    if (req.method !== 'POST') {
+        return res.status(405).json({ success: false, error: 'Method not allowed' });
+    }
 
-  try {
-    const supabase = getSupabase();
+    const { payment_method_id, email, total } = req.body;
 
-    // TODO: Add Stripe payment intent verification here before inserting order
+    if (!payment_method_id || !email || !total) {
+        return res.status(400).json({ success: false, error: 'Missing required fields.' });
+    }
 
-    const { data, error } = await supabase.from('orders').insert([{
-      buyer_id: session.user_id,
-      product_id: productId,
-      total: totalAmount,
-      vat_amount: 0,
-      key_code: 'ABCD-1234-WXYZ-5678', // TODO: replace with real key lookup
-      status: 'pending_payment'
-    }]).select('id').single();
+    if (!process.env.STRIPE_SECRET_KEY) {
+        return res.status(500).json({ success: false, error: 'Server configuration error.' });
+    }
 
-    if (error) throw error;
+    try {
+        const amount = Math.round(parseFloat(total) * 100); // Convert to pence
 
-    return redirect(res, '/success.html?order=' + data.id);
-  } catch (err) {
-    console.error('Payment error:', err);
-    return htmlError(res, 'Order processing failed. Please try again.', '/checkout.html');
-  }
-};
+        const paymentIntent = await stripeRequest('/v1/payment_intents', {
+            amount: amount,
+            currency: 'gbp',
+            payment_method: payment_method_id,
+            confirm: 'true',
+            receipt_email: email,
+            description: 'LegalKeys - Game Key Purchase',
+            return_url: 'https://legalkeys.to/success.html'
+        });
+
+        if (paymentIntent.status === 'succeeded' || paymentIntent.status === 'requires_action') {
+            return res.status(200).json({ success: true, status: paymentIntent.status });
+        } else {
+            const errorMsg = paymentIntent.error?.message || 'Payment failed. Please try again.';
+            return res.status(400).json({ success: false, error: errorMsg });
+        }
+
+    } catch (err) {
+        console.error('Stripe error:', err);
+        return res.status(500).json({ success: false, error: 'An unexpected error occurred.' });
+    }
+}
