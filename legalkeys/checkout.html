@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout | LegalKeys</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖️</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://js.stripe.com/v3/"></script>
     <script>
         tailwind.config={theme:{extend:{colors:{primary:'#165DFF',secondary:'#36CFC9',dark:'#1D2129',light:'#F2F3F5',danger:'#F53F3F',success:'#00B42A',warning:'#FF7D00'}}}}
     </script>
-    <style>.form-focus:focus{border-color:#165DFF;outline:none;box-shadow:0 0 0 2px rgba(22,93,255,0.1);}</style>
+    <style>.form-focus:focus{border-color:#165DFF;outline:none;box-shadow:0 0 0 2px rgba(22,93,255,0.1);}
+    #card-element{padding:12px;border:1px solid #d1d5db;border-radius:8px;background:white;}
+    #card-element.StripeElement--focus{border-color:#165DFF;box-shadow:0 0 0 2px rgba(22,93,255,0.1);}
+    #card-errors{color:#F53F3F;font-size:0.875rem;margin-top:6px;}
+    </style>
 </head>
 <body class="bg-gray-50 font-sans flex flex-col min-h-screen">
 
@@ -30,7 +34,6 @@
             </button>
         </div>
     </div>
-    <!-- Mobile Menu -->
     <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 py-3 space-y-2">
         <a href="index.html" class="block py-2 font-medium hover:text-primary">Home</a>
         <a href="index.html#browse" class="block py-2 font-medium hover:text-primary">Browse</a>
@@ -49,35 +52,34 @@
             <h3 class="text-lg font-semibold mb-3">Your Order</h3>
             <div class="flex justify-between items-center mb-1">
                 <span class="font-medium">Cyberpunk 2077</span>
-                <span class="font-medium">£24.99</span>
+                <span class="font-medium">&#163;24.99</span>
             </div>
-            <p class="text-sm text-gray-500 mb-4">PC Key | GOG.com • Authorised Distributor</p>
+            <p class="text-sm text-gray-500 mb-4">PC Key | GOG.com &#183; Authorised Distributor</p>
             <div class="flex justify-between items-center text-lg font-bold text-dark mt-2 pt-2 border-t border-gray-100">
                 <span>Total</span>
-                <span>£24.99</span>
+                <span>&#163;24.99</span>
             </div>
-            <p class="text-xs text-gray-400 mt-1">No VAT charged — LegalKeys is not VAT registered.</p>
+            <p class="text-xs text-gray-400 mt-1">No VAT charged &#8212; LegalKeys is not VAT registered.</p>
         </div>
 
-        <!-- CHECKOUT FORM -->
-        <form action="process_payment.php" method="POST">
+        <!-- STRIPE CHECKOUT FORM -->
+        <form id="payment-form">
             <div class="mb-5">
                 <label class="block text-sm font-medium text-gray-700 mb-2">Email (your key will be sent here)</label>
-                <input type="email" name="email" class="w-full p-3 border rounded-lg form-focus" required placeholder="you@example.com">
+                <input type="email" id="email" name="email" class="w-full p-3 border rounded-lg form-focus" required placeholder="you@example.com">
             </div>
-
             <div class="mb-6">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Payment Method</label>
-                <select name="payment_method" class="w-full p-3 border rounded-lg form-focus">
-                    <option value="card">Credit / Debit Card</option>
-                    <option value="paypal">PayPal</option>
-                </select>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Card Details</label>
+                <div id="card-element"></div>
+                <div id="card-errors" role="alert"></div>
             </div>
-
-            <button type="submit" class="w-full bg-primary text-white p-3 rounded-lg text-lg font-medium hover:bg-primary/90 transition">Pay £24.99 & Get Key</button>
+            <button type="submit" id="submit-btn" class="w-full bg-primary text-white p-3 rounded-lg text-lg font-medium hover:bg-primary/90 transition flex items-center justify-center gap-2">
+                <i class="fa fa-lock"></i>
+                <span id="btn-text">Pay &#163;24.99 &amp; Get Key</span>
+            </button>
         </form>
 
-        <p class="text-center text-sm text-gray-500 mt-6"><i class="fa fa-lock mr-1"></i> Secure Payment • Instant Digital Delivery • Authorised Product</p>
+        <p class="text-center text-sm text-gray-500 mt-6"><i class="fa fa-lock mr-1"></i> Secure Payment &#183; Instant Digital Delivery &#183; Authorised Product</p>
         <p class="text-center text-xs text-gray-400 mt-2">By completing this purchase you agree to our <a href="Legal/terms.html" class="hover:underline">Terms of Service</a>. Faulty keys replaced or refunded.</p>
     </div>
 </main>
@@ -85,21 +87,86 @@
 <!-- FOOTER -->
 <footer class="bg-dark text-white/80 py-10 mt-auto">
     <div class="container mx-auto px-4 text-center">
-        <p class="mb-1">© 2026 LegalKeys • All Rights Reserved</p>
+        <p class="mb-1">&copy; 2026 LegalKeys &#183; All Rights Reserved</p>
         <p class="text-xs text-white/50 mb-1">LegalKeys is a trading name of a sole trader business based in the United Kingdom.</p>
         <p class="text-xs text-white/50">Not VAT registered. No VAT is charged on purchases.</p>
         <div class="mt-5 text-sm flex flex-wrap justify-center gap-x-4 gap-y-1">
             <a href="Legal/terms.html" class="hover:underline">Terms of Service</a>
             <a href="Legal/privacy.html" class="hover:underline">Privacy Policy</a>
             <a href="Legal/copyright.html" class="hover:underline">Copyright Policy</a>
-            <a href="Legal/VAT.html" class="hover:underline">Pricing & Tax</a>
-            <a href="about.html" class="hover:underline">About & Contact</a>
+            <a href="Legal/VAT.html" class="hover:underline">Pricing &amp; Tax</a>
+            <a href="about.html" class="hover:underline">About &amp; Contact</a>
         </div>
     </div>
 </footer>
 
 <script>
 function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('hidden'); }
+
+// Stripe integration
+const stripe = Stripe('pk_live_51TdrYuPj2VuWu2GTQDeIna81aDRvUZ2Ypof6pP1jbwLwC0jGoy2sAZgx5R1KufObbVeBauBWgx9PpFmDJlH2I6tx00VYdgfCtK');
+const elements = stripe.elements();
+
+const cardElement = elements.create('card', {
+    style: {
+        base: {
+            fontFamily: 'sans-serif',
+            fontSize: '16px',
+            color: '#1D2129',
+            '::placeholder': { color: '#9CA3AF' }
+        },
+        invalid: { color: '#F53F3F' }
+    }
+});
+cardElement.mount('#card-element');
+
+cardElement.on('change', function(event) {
+    const displayError = document.getElementById('card-errors');
+    displayError.textContent = event.error ? event.error.message : '';
+});
+
+const form = document.getElementById('payment-form');
+form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    const btnText = document.getElementById('btn-text');
+    btn.disabled = true;
+    btnText.textContent = 'Processing...';
+
+    const email = document.getElementById('email').value;
+
+    const {paymentMethod, error} = await stripe.createPaymentMethod({
+        type: 'card',
+        card: cardElement,
+        billing_details: { email: email }
+    });
+
+    if (error) {
+        document.getElementById('card-errors').textContent = error.message;
+        btn.disabled = false;
+        btnText.innerHTML = 'Pay &#163;24.99 &amp; Get Key';
+    } else {
+        // Send paymentMethod.id + email to your server
+        const response = await fetch('/api/process-payment', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                payment_method_id: paymentMethod.id,
+                email: email,
+                product_id: 1,
+                total: 24.99
+            })
+        });
+        const result = await response.json();
+        if (result.success) {
+            window.location.href = 'success.php';
+        } else {
+            document.getElementById('card-errors').textContent = result.error || 'Payment failed. Please try again.';
+            btn.disabled = false;
+            btnText.innerHTML = 'Pay &#163;24.99 &amp; Get Key';
+        }
+    }
+});
 </script>
 
 </body>
