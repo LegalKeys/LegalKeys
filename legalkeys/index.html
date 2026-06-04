@@ -5,341 +5,1054 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LegalKeys - Buy Game Keys 100% Legally</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖️</text></svg>">
-    <!-- ✅ VERIFICATION CODE — FIRST LINE, EXACT FORMAT ✅ -->
     <meta name="impact-site-verification" content="2d9751c8-7e70-4937-b51f-7f4ebd022500" />
-    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <script>
-        tailwind.config={theme:{extend:{colors:{
-            primary:'#165DFF',
-            secondary:'#36CFC9',
-            danger:'#F53F3F',
-            success:'#00B42A',
-            warning:'#FF7D00',
-            muted:'#A0A8B8'
-        }}}}
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        *{box-sizing:border-box;}
-        body{background:#0D0F14;}
+        :root {
+            --bg: #090B10;
+            --bg2: #0E1118;
+            --card: #131720;
+            --card2: #1A1F2E;
+            --border: rgba(99,179,237,0.12);
+            --border-glow: rgba(99,179,237,0.35);
+            --blue: #3B82F6;
+            --blue-bright: #60A5FA;
+            --purple: #8B5CF6;
+            --cyan: #06B6D4;
+            --green: #10B981;
+            --red: #EF4444;
+            --text: #E2E8F0;
+            --text-muted: #718096;
+            --glow: rgba(59,130,246,0.25);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ANIMATED BACKGROUND STARS */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                radial-gradient(1px 1px at 20% 30%, rgba(99,179,237,0.4) 0%, transparent 100%),
+                radial-gradient(1px 1px at 80% 10%, rgba(139,92,246,0.4) 0%, transparent 100%),
+                radial-gradient(1px 1px at 50% 80%, rgba(99,179,237,0.3) 0%, transparent 100%),
+                radial-gradient(1px 1px at 10% 60%, rgba(139,92,246,0.3) 0%, transparent 100%),
+                radial-gradient(1px 1px at 90% 70%, rgba(99,179,237,0.2) 0%, transparent 100%),
+                radial-gradient(2px 2px at 35% 50%, rgba(59,130,246,0.2) 0%, transparent 100%),
+                radial-gradient(2px 2px at 65% 25%, rgba(139,92,246,0.2) 0%, transparent 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
 
         /* HEADER */
-        .site-header{
-            background:#13151C;
-            border-bottom:1px solid rgba(22,93,255,0.2);
-            box-shadow:0 4px 30px rgba(0,0,0,0.5);
+        header {
+            background: rgba(9,11,16,0.95);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5), 0 1px 0 rgba(99,179,237,0.1);
         }
-        .nav-link{color:#ffffff;font-weight:500;transition:color 0.2s;}
-        .nav-link:hover{color:#165DFF;}
-        .btn-login{
-            border:1px solid rgba(255,255,255,0.2);
-            color:#ffffff;
-            background:transparent;
-            padding:8px 16px;
-            border-radius:8px;
-            font-size:0.875rem;
-            cursor:pointer;
-            transition:border-color 0.2s,background 0.2s;
+
+        .header-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
         }
-        .btn-login:hover{border-color:rgba(22,93,255,0.5);background:rgba(22,93,255,0.05);}
-        .btn-register{
-            background:linear-gradient(135deg,#165DFF,#7B2FFF);
-            color:#ffffff;
-            border:none;
-            padding:8px 16px;
-            border-radius:8px;
-            font-size:0.875rem;
-            font-weight:500;
-            cursor:pointer;
-            transition:opacity 0.2s;
+
+        .logo img { height: 38px; width: auto; }
+
+        nav { display: flex; gap: 32px; }
+
+        nav a {
+            color: #94A3B8;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: color 0.2s;
+            position: relative;
         }
-        .btn-register:hover{opacity:0.88;}
+
+        nav a:hover { color: var(--blue-bright); }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0; right: 0;
+            height: 1px;
+            background: var(--blue);
+            transform: scaleX(0);
+            transition: transform 0.2s;
+        }
+
+        nav a:hover::after { transform: scaleX(1); }
+
+        .auth-buttons { display: flex; gap: 10px; align-items: center; }
+
+        .btn-login {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--text);
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+        }
+
+        .btn-login:hover { border-color: var(--blue); color: var(--blue-bright); }
+
+        .btn-register {
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            transition: all 0.2s;
+            box-shadow: 0 0 20px rgba(59,130,246,0.3);
+        }
+
+        .btn-register:hover { box-shadow: 0 0 30px rgba(59,130,246,0.5); transform: translateY(-1px); }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        #mobileMenu {
+            display: none;
+            background: var(--bg2);
+            border-top: 1px solid var(--border);
+            padding: 16px 24px;
+        }
+
+        #mobileMenu a {
+            display: block;
+            padding: 10px 0;
+            color: #94A3B8;
+            text-decoration: none;
+            font-size: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        #mobileMenu a:hover { color: var(--blue-bright); }
+
+        .mobile-auth { display: flex; gap: 10px; padding-top: 12px; }
+        .mobile-auth button { flex: 1; }
+
+        /* MODALS */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.open { display: flex; }
+
+        .modal-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            width: 100%;
+            max-width: 420px;
+            margin: 16px;
+            box-shadow: 0 0 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(99,179,237,0.05);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h3 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 1px;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 22px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover { color: white; }
+
+        .form-group { margin-bottom: 16px; }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: #94A3B8;
+            margin-bottom: 6px;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.2s;
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+        }
+
+        .btn-primary {
+            width: 100%;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            border: none;
+            color: white;
+            padding: 11px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 0 20px rgba(59,130,246,0.3);
+        }
+
+        .btn-primary:hover { box-shadow: 0 0 30px rgba(59,130,246,0.5); transform: translateY(-1px); }
+
+        #sellerFields {
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        #sellerFields.visible { display: block; }
+
+        #sellerFields h4 {
+            color: var(--blue-bright);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .radio-group { display: flex; gap: 20px; }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 13px;
+            color: #94A3B8;
+            cursor: pointer;
+            margin-bottom: 16px;
+        }
+
+        .checkbox-label a { color: var(--blue-bright); text-decoration: none; }
+        .checkbox-label a:hover { text-decoration: underline; }
 
         /* HERO */
-        .hero-section{
+        #home {
+            position: relative;
+            padding: 100px 24px 80px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        #home::before {
+            content: '';
+            position: absolute;
+            inset: 0;
             background:
-                radial-gradient(rgba(22,93,255,0.15) 1px,transparent 1px),
-                radial-gradient(ellipse at top,#1a1f3a 0%,#0D0F14 60%);
-            background-size:30px 30px,100% 100%;
-        }
-        .hero-underline{
-            background:linear-gradient(90deg,#165DFF,#7B2FFF);
-            height:3px;
-            display:block;
-            border-radius:2px;
-            width:120px;
-            margin:8px auto 24px;
-        }
-        .btn-primary{
-            background:linear-gradient(135deg,#165DFF,#7B2FFF);
-            color:#ffffff;
-            padding:12px 32px;
-            border-radius:8px;
-            font-weight:500;
-            box-shadow:0 0 20px rgba(22,93,255,0.4);
-            text-decoration:none;
-            transition:opacity 0.2s;
-        }
-        .btn-primary:hover{opacity:0.88;}
-        .btn-secondary{
-            border:1px solid rgba(22,93,255,0.5);
-            color:#ffffff;
-            background:#1A1D27;
-            padding:12px 32px;
-            border-radius:8px;
-            font-weight:500;
-            text-decoration:none;
-            transition:border-color 0.2s,background 0.2s;
-        }
-        .btn-secondary:hover{border-color:rgba(22,93,255,0.8);background:#1f2333;}
-        .badge-pill{
-            background:rgba(22,93,255,0.1);
-            border:1px solid rgba(22,93,255,0.3);
-            color:#A0AEC0;
-            border-radius:999px;
-            padding:6px 12px;
-            font-size:0.875rem;
+                radial-gradient(ellipse 80% 60% at 50% -10%, rgba(59,130,246,0.15) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 40% at 80% 50%, rgba(139,92,246,0.08) 0%, transparent 60%);
+            pointer-events: none;
         }
 
-        /* COMPLIANCE CARDS */
-        .compliance-card{
-            background:#1A1D27;
-            border:1px solid rgba(22,93,255,0.15);
-            border-radius:16px;
-            padding:24px;
-            transition:border-color 0.25s,box-shadow 0.25s;
-        }
-        .compliance-card:hover{
-            border-color:rgba(22,93,255,0.5);
-            box-shadow:0 0 30px rgba(22,93,255,0.1);
+        /* GRID PATTERN */
+        #home::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(99,179,237,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99,179,237,0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
         }
 
-        /* PRODUCT CARDS */
-        .product-card{
-            background:#1A1D27;
-            border:1px solid rgba(255,255,255,0.06);
-            border-radius:16px;
-            overflow:hidden;
-            transition:border-color 0.25s,box-shadow 0.25s,transform 0.25s;
+        .hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(59,130,246,0.1);
+            border: 1px solid rgba(59,130,246,0.25);
+            color: var(--blue-bright);
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
         }
-        .product-card:hover{
-            border-color:rgba(22,93,255,0.4);
-            box-shadow:0 0 30px rgba(22,93,255,0.15);
-            transform:translateY(-4px);
+
+        .hero-eyebrow span { width: 6px; height: 6px; background: var(--blue); border-radius: 50%; display: inline-block; animation: pulse 2s infinite; }
+
+        @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+
+        .hero-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: clamp(2.4rem, 6vw, 4.2rem);
+            font-weight: 700;
+            line-height: 1.1;
+            color: white;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
         }
+
+        .hero-title .glow-text {
+            background: linear-gradient(135deg, var(--blue-bright), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-divider {
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--blue), var(--purple));
+            border-radius: 2px;
+            margin: 16px auto 24px;
+        }
+
+        .hero-subtitle {
+            color: #94A3B8;
+            font-size: 17px;
+            line-height: 1.7;
+            margin-bottom: 36px;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+
+        .btn-hero-primary {
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            color: white;
+            padding: 14px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            box-shadow: 0 0 30px rgba(59,130,246,0.4);
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-hero-primary:hover { box-shadow: 0 0 50px rgba(59,130,246,0.6); transform: translateY(-2px); }
+
+        .btn-hero-secondary {
+            background: transparent;
+            border: 1px solid rgba(99,179,237,0.35);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-hero-secondary:hover { border-color: var(--blue); background: rgba(59,130,246,0.08); }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .badge {
+            background: rgba(16,185,129,0.08);
+            border: 1px solid rgba(16,185,129,0.2);
+            color: #6EE7B7;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* STATS BAR */
+        .stats-bar {
+            background: var(--card);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 24px;
+        }
+
+        .stats-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .stat { text-align: center; }
+
+        .stat-number {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 1px;
+        }
+
+        .stat-number span { color: var(--blue-bright); }
+
+        .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 2px; letter-spacing: 0.5px; text-transform: uppercase; }
+
+        /* SECTIONS */
+        section { position: relative; z-index: 1; }
+
+        .section-dark { background: var(--bg2); padding: 80px 24px; }
+        .section-darker { background: var(--bg); padding: 80px 24px; }
+
+        .section-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 48px;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; }
+        .container-sm { max-width: 860px; margin: 0 auto; }
+
+        /* COMING SOON BANNER */
+        .coming-soon {
+            background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(139,92,246,0.08));
+            border: 1px solid rgba(99,179,237,0.2);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            margin-bottom: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .coming-soon::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--blue), transparent);
+        }
+
+        .coming-soon h3 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .coming-soon p { color: #94A3B8; font-size: 14px; margin-bottom: 20px; }
+
+        .notify-form { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+        .notify-form input {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            min-width: 240px;
+            transition: border-color 0.2s;
+        }
+
+        .notify-form input:focus { border-color: var(--blue); }
+        .notify-form input::placeholder { color: var(--text-muted); }
+
+        .btn-notify {
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+        }
+
+        .btn-notify:hover { box-shadow: 0 0 20px rgba(59,130,246,0.4); }
 
         /* FILTER BUTTONS */
-        .filter-btn{
-            background:#1A1D27;
-            border:1px solid rgba(255,255,255,0.1);
-            color:#A0A8B8;
-            border-radius:999px;
-            padding:8px 16px;
-            font-size:0.875rem;
-            font-weight:500;
-            cursor:pointer;
-            transition:all 0.2s;
-        }
-        .filter-btn:hover{border-color:rgba(22,93,255,0.4);color:#fff;}
+        .filter-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
 
-        /* MISC */
-        .form-focus:focus{border-color:#165DFF !important;outline:none;box-shadow:0 0 0 2px rgba(22,93,255,0.2);}
-        .btn-gradient{
-            background:linear-gradient(135deg,#165DFF,#7B2FFF);
-            color:#fff;
-            transition:opacity 0.2s;
+        .filter-btn {
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: #94A3B8;
+            padding: 8px 18px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
         }
-        .btn-gradient:hover{opacity:0.88;}
-        .accent-line{
-            width:72px;height:4px;
-            background:linear-gradient(90deg,#165DFF,#7B2FFF);
-            border-radius:2px;
-            margin:0.5rem auto 0;
+
+        .filter-btn:hover, .filter-btn.active {
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            border-color: transparent;
+            color: white;
+            box-shadow: 0 0 15px rgba(59,130,246,0.3);
+        }
+
+        /* PRODUCT GRID */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.25s;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            border-color: rgba(59,130,246,0.4);
+            box-shadow: 0 0 40px rgba(59,130,246,0.12), 0 8px 32px rgba(0,0,0,0.3);
+            transform: translateY(-4px);
+        }
+
+        .card-img { height: 180px; position: relative; overflow: hidden; }
+        .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .product-card:hover .card-img img { transform: scale(1.05); }
+
+        .badge-verified {
+            position: absolute;
+            top: 10px; left: 10px;
+            background: rgba(16,185,129,0.15);
+            border: 1px solid rgba(16,185,129,0.4);
+            color: #6EE7B7;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-platform {
+            position: absolute;
+            top: 10px; right: 10px;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(4px);
+            color: white;
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        .card-body { padding: 16px; }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 16px;
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .card-subtitle { font-size: 12px; color: var(--text-muted); margin-bottom: 14px; }
+
+        .card-footer { display: flex; justify-content: space-between; align-items: center; }
+
+        .card-price {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--blue-bright);
+        }
+
+        .btn-buy {
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            color: white;
+            padding: 7px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 0 0 12px rgba(59,130,246,0.25);
+        }
+
+        .btn-buy:hover { box-shadow: 0 0 20px rgba(59,130,246,0.5); }
+
+        /* COMPARISON TABLE */
+        .table-wrap {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(0,0,0,0.3);
+        }
+
+        .table-wrap table { width: 100%; border-collapse: collapse; font-size: 14px; }
+
+        .table-wrap thead tr {
+            background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(139,92,246,0.15));
+            border-bottom: 1px solid var(--border);
+        }
+
+        .table-wrap th {
+            padding: 16px;
+            font-weight: 600;
+            color: white;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        .table-wrap th:first-child { text-align: left; }
+        .table-wrap th:not(:first-child) { text-align: center; }
+
+        .table-wrap td {
+            padding: 14px 16px;
+            color: #94A3B8;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .table-wrap tr:last-child td { border-bottom: none; }
+
+        .table-wrap tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+        .table-wrap td:not(:first-child) { text-align: center; }
+
+        .tick { color: var(--green); font-size: 20px; font-weight: 700; }
+        .cross { color: var(--red); font-size: 20px; font-weight: 700; }
+        .muted-cell { color: var(--text-muted); font-size: 13px; }
+
+        /* COMPLIANCE CARDS */
+        .compliance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .compliance-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.25s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .compliance-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(59,130,246,0.3), transparent);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .compliance-card:hover {
+            border-color: rgba(59,130,246,0.3);
+            box-shadow: 0 0 30px rgba(59,130,246,0.08);
+            transform: translateY(-2px);
+        }
+
+        .compliance-card:hover::before { transform: scaleX(1); }
+
+        .compliance-icon {
+            width: 52px;
+            height: 52px;
+            background: rgba(59,130,246,0.12);
+            border: 1px solid rgba(59,130,246,0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--blue-bright);
+            font-size: 20px;
+            margin-bottom: 18px;
+        }
+
+        .compliance-card h3 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .compliance-card p { color: #94A3B8; font-size: 14px; line-height: 1.7; }
+
+        /* NO RESULTS */
+        #noResults {
+            text-align: center;
+            padding: 60px 0;
+            color: var(--text-muted);
+        }
+
+        #noResults i { font-size: 48px; display: block; margin-bottom: 12px; color: var(--blue); opacity: 0.4; }
+
+        /* FOOTER */
+        footer {
+            background: var(--bg2);
+            border-top: 1px solid var(--border);
+            padding: 48px 24px 32px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(59,130,246,0.3), transparent);
+        }
+
+        footer img { height: 34px; opacity: 0.7; margin-bottom: 16px; }
+
+        footer p { color: var(--text-muted); font-size: 13px; margin-bottom: 6px; }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px 20px;
+            margin-top: 20px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: var(--blue-bright); }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav, .auth-buttons { display: none; }
+            .mobile-menu-btn { display: block; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .stats-inner { gap: 16px; }
+            .product-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+        }
+
+        /* GAMEPAD DECORATION */
+        .gamepad-deco {
+            position: absolute;
+            opacity: 0.03;
+            font-size: 300px;
+            right: -40px;
+            top: 50%;
+            transform: translateY(-50%) rotate(-15deg);
+            pointer-events: none;
+            user-select: none;
+            line-height: 1;
         }
     </style>
 </head>
-<body class="font-sans flex flex-col min-h-screen text-white">
+<body>
 
 <!-- HEADER -->
-<header class="site-header sticky top-0 z-50">
-    <div class="container mx-auto px-4">
-        <div class="flex items-center justify-between h-16">
-            <a href="index.html"><img src="logo.png?v=1" alt="LegalKeys" style="height:40px;width:auto;"></a>
-            <nav class="hidden md:flex gap-6">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#browse" class="nav-link">Browse</a>
-                <a href="sell.html" class="nav-link">Sell Legally</a>
-                <a href="#compliance" class="nav-link">Why Us</a>
-                <a href="about.html" class="nav-link">About</a>
-            </nav>
-            <div class="flex items-center gap-2">
-                <div class="hidden md:flex gap-2" id="authButtons">
-                    <button onclick="openModal('loginModal')" class="btn-login">Login</button>
-                    <button onclick="openModal('registerModal')" class="btn-register">Register</button>
-                </div>
-                <button class="md:hidden text-2xl ml-2" style="color:#A0A8B8;background:none;border:none;cursor:pointer;" onclick="toggleMobileMenu()" aria-label="Menu">
-                    <i class="fa fa-bars"></i>
-                </button>
-            </div>
+<header>
+    <div class="header-inner">
+        <a href="index.html" class="logo"><img src="logo.png?v=1" alt="LegalKeys"></a>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#browse">Browse</a>
+            <a href="sell.html">Sell Legally</a>
+            <a href="#compliance">Why Us</a>
+            <a href="about.html">About</a>
+        </nav>
+        <div class="auth-buttons">
+            <button class="btn-login" onclick="openModal('loginModal')">Login</button>
+            <button class="btn-register" onclick="openModal('registerModal')">Register</button>
         </div>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+            <i class="fa fa-bars"></i>
+        </button>
     </div>
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="hidden md:hidden px-4 py-3 space-y-2" style="border-top:1px solid rgba(255,255,255,0.07);">
-        <a href="#home" class="nav-link block py-2" onclick="toggleMobileMenu()">Home</a>
-        <a href="#browse" class="nav-link block py-2" onclick="toggleMobileMenu()">Browse</a>
-        <a href="sell.html" class="nav-link block py-2">Sell Legally</a>
-        <a href="#compliance" class="nav-link block py-2" onclick="toggleMobileMenu()">Why Us</a>
-        <a href="about.html" class="nav-link block py-2">About</a>
-        <div class="flex gap-2 pt-2" style="border-top:1px solid rgba(255,255,255,0.07);">
-            <button onclick="openModal('loginModal');toggleMobileMenu()" class="btn-login flex-1">Login</button>
-            <button onclick="openModal('registerModal');toggleMobileMenu()" class="btn-register flex-1">Register</button>
+    <div id="mobileMenu">
+        <a href="#home" onclick="toggleMobileMenu()">Home</a>
+        <a href="#browse" onclick="toggleMobileMenu()">Browse</a>
+        <a href="sell.html">Sell Legally</a>
+        <a href="#compliance" onclick="toggleMobileMenu()">Why Us</a>
+        <a href="about.html">About</a>
+        <div class="mobile-auth">
+            <button class="btn-login" style="flex:1" onclick="openModal('loginModal');toggleMobileMenu()">Login</button>
+            <button class="btn-register" style="flex:1" onclick="openModal('registerModal');toggleMobileMenu()">Register</button>
         </div>
     </div>
 </header>
 
 <!-- LOGIN MODAL -->
-<div id="loginModal" class="fixed inset-0 z-50 hidden items-center justify-center" style="background:rgba(0,0,0,0.75);">
-    <div class="w-full max-w-md p-6 m-4 rounded-xl" style="background:#1A1D27;border:1px solid rgba(22,93,255,0.2);">
-        <div class="flex justify-between items-center mb-4">
-            <h3 class="text-xl font-bold text-white">Login</h3>
-            <button onclick="closeModal('loginModal')" style="color:#A0A8B8;background:none;border:none;font-size:1.5rem;cursor:pointer;">&times;</button>
+<div id="loginModal" class="modal">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h3>🎮 LOGIN</h3>
+            <button class="modal-close" onclick="closeModal('loginModal')">&times;</button>
         </div>
         <form action="login.php" method="POST">
-            <div class="mb-4">
-                <label class="block text-sm font-medium mb-1" style="color:#A0A8B8;">Email</label>
-                <input type="email" name="email" class="w-full p-2 rounded form-focus text-white" style="background:#0D0F14;border:1px solid rgba(22,93,255,0.3);" required>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" required placeholder="you@example.com">
             </div>
-            <div class="mb-4">
-                <label class="block text-sm font-medium mb-1" style="color:#A0A8B8;">Password</label>
-                <input type="password" name="password" class="w-full p-2 rounded form-focus text-white" style="background:#0D0F14;border:1px solid rgba(22,93,255,0.3);" required>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" required placeholder="••••••••">
             </div>
-            <button type="submit" class="w-full btn-gradient p-2 rounded font-medium">Login</button>
+            <button type="submit" class="btn-primary">Login</button>
         </form>
     </div>
 </div>
 
 <!-- REGISTER MODAL -->
-<div id="registerModal" class="fixed inset-0 z-50 hidden items-center justify-center overflow-y-auto" style="background:rgba(0,0,0,0.75);">
-    <div class="w-full max-w-md p-6 m-4 rounded-xl" style="background:#1A1D27;border:1px solid rgba(22,93,255,0.2);">
-        <div class="flex justify-between items-center mb-4">
-            <h3 class="text-xl font-bold text-white">Register Account</h3>
-            <button onclick="closeModal('registerModal')" style="color:#A0A8B8;background:none;border:none;font-size:1.5rem;cursor:pointer;">&times;</button>
+<div id="registerModal" class="modal" style="overflow-y:auto;">
+    <div class="modal-box" style="margin:16px auto;">
+        <div class="modal-header">
+            <h3>🕹️ CREATE ACCOUNT</h3>
+            <button class="modal-close" onclick="closeModal('registerModal')">&times;</button>
         </div>
         <form action="register.php" method="POST" enctype="multipart/form-data">
-            <div class="mb-3">
-                <label class="block text-sm font-medium mb-1" style="color:#A0A8B8;">Full Name</label>
-                <input type="text" name="name" class="w-full p-2 rounded form-focus text-white" style="background:#0D0F14;border:1px solid rgba(22,93,255,0.3);" required>
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" name="name" required placeholder="Your name">
             </div>
-            <div class="mb-3">
-                <label class="block text-sm font-medium mb-1" style="color:#A0A8B8;">Email</label>
-                <input type="email" name="email" class="w-full p-2 rounded form-focus text-white" style="background:#0D0F14;border:1px solid rgba(22,93,255,0.3);" required>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" required placeholder="you@example.com">
             </div>
-            <div class="mb-3">
-                <label class="block text-sm font-medium mb-1" style="color:#A0A8B8;">Password</label>
-                <input type="password" name="password" class="w-full p-2 rounded form-focus text-white" style="background:#0D0F14;border:1px solid rgba(22,93,255,0.3);" required>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" required placeholder="••••••••">
             </div>
-            <div class="mb-4">
-                <label class="block text-sm font-medium mb-1" style="color:#A0A8B8;">Account Type</label>
-                <div class="flex gap-4 text-white">
-                    <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="type" value="buyer" checked onchange="toggleSellerFields()"> Buyer</label>
-                    <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="type" value="seller" onchange="toggleSellerFields()"> Seller (Business)</label>
+            <div class="form-group">
+                <label>Account Type</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="type" value="buyer" checked onchange="toggleSellerFields()"> Buyer</label>
+                    <label><input type="radio" name="type" value="seller" onchange="toggleSellerFields()"> Seller (Business)</label>
                 </div>
             </div>
-            <!-- SELLER LEGAL FIELDS -->
-            <div id="sellerFields" class="pt-4 mb-4 hidden" style="border-top:1px solid rgba(255,255,255,0.07);">
-                <h4 class="font-semibold text-primary mb-3">Business Details (Required)</h4>
-                <div class="mb-3">
-                    <label class="block text-sm font-medium mb-1" style="color:#A0A8B8;">Company / Trading Name</label>
-                    <input type="text" name="company_name" class="w-full p-2 rounded form-focus text-white" style="background:#0D0F14;border:1px solid rgba(22,93,255,0.3);">
+            <div id="sellerFields">
+                <h4>Business Details (Required)</h4>
+                <div class="form-group">
+                    <label>Company / Trading Name</label>
+                    <input type="text" name="company_name" placeholder="Your company name">
                 </div>
-                <div class="mb-3">
-                    <label class="block text-sm font-medium mb-1" style="color:#A0A8B8;">Company Reg Number (if limited company)</label>
-                    <input type="text" name="company_number" class="w-full p-2 rounded form-focus text-white" style="background:#0D0F14;border:1px solid rgba(22,93,255,0.3);">
+                <div class="form-group">
+                    <label>Company Reg Number (if limited company)</label>
+                    <input type="text" name="company_number" placeholder="e.g. 12345678">
                 </div>
-                <div class="mb-3">
-                    <label class="block text-sm font-medium mb-1" style="color:#A0A8B8;">VAT Number (if VAT registered)</label>
-                    <input type="text" name="vat_number" class="w-full p-2 rounded form-focus text-white" style="background:#0D0F14;border:1px solid rgba(22,93,255,0.3);">
+                <div class="form-group">
+                    <label>VAT Number (if VAT registered)</label>
+                    <input type="text" name="vat_number" placeholder="e.g. GB123456789">
                 </div>
-                <div class="mb-3">
-                    <label class="block text-sm font-medium mb-1" style="color:#A0A8B8;">Proof of Authorised Supply (PDF/Image)</label>
-                    <input type="file" name="supply_proof" accept=".pdf,.jpg,.png" class="w-full text-sm" style="color:#A0A8B8;">
-                    <p class="text-xs mt-1" style="color:#A0A8B8;">e.g. distributor agreement or authorisation letter</p>
+                <div class="form-group">
+                    <label>Proof of Authorised Supply (PDF/Image)</label>
+                    <input type="file" name="supply_proof" accept=".pdf,.jpg,.png">
+                    <p style="font-size:12px;color:var(--text-muted);margin-top:4px;">e.g. distributor agreement or authorisation letter</p>
                 </div>
             </div>
-            <div class="mb-4">
-                <label class="flex items-start gap-2 text-sm" style="color:#A0A8B8;">
-                    <input type="checkbox" required class="mt-1">
-                    <span>I agree to the <a href="Legal/terms.html" class="text-primary hover:underline">Terms of Service</a> and <a href="Legal/privacy.html" class="text-primary hover:underline">Privacy Policy</a>.</span>
-                </label>
-            </div>
-            <button type="submit" class="w-full btn-gradient p-2 rounded font-medium">Create Account</button>
+            <label class="checkbox-label">
+                <input type="checkbox" required style="margin-top:2px;">
+                <span>I agree to the <a href="Legal/terms.html">Terms of Service</a> and <a href="Legal/privacy.html">Privacy Policy</a>.</span>
+            </label>
+            <button type="submit" class="btn-primary">Create Account</button>
         </form>
     </div>
 </div>
 
 <!-- HERO -->
-<section id="home" class="hero-section relative py-24 px-4 text-center overflow-hidden">
-    <div class="max-w-3xl mx-auto relative z-10">
-        <h1 style="font-size:clamp(2.5rem,6vw,4rem);font-weight:800;color:#ffffff;line-height:1.15;" class="mb-0">Buy Game Keys You Can Actually Trust</h1>
-        <span class="hero-underline"></span>
-        <p class="text-lg mb-8" style="color:#A0A8B8;">Every key on LegalKeys comes from authorised distributors. No stolen keys, no scams — just legitimate digital goods sold transparently by a UK-based business.</p>
-        <div class="flex flex-col sm:flex-row gap-3 justify-center">
-            <a href="#browse" class="btn-primary inline-block">Browse Games</a>
-            <a href="sell.html" class="btn-secondary inline-block">Become a Seller</a>
+<section id="home">
+    <div class="gamepad-deco">🎮</div>
+    <div class="hero-content">
+        <div class="hero-eyebrow"><span></span> UK's Most Trusted Game Key Marketplace</div>
+        <h1 class="hero-title">
+            Buy Game Keys You Can<br>
+            <span class="glow-text">Actually Trust</span>
+        </h1>
+        <div class="hero-divider"></div>
+        <p class="hero-subtitle">Every key on LegalKeys comes from verified sources. No stolen keys, no scams — just legitimate digital goods sold transparently by a UK-based business.</p>
+        <div class="hero-buttons">
+            <a href="#browse" class="btn-hero-primary"><i class="fa fa-gamepad"></i> Browse Games</a>
+            <a href="sell.html" class="btn-hero-secondary"><i class="fa fa-store"></i> Become a Seller</a>
         </div>
-        <div class="flex flex-wrap justify-center gap-3 mt-10">
-            <span class="badge-pill"><i class="fa fa-check-circle text-success mr-1"></i> GDPR Compliant</span>
-            <span class="badge-pill"><i class="fa fa-check-circle text-success mr-1"></i> Authorised Sources Only</span>
-            <span class="badge-pill"><i class="fa fa-check-circle text-success mr-1"></i> Copyright Safe</span>
-            <span class="badge-pill"><i class="fa fa-check-circle text-success mr-1"></i> UK Based</span>
+        <div class="hero-badges">
+            <span class="badge"><i class="fa fa-check-circle"></i> GDPR Compliant</span>
+            <span class="badge"><i class="fa fa-check-circle"></i> Verified Sources</span>
+            <span class="badge"><i class="fa fa-check-circle"></i> Copyright Safe</span>
+            <span class="badge"><i class="fa fa-check-circle"></i> UK Based</span>
         </div>
     </div>
 </section>
 
-<!-- WHY LEGALKEYS vs COMPETITORS -->
-<section class="py-16" style="background:#13151C;">
-    <div class="container mx-auto px-4 max-w-5xl">
-        <h2 class="text-3xl font-bold text-center mb-2 text-white">Why Choose LegalKeys?</h2>
-        <p class="text-center mb-10" style="color:#A0A8B8;">Not all key marketplaces are built the same. Here's what sets us apart.</p>
-        <div class="overflow-x-auto rounded-xl" style="background:#1A1D27;border:1px solid rgba(22,93,255,0.15);">
-            <table class="w-full text-sm">
+<!-- STATS BAR -->
+<div class="stats-bar">
+    <div class="stats-inner">
+        <div class="stat">
+            <div class="stat-number">50<span>K+</span></div>
+            <div class="stat-label">Happy Gamers</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">10<span>K+</span></div>
+            <div class="stat-label">Keys Delivered</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">100<span>%</span></div>
+            <div class="stat-label">Verified Stock</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">24<span>/7</span></div>
+            <div class="stat-label">Support</div>
+        </div>
+    </div>
+</div>
+
+<!-- WHY CHOOSE US TABLE -->
+<section class="section-dark">
+    <div class="container-sm">
+        <h2 class="section-title">Why Choose LegalKeys?</h2>
+        <p class="section-sub">Not all key marketplaces are built the same. Here's what sets us apart.</p>
+        <div class="table-wrap">
+            <table>
                 <thead>
-                    <tr style="background:rgba(22,93,255,0.1);border-bottom:1px solid rgba(22,93,255,0.15);">
-                        <th class="p-4 text-left font-semibold text-white">Feature</th>
-                        <th class="p-4 text-center font-semibold text-primary">⚖️ LegalKeys</th>
-                        <th class="p-4 text-center font-semibold text-white">Typical Grey Market Sites</th>
+                    <tr>
+                        <th>Feature</th>
+                        <th>⚖️ LegalKeys</th>
+                        <th>Typical Grey Market Sites</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr style="border-bottom:1px solid rgba(22,93,255,0.08);">
-                        <td class="p-4" style="color:#A0A8B8;">Verified authorised supply</td>
-                        <td class="p-4 text-center text-success font-bold text-lg">✓</td>
-                        <td class="p-4 text-center text-danger font-bold text-lg">✗</td>
+                    <tr>
+                        <td>Verified authorised supply</td>
+                        <td><span class="tick">✓</span></td>
+                        <td><span class="cross">✗</span></td>
                     </tr>
-                    <tr style="border-bottom:1px solid rgba(22,93,255,0.08);background:#13151C;">
-                        <td class="p-4" style="color:#A0A8B8;">No stolen / fraudulent keys</td>
-                        <td class="p-4 text-center text-success font-bold text-lg">✓</td>
-                        <td class="p-4 text-center" style="color:#A0A8B8;">Not guaranteed</td>
+                    <tr>
+                        <td>No stolen / fraudulent keys</td>
+                        <td><span class="tick">✓</span></td>
+                        <td><span class="muted-cell">Not guaranteed</span></td>
                     </tr>
-                    <tr style="border-bottom:1px solid rgba(22,93,255,0.08);">
-                        <td class="p-4" style="color:#A0A8B8;">UK-based &amp; UK law compliant</td>
-                        <td class="p-4 text-center text-success font-bold text-lg">✓</td>
-                        <td class="p-4 text-center text-danger font-bold text-lg">✗</td>
+                    <tr>
+                        <td>UK-based & UK law compliant</td>
+                        <td><span class="tick">✓</span></td>
+                        <td><span class="cross">✗</span></td>
                     </tr>
-                    <tr style="border-bottom:1px solid rgba(22,93,255,0.08);background:#13151C;">
-                        <td class="p-4" style="color:#A0A8B8;">Clear pricing (no hidden fees)</td>
-                        <td class="p-4 text-center text-success font-bold text-lg">✓</td>
-                        <td class="p-4 text-center" style="color:#A0A8B8;">Often added at checkout</td>
+                    <tr>
+                        <td>Clear pricing (no hidden fees)</td>
+                        <td><span class="tick">✓</span></td>
+                        <td><span class="muted-cell">Often added at checkout</span></td>
                     </tr>
-                    <tr style="border-bottom:1px solid rgba(22,93,255,0.08);">
-                        <td class="p-4" style="color:#A0A8B8;">GDPR compliant data handling</td>
-                        <td class="p-4 text-center text-success font-bold text-lg">✓</td>
-                        <td class="p-4 text-center text-danger font-bold text-lg">✗</td>
+                    <tr>
+                        <td>GDPR compliant data handling</td>
+                        <td><span class="tick">✓</span></td>
+                        <td><span class="cross">✗</span></td>
                     </tr>
-                    <tr style="background:#13151C;">
-                        <td class="p-4" style="color:#A0A8B8;">Consumer Rights Act protections</td>
-                        <td class="p-4 text-center text-success font-bold text-lg">✓</td>
-                        <td class="p-4 text-center text-danger font-bold text-lg">✗</td>
+                    <tr>
+                        <td>Consumer Rights Act protections</td>
+                        <td><span class="tick">✓</span></td>
+                        <td><span class="cross">✗</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -347,163 +1060,160 @@
     </div>
 </section>
 
-<!-- COMPLIANCE -->
-<section id="compliance" class="py-16" style="background:#0D0F14;">
-    <div class="container mx-auto px-4 max-w-6xl">
-        <h2 class="text-3xl font-bold text-center text-white mb-1">How We Keep It Legal</h2>
-        <div class="accent-line mb-12"></div>
-        <div class="grid md:grid-cols-3 gap-8">
+<!-- HOW WE KEEP IT LEGAL -->
+<section id="compliance" class="section-darker">
+    <div class="container">
+        <h2 class="section-title">How We Keep It Legal</h2>
+        <p class="section-sub">Compliance isn't just a checkbox for us — it's built into everything we do.</p>
+        <div class="compliance-grid">
             <div class="compliance-card">
-                <div class="w-12 h-12 rounded-lg flex items-center justify-center text-xl mb-4" style="background:rgba(22,93,255,0.15);color:#165DFF;"><i class="fa fa-id-card"></i></div>
-                <h3 class="text-xl font-semibold mb-2 text-white">Authorised Sources Only</h3>
-                <p style="color:#A0A8B8;">All stock comes from our verified distributor partners. No grey market, no anonymous sellers — every product is traceable back to an authorised source.</p>
+                <div class="compliance-icon"><i class="fa fa-id-card"></i></div>
+                <h3>Verified Sources Only</h3>
+                <p>Every product on LegalKeys is traceable back to a verified, authorised source. No grey market, no anonymous sellers — full supply chain transparency.</p>
             </div>
             <div class="compliance-card">
-                <div class="w-12 h-12 rounded-lg flex items-center justify-center text-xl mb-4" style="background:rgba(22,93,255,0.15);color:#165DFF;"><i class="fa fa-shield"></i></div>
-                <h3 class="text-xl font-semibold mb-2 text-white">Copyright Compliant</h3>
-                <p style="color:#A0A8B8;">We only sell keys that are legitimately resaleable. No stolen keys, no chargeback fraud, no region violations. Infringing items are removed immediately.</p>
+                <div class="compliance-icon"><i class="fa fa-shield"></i></div>
+                <h3>Copyright Compliant</h3>
+                <p>We only sell keys that are legitimately resaleable. No stolen keys, no chargeback fraud, no region violations. Infringing items are removed immediately.</p>
             </div>
             <div class="compliance-card">
-                <div class="w-12 h-12 rounded-lg flex items-center justify-center text-xl mb-4" style="background:rgba(22,93,255,0.15);color:#165DFF;"><i class="fa fa-lock"></i></div>
-                <h3 class="text-xl font-semibold mb-2 text-white">Your Rights Protected</h3>
-                <p style="color:#A0A8B8;">As a UK-based business, we operate under the Consumer Rights Act 2015. If a key is faulty or doesn't work, you get a replacement or full refund — guaranteed.</p>
+                <div class="compliance-icon"><i class="fa fa-lock"></i></div>
+                <h3>Your Rights Protected</h3>
+                <p>As a UK-based business, we operate under the Consumer Rights Act 2015. If a key is faulty or doesn't work, you get a replacement or full refund — guaranteed.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- PRODUCTS -->
-<section id="browse" class="py-16" style="background:#0D0F14;">
-    <div class="container mx-auto px-4 max-w-6xl">
-        <h2 class="text-2xl font-bold mb-4 text-white">Browse Games</h2>
+<!-- BROWSE GAMES -->
+<section id="browse" class="section-dark">
+    <div class="container">
+        <h2 class="section-title">Browse Games</h2>
+        <p class="section-sub">Verified keys for every platform.</p>
 
-        <!-- PLATFORM FILTER -->
-        <div class="flex flex-wrap gap-2 mb-8">
-            <button class="filter-btn" onclick="filterProducts('all', this)">All Platforms</button>
-            <button class="filter-btn" onclick="filterProducts('pc', this)"><i class="fa fa-windows mr-1"></i> PC</button>
-            <button class="filter-btn" onclick="filterProducts('ps', this)"><i class="fa fa-gamepad mr-1"></i> PlayStation</button>
+        <!-- COMING SOON BANNER -->
+        <div class="coming-soon">
+            <h3>🚀 Full Stock Coming Very Soon</h3>
+            <p>We're finalising our supplier partnership — more titles landing shortly. Register your interest below.</p>
+            <div class="notify-form">
+                <input type="email" placeholder="your@email.com">
+                <button class="btn-notify">Notify Me</button>
+            </div>
+        </div>
+
+        <!-- FILTERS -->
+        <div class="filter-row">
+            <button class="filter-btn active" onclick="filterProducts('all', this)"><i class="fa fa-th"></i> All Platforms</button>
+            <button class="filter-btn" onclick="filterProducts('pc', this)"><i class="fa fa-windows"></i> PC</button>
+            <button class="filter-btn" onclick="filterProducts('ps', this)"><i class="fa fa-gamepad"></i> PlayStation</button>
             <button class="filter-btn" onclick="filterProducts('xbox', this)">Xbox</button>
             <button class="filter-btn" onclick="filterProducts('nintendo', this)">Nintendo</button>
         </div>
 
-        <!-- COMING SOON BANNER -->
-        <div class="mb-8 p-5 text-center rounded-xl" style="background:linear-gradient(135deg,rgba(22,93,255,0.15),rgba(123,47,255,0.15));border:1px solid rgba(22,93,255,0.3);">
-            <p class="text-white font-semibold text-base mb-1">🚀 We're finalising our supplier partnership — full stock coming very soon. Register your interest below.</p>
-            <form class="flex flex-col sm:flex-row gap-2 justify-center mt-4 max-w-md mx-auto" onsubmit="handleNotify(event)">
-                <input type="email" id="notifyEmail" placeholder="Your email address" required class="flex-1 form-focus text-white text-sm" style="background:#0D0F14;border:1px solid rgba(22,93,255,0.3);border-radius:8px;padding:10px 16px;">
-                <button type="submit" class="btn-gradient px-5 py-2.5 font-medium text-sm" style="border-radius:8px;border:none;cursor:pointer;">Notify Me</button>
-            </form>
-            <p id="notifySuccess" class="hidden text-success text-sm mt-3 font-medium">Thanks! We'll let you know when stock arrives.</p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6" id="productGrid">
+        <!-- PRODUCT GRID -->
+        <div class="product-grid" id="productGrid">
             <div class="product-card" data-platform="pc">
-                <div class="h-48 relative">
-                    <img src="https://picsum.photos/id/96/400/300" class="w-full h-full object-cover" alt="Cyberpunk 2077">
-                    <span class="absolute top-2 left-2 text-xs px-2 py-0.5 rounded font-medium" style="background:rgba(0,180,42,0.2);color:#00B42A;border:1px solid rgba(0,180,42,0.4);">VERIFIED</span>
-                    <span class="absolute top-2 right-2 text-white text-xs px-2 py-0.5 rounded" style="background:rgba(0,0,0,0.7);"><i class="fa fa-windows mr-1"></i>PC</span>
+                <div class="card-img">
+                    <img src="https://picsum.photos/id/96/400/300" alt="Cyberpunk 2077">
+                    <span class="badge-verified">✓ VERIFIED</span>
+                    <span class="badge-platform"><i class="fa fa-windows"></i> PC</span>
                 </div>
-                <div class="p-4">
-                    <h3 class="font-semibold text-lg mb-1 text-white">Cyberpunk 2077</h3>
-                    <p class="text-sm mb-3" style="color:#A0A8B8;">GOG.com • Verified Source</p>
-                    <div class="flex justify-between items-center">
-                        <span class="font-bold text-xl" style="color:#165DFF;">£24.99</span>
-                        <a href="checkout.html?id=1" class="btn-gradient text-white px-3 py-1.5 text-sm" style="border-radius:6px;border:none;">Buy Now</a>
+                <div class="card-body">
+                    <div class="card-title">Cyberpunk 2077</div>
+                    <div class="card-subtitle">GOG.com • Verified Source</div>
+                    <div class="card-footer">
+                        <span class="card-price">£24.99</span>
+                        <a href="checkout.html?id=1" class="btn-buy">Buy Now</a>
                     </div>
                 </div>
             </div>
             <div class="product-card" data-platform="pc">
-                <div class="h-48 relative">
-                    <img src="https://picsum.photos/id/90/400/300" class="w-full h-full object-cover" alt="Elden Ring DLC">
-                    <span class="absolute top-2 left-2 text-xs px-2 py-0.5 rounded font-medium" style="background:rgba(0,180,42,0.2);color:#00B42A;border:1px solid rgba(0,180,42,0.4);">VERIFIED</span>
-                    <span class="absolute top-2 right-2 text-white text-xs px-2 py-0.5 rounded" style="background:rgba(0,0,0,0.7);"><i class="fa fa-windows mr-1"></i>PC</span>
+                <div class="card-img">
+                    <img src="https://picsum.photos/id/90/400/300" alt="Elden Ring DLC">
+                    <span class="badge-verified">✓ VERIFIED</span>
+                    <span class="badge-platform"><i class="fa fa-windows"></i> PC</span>
                 </div>
-                <div class="p-4">
-                    <h3 class="font-semibold text-lg mb-1 text-white">Elden Ring DLC</h3>
-                    <p class="text-sm mb-3" style="color:#A0A8B8;">Steam • Verified Source</p>
-                    <div class="flex justify-between items-center">
-                        <span class="font-bold text-xl" style="color:#165DFF;">£19.99</span>
-                        <a href="checkout.html?id=2" class="btn-gradient text-white px-3 py-1.5 text-sm" style="border-radius:6px;border:none;">Buy Now</a>
+                <div class="card-body">
+                    <div class="card-title">Elden Ring DLC</div>
+                    <div class="card-subtitle">Steam • Verified Source</div>
+                    <div class="card-footer">
+                        <span class="card-price">£19.99</span>
+                        <a href="checkout.html?id=2" class="btn-buy">Buy Now</a>
                     </div>
                 </div>
             </div>
             <div class="product-card" data-platform="pc">
-                <div class="h-48 relative">
-                    <img src="https://picsum.photos/id/68/400/300" class="w-full h-full object-cover" alt="Red Dead Redemption 2">
-                    <span class="absolute top-2 left-2 text-xs px-2 py-0.5 rounded font-medium" style="background:rgba(0,180,42,0.2);color:#00B42A;border:1px solid rgba(0,180,42,0.4);">VERIFIED</span>
-                    <span class="absolute top-2 right-2 text-white text-xs px-2 py-0.5 rounded" style="background:rgba(0,0,0,0.7);"><i class="fa fa-windows mr-1"></i>PC</span>
+                <div class="card-img">
+                    <img src="https://picsum.photos/id/68/400/300" alt="Red Dead Redemption 2">
+                    <span class="badge-verified">✓ VERIFIED</span>
+                    <span class="badge-platform"><i class="fa fa-windows"></i> PC</span>
                 </div>
-                <div class="p-4">
-                    <h3 class="font-semibold text-lg mb-1 text-white">Red Dead Redemption 2</h3>
-                    <p class="text-sm mb-3" style="color:#A0A8B8;">Rockstar • Verified Source</p>
-                    <div class="flex justify-between items-center">
-                        <span class="font-bold text-xl" style="color:#165DFF;">£29.99</span>
-                        <a href="checkout.html?id=3" class="btn-gradient text-white px-3 py-1.5 text-sm" style="border-radius:6px;border:none;">Buy Now</a>
+                <div class="card-body">
+                    <div class="card-title">Red Dead Redemption 2</div>
+                    <div class="card-subtitle">Rockstar • Verified Source</div>
+                    <div class="card-footer">
+                        <span class="card-price">£29.99</span>
+                        <a href="checkout.html?id=3" class="btn-buy">Buy Now</a>
                     </div>
                 </div>
             </div>
             <div class="product-card" data-platform="ps">
-                <div class="h-48 relative">
-                    <img src="https://picsum.photos/id/119/400/300" class="w-full h-full object-cover" alt="FIFA 25">
-                    <span class="absolute top-2 left-2 text-xs px-2 py-0.5 rounded font-medium" style="background:rgba(0,180,42,0.2);color:#00B42A;border:1px solid rgba(0,180,42,0.4);">VERIFIED</span>
-                    <span class="absolute top-2 right-2 text-white text-xs px-2 py-0.5 rounded" style="background:rgba(0,0,0,0.7);"><i class="fa fa-gamepad mr-1"></i>PS5</span>
+                <div class="card-img">
+                    <img src="https://picsum.photos/id/119/400/300" alt="FIFA 25">
+                    <span class="badge-verified">✓ VERIFIED</span>
+                    <span class="badge-platform"><i class="fa fa-gamepad"></i> PS5</span>
                 </div>
-                <div class="p-4">
-                    <h3 class="font-semibold text-lg mb-1 text-white">FIFA 25</h3>
-                    <p class="text-sm mb-3" style="color:#A0A8B8;">PSN • Verified Source</p>
-                    <div class="flex justify-between items-center">
-                        <span class="font-bold text-xl" style="color:#165DFF;">£34.99</span>
-                        <a href="checkout.html?id=4" class="btn-gradient text-white px-3 py-1.5 text-sm" style="border-radius:6px;border:none;">Buy Now</a>
+                <div class="card-body">
+                    <div class="card-title">FIFA 25</div>
+                    <div class="card-subtitle">PSN • Verified Source</div>
+                    <div class="card-footer">
+                        <span class="card-price">£34.99</span>
+                        <a href="checkout.html?id=4" class="btn-buy">Buy Now</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="noResults" class="hidden text-center py-12" style="color:#A0A8B8;">
-            <i class="fa fa-gamepad text-4xl mb-3 block"></i>
+        <div id="noResults" class="hidden" style="display:none;">
+            <i class="fa fa-gamepad"></i>
             <p>No products in this category yet — check back soon.</p>
         </div>
     </div>
 </section>
 
 <!-- FOOTER -->
-<footer class="py-10 mt-auto" style="background:#13151C;border-top:1px solid rgba(22,93,255,0.15);">
-    <div class="container mx-auto px-4 text-center">
-        <a href="index.html"><img src="logo.png?v=1" alt="LegalKeys" style="height:36px;width:auto;" class="mx-auto mb-4 opacity-60"></a>
-        <p class="mb-1" style="color:#A0A8B8;">© 2026 LegalKeys • All Rights Reserved</p>
-        <p class="text-xs mb-1" style="color:rgba(160,168,184,0.5);">LegalKeys is a trading name of a sole trader business based in the United Kingdom.</p>
-        <p class="text-xs" style="color:rgba(160,168,184,0.5);">Not VAT registered. No VAT is charged on purchases.</p>
-        <div class="mt-5 text-sm flex flex-wrap justify-center gap-x-4 gap-y-1">
-            <a href="Legal/terms.html" class="transition-colors hover:text-white" style="color:#A0A8B8;">Terms of Service</a>
-            <a href="Legal/privacy.html" class="transition-colors hover:text-white" style="color:#A0A8B8;">Privacy Policy</a>
-            <a href="Legal/copyright.html" class="transition-colors hover:text-white" style="color:#A0A8B8;">Copyright Policy</a>
-            <a href="Legal/VAT.html" class="transition-colors hover:text-white" style="color:#A0A8B8;">Pricing &amp; Tax</a>
-            <a href="about.html" class="transition-colors hover:text-white" style="color:#A0A8B8;">About &amp; Contact</a>
-        </div>
+<footer>
+    <a href="index.html"><img src="logo.png?v=1" alt="LegalKeys"></a>
+    <p>© 2026 LegalKeys • All Rights Reserved</p>
+    <p>LegalKeys is a trading name of a sole trader business based in the United Kingdom.</p>
+    <p>Not VAT registered. No VAT is charged on purchases.</p>
+    <div class="footer-links">
+        <a href="Legal/terms.html">Terms of Service</a>
+        <a href="Legal/privacy.html">Privacy Policy</a>
+        <a href="Legal/copyright.html">Copyright Policy</a>
+        <a href="Legal/VAT.html">Pricing & Tax</a>
+        <a href="about.html">About & Contact</a>
     </div>
 </footer>
 
 <script>
-function openModal(id) { document.getElementById(id).classList.remove('hidden'); document.getElementById(id).classList.add('flex'); }
-function closeModal(id) { document.getElementById(id).classList.add('hidden'); document.getElementById(id).classList.remove('flex'); }
-function toggleSellerFields() { const d=document.getElementById('sellerFields'); d.classList.toggle('hidden', event.target.value!=='seller'); }
-function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('hidden'); }
-
-function handleNotify(e) {
-    e.preventDefault();
-    document.getElementById('notifyEmail').value = '';
-    document.getElementById('notifySuccess').classList.remove('hidden');
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+function toggleMobileMenu() {
+    const m = document.getElementById('mobileMenu');
+    m.style.display = m.style.display === 'block' ? 'none' : 'block';
 }
-
+function toggleSellerFields() {
+    const d = document.getElementById('sellerFields');
+    d.classList.toggle('visible', event.target.value === 'seller');
+}
+// Close modal on backdrop click
+document.querySelectorAll('.modal').forEach(m => {
+    m.addEventListener('click', e => { if(e.target === m) m.classList.remove('open'); });
+});
 function filterProducts(platform, btn) {
-    document.querySelectorAll('.filter-btn').forEach(b => {
-        b.style.background = '#1A1D27';
-        b.style.color = '#A0A8B8';
-        b.style.border = '1px solid rgba(255,255,255,0.1)';
-    });
-    btn.style.background = 'linear-gradient(135deg,#165DFF,#7B2FFF)';
-    btn.style.color = '#fff';
-    btn.style.border = '1px solid transparent';
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
     const cards = document.querySelectorAll('.product-card');
     let visible = 0;
     cards.forEach(card => {
@@ -511,12 +1221,8 @@ function filterProducts(platform, btn) {
         card.style.display = show ? '' : 'none';
         if (show) visible++;
     });
-    document.getElementById('noResults').classList.toggle('hidden', visible > 0);
+    document.getElementById('noResults').style.display = visible > 0 ? 'none' : 'block';
 }
-
-// Set initial active filter
-filterProducts('all', document.querySelector('.filter-btn'));
 </script>
-
 </body>
 </html>
