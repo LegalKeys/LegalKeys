@@ -966,6 +966,100 @@
 
         .compliance-card p { color: var(--muted); font-size: 14px; line-height: 1.75; }
 
+        /* FEATURED CATEGORIES */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .category-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 36px 28px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            transition: opacity 0.3s;
+        }
+
+        .category-card::after {
+            content: '';
+            position: absolute;
+            top: -60px; left: 50%;
+            transform: translateX(-50%);
+            width: 160px; height: 100px;
+            border-radius: 50%;
+            opacity: 0;
+            filter: blur(40px);
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .category-card:hover { transform: translateY(-6px); }
+        .category-card:hover::after { opacity: 0.35; }
+
+        .category-card--cyan::before { background: linear-gradient(90deg, var(--cyan), transparent); }
+        .category-card--cyan::after { background: var(--cyan); }
+        .category-card--cyan:hover { border-color: rgba(0,212,255,0.3); box-shadow: 0 20px 60px rgba(0,212,255,0.08); }
+
+        .category-card--purple::before { background: linear-gradient(90deg, var(--purple), transparent); }
+        .category-card--purple::after { background: var(--purple); }
+        .category-card--purple:hover { border-color: rgba(123,47,255,0.3); box-shadow: 0 20px 60px rgba(123,47,255,0.08); }
+
+        .category-card--red::before { background: linear-gradient(90deg, var(--red), transparent); }
+        .category-card--red::after { background: var(--red); }
+        .category-card--red:hover { border-color: rgba(255,61,90,0.3); box-shadow: 0 20px 60px rgba(255,61,90,0.08); }
+
+        .category-icon {
+            width: 64px; height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            margin: 0 auto 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .category-card--cyan .category-icon { background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.25); color: var(--cyan); }
+        .category-card--purple .category-icon { background: rgba(123,47,255,0.1); border: 1px solid rgba(123,47,255,0.25); color: var(--purple); }
+        .category-card--red .category-icon { background: rgba(255,61,90,0.1); border: 1px solid rgba(255,61,90,0.25); color: var(--red); }
+
+        .category-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .category-subtitle {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+        }
+
         /* NO RESULTS */
         #noResults {
             text-align: center;
@@ -1293,6 +1387,32 @@
                 <h3>Your Rights Protected</h3>
                 <p>As a UK-based business, we operate under the Consumer Rights Act 2015. If a key is faulty or doesn't work, you get a replacement or full refund — guaranteed.</p>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURED CATEGORIES -->
+<section class="section-pad">
+    <div class="container">
+        <h2 class="section-title">Featured Categories</h2>
+        <div class="section-divider"></div>
+        <p class="section-sub">Browse our most popular digital product categories.</p>
+        <div class="categories-grid">
+            <a href="#browse" class="category-card category-card--cyan">
+                <div class="category-icon"><i class="fa fa-gift"></i></div>
+                <div class="category-title">Steam Gift Cards</div>
+                <div class="category-subtitle">Top up your Steam wallet instantly with verified gift card codes.</div>
+            </a>
+            <a href="#browse" class="category-card category-card--purple">
+                <div class="category-icon"><i class="fa fa-users"></i></div>
+                <div class="category-title">Top Multiplayer Games</div>
+                <div class="category-subtitle">The biggest online titles — all legally sourced, all verified.</div>
+            </a>
+            <a href="#browse" class="category-card category-card--red">
+                <div class="category-icon"><i class="fa fa-trophy"></i></div>
+                <div class="category-title">FIFA Points &amp; Sports</div>
+                <div class="category-subtitle">Official FIFA Points and sports game keys for every platform.</div>
+            </a>
         </div>
     </div>
 </section>
