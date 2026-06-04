@@ -16,10 +16,12 @@
             --card2: #1A1F2E;
             --border: rgba(99,179,237,0.12);
             --border-glow: rgba(99,179,237,0.35);
-            --blue: #3B82F6;
+            --blue: #4F8EF7;
             --blue-bright: #60A5FA;
-            --purple: #8B5CF6;
-            --cyan: #06B6D4;
+            --purple: #A855F7;
+            --cyan: #22D3EE;
+            --pink: #EC4899;
+            --orange: #F97316;
             --green: #10B981;
             --red: #EF4444;
             --text: #E2E8F0;
@@ -308,6 +310,9 @@
             padding: 100px 24px 80px;
             text-align: center;
             overflow: hidden;
+            background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1600&q=80');
+            background-size: cover;
+            background-position: center;
         }
 
         #home::before {
@@ -315,8 +320,9 @@
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(ellipse 80% 60% at 50% -10%, rgba(59,130,246,0.15) 0%, transparent 70%),
-                radial-gradient(ellipse 60% 40% at 80% 50%, rgba(139,92,246,0.08) 0%, transparent 60%);
+                linear-gradient(to bottom, rgba(9,11,16,0.85) 0%, rgba(9,11,16,0.7) 50%, rgba(9,11,16,0.95) 100%),
+                radial-gradient(ellipse 80% 60% at 50% -10%, rgba(79,142,247,0.15) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 40% at 80% 50%, rgba(168,85,247,0.08) 0%, transparent 60%);
             pointer-events: none;
         }
 
@@ -364,7 +370,7 @@
         }
 
         .hero-title .glow-text {
-            background: linear-gradient(135deg, var(--blue-bright), var(--cyan));
+            background: linear-gradient(135deg, #22D3EE, #A855F7);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -373,7 +379,7 @@
         .hero-divider {
             width: 80px;
             height: 3px;
-            background: linear-gradient(90deg, var(--blue), var(--purple));
+            background: linear-gradient(90deg, #4F8EF7, #A855F7, #EC4899);
             border-radius: 2px;
             margin: 16px auto 24px;
         }
@@ -397,25 +403,25 @@
         }
 
         .btn-hero-primary {
-            background: linear-gradient(135deg, var(--blue), var(--purple));
+            background: linear-gradient(135deg, #22D3EE, #4F8EF7);
             color: white;
             padding: 14px 32px;
             border-radius: 10px;
             text-decoration: none;
             font-weight: 600;
             font-size: 16px;
-            box-shadow: 0 0 30px rgba(59,130,246,0.4);
+            box-shadow: 0 0 30px rgba(34,211,238,0.4);
             transition: all 0.2s;
             display: inline-flex;
             align-items: center;
             gap: 8px;
         }
 
-        .btn-hero-primary:hover { box-shadow: 0 0 50px rgba(59,130,246,0.6); transform: translateY(-2px); }
+        .btn-hero-primary:hover { box-shadow: 0 0 50px rgba(34,211,238,0.6); transform: translateY(-2px); }
 
         .btn-hero-secondary {
             background: transparent;
-            border: 1px solid rgba(99,179,237,0.35);
+            border: 1px solid #A855F7;
             color: white;
             padding: 14px 32px;
             border-radius: 10px;
@@ -478,6 +484,15 @@
 
         .stat-number span { color: var(--blue-bright); }
 
+        .stats-inner .stat:nth-child(1) .stat-number,
+        .stats-inner .stat:nth-child(1) .stat-number span { color: #22D3EE; }
+        .stats-inner .stat:nth-child(2) .stat-number,
+        .stats-inner .stat:nth-child(2) .stat-number span { color: #A855F7; }
+        .stats-inner .stat:nth-child(3) .stat-number,
+        .stats-inner .stat:nth-child(3) .stat-number span { color: #4F8EF7; }
+        .stats-inner .stat:nth-child(4) .stat-number,
+        .stats-inner .stat:nth-child(4) .stat-number span { color: #EC4899; }
+
         .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 2px; letter-spacing: 0.5px; text-transform: uppercase; }
 
         /* SECTIONS */
@@ -508,8 +523,8 @@
 
         /* COMING SOON BANNER */
         .coming-soon {
-            background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(139,92,246,0.08));
-            border: 1px solid rgba(99,179,237,0.2);
+            background: linear-gradient(135deg, rgba(79,142,247,0.1), rgba(168,85,247,0.1), rgba(236,72,153,0.05));
+            border: 1px solid rgba(168,85,247,0.4);
             border-radius: 16px;
             padding: 32px;
             text-align: center;
@@ -522,8 +537,8 @@
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--blue), transparent);
+            height: 2px;
+            background: linear-gradient(90deg, #4F8EF7, #A855F7, #EC4899);
         }
 
         .coming-soon h3 {
@@ -590,8 +605,14 @@
             background: linear-gradient(135deg, var(--blue), var(--purple));
             border-color: transparent;
             color: white;
-            box-shadow: 0 0 15px rgba(59,130,246,0.3);
+            box-shadow: 0 0 15px rgba(79,142,247,0.3);
         }
+
+        .filter-btn[data-platform="all"].active { background: linear-gradient(135deg, #4F8EF7, #A855F7); }
+        .filter-btn[data-platform="pc"].active { background: linear-gradient(135deg, #22D3EE, #4F8EF7); box-shadow: 0 0 15px rgba(34,211,238,0.3); }
+        .filter-btn[data-platform="ps"].active { background: linear-gradient(135deg, #A855F7, #EC4899); box-shadow: 0 0 15px rgba(168,85,247,0.3); }
+        .filter-btn[data-platform="xbox"].active { background: linear-gradient(135deg, #22D3EE, #A855F7); box-shadow: 0 0 15px rgba(34,211,238,0.3); }
+        .filter-btn[data-platform="nintendo"].active { background: linear-gradient(135deg, #F97316, #EC4899); box-shadow: 0 0 15px rgba(249,115,22,0.3); }
 
         /* PRODUCT GRID */
         .product-grid {
@@ -756,6 +777,10 @@
 
         .compliance-card:hover::before { transform: scaleX(1); }
 
+        .compliance-grid .compliance-card:nth-child(1) { border-top: 2px solid #4F8EF7; }
+        .compliance-grid .compliance-card:nth-child(2) { border-top: 2px solid #A855F7; }
+        .compliance-grid .compliance-card:nth-child(3) { border-top: 2px solid #22D3EE; }
+
         .compliance-icon {
             width: 52px;
             height: 52px;
@@ -827,7 +852,9 @@
             transition: color 0.2s;
         }
 
-        .footer-links a:hover { color: var(--blue-bright); }
+        .footer-links a:nth-child(3n+1):hover { color: #4F8EF7; }
+        .footer-links a:nth-child(3n+2):hover { color: #A855F7; }
+        .footer-links a:nth-child(3n+0):hover { color: #22D3EE; }
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
@@ -991,20 +1018,20 @@
 <div class="stats-bar">
     <div class="stats-inner">
         <div class="stat">
-            <div class="stat-number">50<span>K+</span></div>
-            <div class="stat-label">Happy Gamers</div>
-        </div>
-        <div class="stat">
-            <div class="stat-number">10<span>K+</span></div>
-            <div class="stat-label">Keys Delivered</div>
+            <div class="stat-number"><span>UK</span></div>
+            <div class="stat-label">Based & Operated</div>
         </div>
         <div class="stat">
             <div class="stat-number">100<span>%</span></div>
             <div class="stat-label">Verified Stock</div>
         </div>
         <div class="stat">
-            <div class="stat-number">24<span>/7</span></div>
-            <div class="stat-label">Support</div>
+            <div class="stat-number"><span>GDPR</span></div>
+            <div class="stat-label">Compliant</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">1<span> Day</span></div>
+            <div class="stat-label">Response Time</div>
         </div>
     </div>
 </div>
@@ -1094,27 +1121,26 @@
         <!-- COMING SOON BANNER -->
         <div class="coming-soon">
             <h3>🚀 Full Stock Coming Very Soon</h3>
-            <p>We're finalising our supplier partnership — more titles landing shortly. Register your interest below.</p>
+            <p>We're finalising our supplier partnership — more titles landing shortly. Register a free account to be notified when new titles land.</p>
             <div class="notify-form">
-                <input type="email" placeholder="your@email.com">
-                <button class="btn-notify">Notify Me</button>
+                <button class="btn-notify" onclick="openModal('registerModal')"><i class="fa fa-bell"></i> Register to Get Notified</button>
             </div>
         </div>
 
         <!-- FILTERS -->
         <div class="filter-row">
-            <button class="filter-btn active" onclick="filterProducts('all', this)"><i class="fa fa-th"></i> All Platforms</button>
-            <button class="filter-btn" onclick="filterProducts('pc', this)"><i class="fa fa-windows"></i> PC</button>
-            <button class="filter-btn" onclick="filterProducts('ps', this)"><i class="fa fa-gamepad"></i> PlayStation</button>
-            <button class="filter-btn" onclick="filterProducts('xbox', this)">Xbox</button>
-            <button class="filter-btn" onclick="filterProducts('nintendo', this)">Nintendo</button>
+            <button class="filter-btn active" data-platform="all" onclick="filterProducts('all', this)"><i class="fa fa-th"></i> All Platforms</button>
+            <button class="filter-btn" data-platform="pc" onclick="filterProducts('pc', this)"><i class="fa fa-windows"></i> PC</button>
+            <button class="filter-btn" data-platform="ps" onclick="filterProducts('ps', this)"><i class="fa fa-gamepad"></i> PlayStation</button>
+            <button class="filter-btn" data-platform="xbox" onclick="filterProducts('xbox', this)">Xbox</button>
+            <button class="filter-btn" data-platform="nintendo" onclick="filterProducts('nintendo', this)">Nintendo</button>
         </div>
 
         <!-- PRODUCT GRID -->
         <div class="product-grid" id="productGrid">
             <div class="product-card" data-platform="pc">
                 <div class="card-img">
-                    <img src="https://picsum.photos/id/96/400/300" alt="Cyberpunk 2077">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/header.jpg" alt="Cyberpunk 2077">
                     <span class="badge-verified">✓ VERIFIED</span>
                     <span class="badge-platform"><i class="fa fa-windows"></i> PC</span>
                 </div>
@@ -1129,7 +1155,7 @@
             </div>
             <div class="product-card" data-platform="pc">
                 <div class="card-img">
-                    <img src="https://picsum.photos/id/90/400/300" alt="Elden Ring DLC">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/2778580/header.jpg" alt="Elden Ring DLC">
                     <span class="badge-verified">✓ VERIFIED</span>
                     <span class="badge-platform"><i class="fa fa-windows"></i> PC</span>
                 </div>
@@ -1144,7 +1170,7 @@
             </div>
             <div class="product-card" data-platform="pc">
                 <div class="card-img">
-                    <img src="https://picsum.photos/id/68/400/300" alt="Red Dead Redemption 2">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/header.jpg" alt="Red Dead Redemption 2">
                     <span class="badge-verified">✓ VERIFIED</span>
                     <span class="badge-platform"><i class="fa fa-windows"></i> PC</span>
                 </div>
@@ -1159,7 +1185,7 @@
             </div>
             <div class="product-card" data-platform="ps">
                 <div class="card-img">
-                    <img src="https://picsum.photos/id/119/400/300" alt="FIFA 25">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/2669320/header.jpg" alt="FIFA 25">
                     <span class="badge-verified">✓ VERIFIED</span>
                     <span class="badge-platform"><i class="fa fa-gamepad"></i> PS5</span>
                 </div>
