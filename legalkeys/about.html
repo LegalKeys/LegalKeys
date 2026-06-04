@@ -234,18 +234,19 @@
             </div>
         </div>
 
-        <form class="space-y-4" onsubmit="handleContact(event)">
+        <form action="https://formspree.io/f/mykayqab" method="POST" class="space-y-4">
+            <input type="hidden" name="_next" value="https://legalkeys.to/about.html?sent=1">
             <div>
                 <label class="block text-sm font-medium mb-1" style="color:#94A3B8;">Your Name</label>
-                <input type="text" class="form-input" required>
+                <input type="text" name="name" class="form-input" required>
             </div>
             <div>
                 <label class="block text-sm font-medium mb-1" style="color:#94A3B8;">Your Email</label>
-                <input type="email" class="form-input" required>
+                <input type="email" name="email" class="form-input" required>
             </div>
             <div>
                 <label class="block text-sm font-medium mb-1" style="color:#94A3B8;">Subject</label>
-                <select class="form-input">
+                <select name="subject" class="form-input">
                     <option>Order issue / missing key</option>
                     <option>Seller enquiry</option>
                     <option>Copyright / takedown request</option>
@@ -255,7 +256,7 @@
             </div>
             <div>
                 <label class="block text-sm font-medium mb-1" style="color:#94A3B8;">Message</label>
-                <textarea rows="5" class="form-input" style="resize:vertical;" required></textarea>
+                <textarea name="message" rows="5" class="form-input" style="resize:vertical;" required></textarea>
             </div>
             <button type="submit" class="w-full btn-gradient p-3 rounded-lg font-medium text-base">Send Message</button>
         </form>
@@ -290,11 +291,7 @@ function openModal(id) { document.getElementById(id).classList.remove('hidden');
 function closeModal(id) { document.getElementById(id).classList.add('hidden'); document.getElementById(id).classList.remove('flex'); }
 function toggleSellerFields() { const d=document.getElementById('sellerFields'); d.classList.toggle('hidden', event.target.value!=='seller'); }
 function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('hidden'); }
-function handleContact(e) {
-    e.preventDefault();
-    document.getElementById('contactSuccess').classList.remove('hidden');
-    e.target.reset();
-}
+if(window.location.search.includes('sent=1')){document.getElementById('contactSuccess').classList.remove('hidden');}
 </script>
 
 </body>
