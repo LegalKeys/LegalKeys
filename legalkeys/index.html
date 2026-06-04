@@ -343,16 +343,14 @@
             justify-content: center;
             text-align: center;
             overflow: hidden;
-            background-image: url('https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=1920&q=80');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(135deg, #0A0A0F 0%, #1a0a2e 50%, #0A0A0F 100%);
         }
 
         #home::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(0,0,0,0.75);
+            background: transparent;
             z-index: 1;
         }
 
@@ -977,10 +975,11 @@
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 16px;
-            padding: 36px 28px;
             text-align: center;
             text-decoration: none;
-            display: block;
+            display: flex;
+            flex-direction: column;
+            min-height: 320px;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
@@ -988,76 +987,87 @@
             overflow: hidden;
         }
 
+        /* coloured top border line */
         .category-card::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0;
             height: 2px;
-            transition: opacity 0.3s;
-        }
-
-        .category-card::after {
-            content: '';
-            position: absolute;
-            top: -60px; left: 50%;
-            transform: translateX(-50%);
-            width: 160px; height: 100px;
-            border-radius: 50%;
-            opacity: 0;
-            filter: blur(40px);
-            pointer-events: none;
-            transition: opacity 0.3s;
+            z-index: 3;
         }
 
         .category-card:hover { transform: translateY(-6px); }
-        .category-card:hover::after { opacity: 0.35; }
 
-        .category-card--cyan::before { background: linear-gradient(90deg, var(--cyan), transparent); }
-        .category-card--cyan::after { background: var(--cyan); }
-        .category-card--cyan:hover { border-color: rgba(0,212,255,0.3); box-shadow: 0 20px 60px rgba(0,212,255,0.08); }
+        .category-card--cyan::before  { background: linear-gradient(90deg, var(--cyan), transparent); }
+        .category-card--cyan:hover  { border-color: rgba(0,212,255,0.4);  box-shadow: 0 20px 60px rgba(0,212,255,0.15),  0 0 0 1px rgba(0,212,255,0.15); }
 
         .category-card--purple::before { background: linear-gradient(90deg, var(--purple), transparent); }
-        .category-card--purple::after { background: var(--purple); }
-        .category-card--purple:hover { border-color: rgba(123,47,255,0.3); box-shadow: 0 20px 60px rgba(123,47,255,0.08); }
+        .category-card--purple:hover { border-color: rgba(123,47,255,0.4); box-shadow: 0 20px 60px rgba(123,47,255,0.15), 0 0 0 1px rgba(123,47,255,0.15); }
 
-        .category-card--red::before { background: linear-gradient(90deg, var(--red), transparent); }
-        .category-card--red::after { background: var(--red); }
-        .category-card--red:hover { border-color: rgba(255,61,90,0.3); box-shadow: 0 20px 60px rgba(255,61,90,0.08); }
+        .category-card--red::before    { background: linear-gradient(90deg, var(--red), transparent); }
+        .category-card--red:hover    { border-color: rgba(255,61,90,0.4);  box-shadow: 0 20px 60px rgba(255,61,90,0.15),  0 0 0 1px rgba(255,61,90,0.15); }
+
+        /* artwork area — top 60% */
+        .category-img {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .category-img img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .category-card:hover .category-img img { transform: scale(1.06); }
+
+        /* gradient fade from image into dark card body */
+        .category-img::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 30%, rgba(10,10,15,0.95) 100%);
+        }
+
+        /* text body below image */
+        .category-body {
+            padding: 20px 24px 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+        }
 
         .category-icon {
-            width: 64px; height: 64px;
-            border-radius: 16px;
+            width: 52px; height: 52px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 26px;
-            margin: 0 auto 20px;
-            position: relative;
-            z-index: 1;
+            font-size: 22px;
+            margin-bottom: 14px;
         }
 
-        .category-card--cyan .category-icon { background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.25); color: var(--cyan); }
+        .category-card--cyan  .category-icon { background: rgba(0,212,255,0.1);  border: 1px solid rgba(0,212,255,0.25);  color: var(--cyan); }
         .category-card--purple .category-icon { background: rgba(123,47,255,0.1); border: 1px solid rgba(123,47,255,0.25); color: var(--purple); }
-        .category-card--red .category-icon { background: rgba(255,61,90,0.1); border: 1px solid rgba(255,61,90,0.25); color: var(--red); }
+        .category-card--red   .category-icon { background: rgba(255,61,90,0.1);   border: 1px solid rgba(255,61,90,0.25);  color: var(--red); }
 
         .category-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 700;
             color: white;
             letter-spacing: 1px;
             text-transform: uppercase;
             margin-bottom: 8px;
-            position: relative;
-            z-index: 1;
         }
 
         .category-subtitle {
             font-size: 13px;
             color: var(--muted);
             line-height: 1.5;
-            position: relative;
-            z-index: 1;
         }
 
         /* NO RESULTS */
@@ -1399,19 +1409,38 @@
         <p class="section-sub">Browse our most popular digital product categories.</p>
         <div class="categories-grid">
             <a href="#browse" class="category-card category-card--cyan">
-                <div class="category-icon"><i class="fa fa-gift"></i></div>
-                <div class="category-title">Steam Gift Cards</div>
-                <div class="category-subtitle">Top up your Steam wallet instantly with verified gift card codes.</div>
+                <div class="category-img">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/753/capsule_616x353.jpg"
+                         onerror="this.style.display='none';this.parentElement.style.background='#1b2838';"
+                         alt="Steam Gift Cards">
+                </div>
+                <div class="category-body">
+                    <div class="category-icon"><i class="fa fa-gift"></i></div>
+                    <div class="category-title">Steam Gift Cards</div>
+                    <div class="category-subtitle">Top up your Steam wallet instantly with verified gift card codes.</div>
+                </div>
             </a>
             <a href="#browse" class="category-card category-card--purple">
-                <div class="category-icon"><i class="fa fa-users"></i></div>
-                <div class="category-title">Top Multiplayer Games</div>
-                <div class="category-subtitle">The biggest online titles — all legally sourced, all verified.</div>
+                <div class="category-img">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/271590/header.jpg"
+                         alt="Top Multiplayer Games">
+                </div>
+                <div class="category-body">
+                    <div class="category-icon"><i class="fa fa-users"></i></div>
+                    <div class="category-title">Top Multiplayer Games</div>
+                    <div class="category-subtitle">The biggest online titles — all legally sourced, all verified.</div>
+                </div>
             </a>
             <a href="#browse" class="category-card category-card--red">
-                <div class="category-icon"><i class="fa fa-trophy"></i></div>
-                <div class="category-title">FIFA Points &amp; Sports</div>
-                <div class="category-subtitle">Official FIFA Points and sports game keys for every platform.</div>
+                <div class="category-img">
+                    <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/2669320/header.jpg"
+                         alt="FIFA Points & Sports">
+                </div>
+                <div class="category-body">
+                    <div class="category-icon"><i class="fa fa-trophy"></i></div>
+                    <div class="category-title">FIFA Points &amp; Sports</div>
+                    <div class="category-subtitle">Official FIFA Points and sports game keys for every platform.</div>
+                </div>
             </a>
         </div>
     </div>
