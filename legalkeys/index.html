@@ -343,16 +343,14 @@
             justify-content: center;
             text-align: center;
             overflow: hidden;
-            background-image: url('https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=1920&q=80');
-            background-size: cover;
-            background-position: center;
+            background: #080510;
         }
 
         #home::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(0,0,0,0.60);
+            background: rgba(0,0,0,0.55);
             z-index: 1;
         }
 
@@ -374,27 +372,6 @@
                 radial-gradient(1px 1px at 75% 45%, rgba(255,255,255,0.3) 0%, transparent 100%);
             pointer-events: none;
             z-index: 2;
-        }
-
-        .hero-gamepad {
-            position: absolute;
-            width: 280px;
-            height: 280px;
-            opacity: 0.06;
-            right: 5%;
-            top: 50%;
-            transform: translateY(-50%);
-            pointer-events: none;
-            user-select: none;
-            z-index: 2;
-            animation: hero-float 6s ease-in-out infinite;
-        }
-
-        .hero-gamepad svg { width: 100%; height: 100%; }
-
-        @keyframes hero-float {
-            0%, 100% { transform: translateY(-50%); }
-            50% { transform: translateY(calc(-50% - 20px)); }
         }
 
         .hero-content {
@@ -1132,7 +1109,6 @@
             .stats-inner { padding: 20px; gap: 16px; }
             .stat-divider { display: none; }
             .product-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
-            .hero-gamepad { display: none; }
         }
     </style>
 </head>
@@ -1258,27 +1234,306 @@
 
 <!-- HERO -->
 <section id="home">
-    <div class="hero-gamepad">
-        <svg viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <!-- Body -->
-            <path d="M20 10 Q10 10 6 25 L2 48 Q1 55 8 55 Q14 55 18 48 L22 38 H78 L82 48 Q86 55 92 55 Q99 55 98 48 L94 25 Q90 10 80 10 Z"/>
-            <!-- Left D-pad vertical -->
-            <line x1="28" y1="18" x2="28" y2="34"/>
-            <!-- Left D-pad horizontal -->
-            <line x1="20" y1="26" x2="36" y2="26"/>
-            <!-- Right buttons (circle arrangement) -->
-            <circle cx="66" cy="22" r="2.5"/>
-            <circle cx="74" cy="28" r="2.5"/>
-            <circle cx="66" cy="34" r="2.5"/>
-            <circle cx="58" cy="28" r="2.5"/>
-            <!-- Centre buttons -->
-            <rect x="43" y="24" width="6" height="4" rx="2"/>
-            <rect x="51" y="24" width="6" height="4" rx="2"/>
-            <!-- Analogue sticks -->
-            <circle cx="35" cy="42" r="6"/>
-            <circle cx="58" cy="42" r="6"/>
-        </svg>
-    </div>
+    <!-- FULL-BLEED HERO ILLUSTRATION -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 780" preserveAspectRatio="xMidYMid slice"
+         style="position:absolute;inset:0;width:100%;height:100%;z-index:0;" aria-hidden="true">
+      <defs>
+        <filter id="gr" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="gp" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="gg" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="blur-soft"><feGaussianBlur stdDeviation="18"/></filter>
+        <filter id="blur-xl"><feGaussianBlur stdDeviation="35"/></filter>
+        <filter id="blur-xs"><feGaussianBlur stdDeviation="3"/></filter>
+        <radialGradient id="pool-r" cx="50%" cy="40%" r="50%">
+          <stop offset="0%" stop-color="#FF3D5A" stop-opacity="0.55"/>
+          <stop offset="100%" stop-color="#FF3D5A" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="pool-p" cx="50%" cy="40%" r="50%">
+          <stop offset="0%" stop-color="#7B2FFF" stop-opacity="0.55"/>
+          <stop offset="100%" stop-color="#7B2FFF" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="pool-g" cx="50%" cy="40%" r="50%">
+          <stop offset="0%" stop-color="#00FF88" stop-opacity="0.55"/>
+          <stop offset="100%" stop-color="#00FF88" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="beam-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#7B2FFF" stop-opacity="0.85"/>
+          <stop offset="55%" stop-color="#00D4FF" stop-opacity="0.45"/>
+          <stop offset="100%" stop-color="#00D4FF" stop-opacity="0"/>
+        </linearGradient>
+        <radialGradient id="muzzle-grad" cx="0%" cy="50%" r="100%">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+          <stop offset="25%" stop-color="#FF3D5A" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#FF3D5A" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="orb-c" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#00D4FF" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#00D4FF" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="orb-p" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#7B2FFF" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#7B2FFF" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="orb-r" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FF3D5A" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#FF3D5A" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <!-- BACKGROUND -->
+      <rect width="1400" height="780" fill="#080510"/>
+
+      <!-- STARS -->
+      <circle cx="48" cy="42" r="1" fill="white" opacity="0.7"/><circle cx="140" cy="78" r="1.5" fill="white" opacity="0.5"/>
+      <circle cx="248" cy="28" r="1" fill="white" opacity="0.8"/><circle cx="375" cy="58" r="1" fill="white" opacity="0.5"/>
+      <circle cx="502" cy="38" r="1.5" fill="white" opacity="0.6"/><circle cx="618" cy="18" r="1" fill="white" opacity="0.4"/>
+      <circle cx="724" cy="52" r="1" fill="white" opacity="0.7"/><circle cx="848" cy="32" r="1.5" fill="white" opacity="0.5"/>
+      <circle cx="962" cy="68" r="1" fill="white" opacity="0.6"/><circle cx="1082" cy="22" r="1" fill="white" opacity="0.8"/>
+      <circle cx="1182" cy="48" r="1.5" fill="white" opacity="0.5"/><circle cx="1292" cy="28" r="1" fill="white" opacity="0.6"/>
+      <circle cx="1378" cy="62" r="1" fill="white" opacity="0.4"/><circle cx="78" cy="118" r="1" fill="white" opacity="0.4"/>
+      <circle cx="202" cy="158" r="1.5" fill="white" opacity="0.5"/><circle cx="448" cy="98" r="1" fill="white" opacity="0.5"/>
+      <circle cx="672" cy="128" r="1" fill="white" opacity="0.6"/><circle cx="802" cy="98" r="1.5" fill="white" opacity="0.3"/>
+      <circle cx="998" cy="118" r="1" fill="white" opacity="0.5"/><circle cx="1102" cy="88" r="1" fill="white" opacity="0.4"/>
+      <circle cx="1322" cy="108" r="1.5" fill="white" opacity="0.6"/><circle cx="28" cy="198" r="1" fill="white" opacity="0.4"/>
+      <circle cx="162" cy="238" r="1" fill="white" opacity="0.3"/><circle cx="328" cy="178" r="1.5" fill="white" opacity="0.5"/>
+      <circle cx="568" cy="218" r="1" fill="white" opacity="0.4"/><circle cx="752" cy="188" r="1" fill="white" opacity="0.6"/>
+      <circle cx="918" cy="208" r="1.5" fill="white" opacity="0.3"/><circle cx="1138" cy="172" r="1" fill="white" opacity="0.5"/>
+      <circle cx="1368" cy="192" r="1" fill="white" opacity="0.4"/><circle cx="420" cy="148" r="1" fill="white" opacity="0.3"/>
+      <circle cx="870" cy="162" r="1.5" fill="white" opacity="0.4"/><circle cx="1058" cy="148" r="1" fill="white" opacity="0.5"/>
+      <circle cx="290" cy="88" r="1" fill="white" opacity="0.6"/><circle cx="1240" cy="78" r="1" fill="white" opacity="0.5"/>
+
+      <!-- GROUND LINE -->
+      <rect x="0" y="718" width="1400" height="62" fill="#080510" opacity="0.5"/>
+      <line x1="0" y1="720" x2="1400" y2="720" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+
+      <!-- GROUND GLOW POOLS -->
+      <ellipse cx="162" cy="725" rx="140" ry="38" fill="url(#pool-r)" filter="url(#blur-soft)"/>
+      <ellipse cx="552" cy="725" rx="140" ry="38" fill="url(#pool-p)" filter="url(#blur-soft)"/>
+      <ellipse cx="1242" cy="725" rx="140" ry="38" fill="url(#pool-g)" filter="url(#blur-soft)"/>
+
+      <!-- SUMMONING CIRCLE (mage, ground at y=720) -->
+      <circle cx="552" cy="720" r="92" fill="none" stroke="#7B2FFF" stroke-width="1.5" stroke-dasharray="7 4" opacity="0.55"/>
+      <circle cx="552" cy="720" r="66" fill="none" stroke="#7B2FFF" stroke-width="0.8" opacity="0.4"/>
+      <circle cx="552" cy="720" r="42" fill="none" stroke="#00D4FF" stroke-width="1" opacity="0.3"/>
+      <line x1="552" y1="628" x2="552" y2="812" stroke="#7B2FFF" stroke-width="0.8" opacity="0.25"/>
+      <line x1="460" y1="720" x2="644" y2="720" stroke="#7B2FFF" stroke-width="0.8" opacity="0.25"/>
+      <line x1="479" y1="658" x2="625" y2="782" stroke="#7B2FFF" stroke-width="0.5" opacity="0.2"/>
+      <line x1="479" y1="782" x2="625" y2="658" stroke="#7B2FFF" stroke-width="0.5" opacity="0.2"/>
+      <rect x="548" y="623" width="8" height="13" rx="1.5" fill="#7B2FFF" opacity="0.45"/>
+      <rect x="548" y="724" width="8" height="13" rx="1.5" fill="#7B2FFF" opacity="0.45"/>
+      <rect x="455" y="716" width="13" height="8" rx="1.5" fill="#7B2FFF" opacity="0.45"/>
+      <rect x="632" y="716" width="13" height="8" rx="1.5" fill="#7B2FFF" opacity="0.45"/>
+
+      <!-- SPELL BEAM (sweeps from mage right at y≈462) -->
+      <path d="M582,453 Q900,442 1400,458 Q900,472 582,471 Z" fill="url(#beam-grad)" opacity="0.65"/>
+      <rect x="582" y="456" width="818" height="8" fill="#7B2FFF" filter="url(#blur-xs)" opacity="0.35" rx="4"/>
+      <ellipse cx="582" cy="462" rx="20" ry="13" fill="#7B2FFF" filter="url(#gp)" opacity="0.85"/>
+      <ellipse cx="582" cy="462" rx="9" ry="6" fill="#fff" opacity="0.5"/>
+
+      <!-- ATMOSPHERIC GLOW HALOS per character -->
+      <ellipse cx="162" cy="510" rx="165" ry="210" fill="#FF3D5A" filter="url(#blur-xl)" opacity="0.07"/>
+      <ellipse cx="552" cy="510" rx="165" ry="220" fill="#7B2FFF" filter="url(#blur-xl)" opacity="0.1"/>
+      <ellipse cx="1242" cy="510" rx="165" ry="210" fill="#00FF88" filter="url(#blur-xl)" opacity="0.06"/>
+
+      <!-- ============================== -->
+      <!-- SOLDIER — far left (x≈162)    -->
+      <!-- ============================== -->
+      <!-- Boots -->
+      <path d="M108,658 L158,660 L160,680 L104,680 Z" fill="#0e0e1e"/>
+      <path d="M162,658 L192,660 L194,680 L160,680 Z" fill="#0e0e1e"/>
+      <!-- Legs -->
+      <path d="M118,532 L155,532 L152,622 L136,625 L118,572 Z" fill="#141425"/>
+      <path d="M158,532 L196,532 L192,572 L178,625 L155,622 Z" fill="#141425"/>
+      <!-- Kneepads -->
+      <rect x="118" y="572" width="30" height="19" rx="4" fill="#1c1c30"/>
+      <rect x="170" y="572" width="30" height="19" rx="4" fill="#1c1c30"/>
+      <!-- Waist/belt -->
+      <rect x="116" y="522" width="92" height="14" rx="2" fill="#111120"/>
+      <rect x="149" y="520" width="24" height="16" rx="2" fill="#1c1c30"/>
+      <!-- Torso / body armor -->
+      <path d="M108,398 L218,398 L208,532 L116,532 Z" fill="#141425"/>
+      <path d="M128,398 L198,398 L190,478 L136,478 Z" fill="#1c1c30"/>
+      <!-- Shoulder pads -->
+      <path d="M108,398 Q90,388 93,422 L112,432 L118,398 Z" fill="#161628"/>
+      <path d="M218,398 Q236,388 233,422 L214,432 L208,398 Z" fill="#161628"/>
+      <!-- LED strip on chest -->
+      <rect x="153" y="410" width="18" height="4" rx="1.5" fill="#FF3D5A" filter="url(#gr)"/>
+      <rect x="153" y="418" width="12" height="2" rx="1" fill="#FF3D5A" opacity="0.45"/>
+      <line x1="162" y1="408" x2="162" y2="475" stroke="rgba(255,61,90,0.25)" stroke-width="1.5"/>
+      <!-- Neck -->
+      <rect x="151" y="383" width="24" height="18" rx="3" fill="#1a1a2e"/>
+      <!-- Helmet -->
+      <path d="M126,370 Q130,318 162,308 Q194,318 198,370 L188,386 L136,386 Z" fill="#141425"/>
+      <ellipse cx="162" cy="358" rx="35" ry="30" fill="#1a1a2e"/>
+      <rect x="130" y="370" width="64" height="14" rx="2" fill="#111120"/>
+      <!-- Visor -->
+      <rect x="136" y="350" width="52" height="24" rx="2" fill="#0d0d1a"/>
+      <rect x="140" y="354" width="44" height="16" rx="1" fill="rgba(255,61,90,0.12)"/>
+      <ellipse cx="162" cy="362" rx="28" ry="8" fill="#FF3D5A" filter="url(#blur-xs)" opacity="0.35"/>
+      <!-- Left arm (down, holding stock) -->
+      <path d="M108,410 L90,420 L84,492 L106,495 L112,470 L118,432 Z" fill="#141425"/>
+      <ellipse cx="95" cy="498" rx="13" ry="10" fill="#1a1a2e"/>
+      <!-- Right arm (forward, holding rifle) -->
+      <path d="M218,410 L236,422 L248,455 L222,462 L212,440 L212,424 Z" fill="#141425"/>
+      <path d="M244,452 L316,447 L318,468 L246,472 Z" fill="#161628"/>
+      <ellipse cx="318" cy="458" rx="13" ry="9" fill="#1a1a2e"/>
+      <!-- Rifle body -->
+      <rect x="248" y="448" width="195" height="15" rx="2" fill="#1a1a26"/>
+      <rect x="408" y="451" width="72" height="8" rx="1" fill="#111120"/>
+      <path d="M248,448 L224,443 L220,456 L232,464 L248,463 Z" fill="#111120"/>
+      <rect x="302" y="441" width="58" height="9" rx="2" fill="#111120"/>
+      <path d="M282,463 L298,463 L301,492 L280,492 Z" fill="#0e0e1e"/>
+      <rect x="342" y="463" width="28" height="13" rx="2" fill="#111120"/>
+      <!-- Scope dot -->
+      <circle cx="332" cy="444" r="3.5" fill="#FF3D5A" filter="url(#gr)"/>
+      <!-- Muzzle flash -->
+      <ellipse cx="482" cy="455" rx="32" ry="18" fill="url(#muzzle-grad)" filter="url(#gr)" opacity="0.92"/>
+      <line x1="482" y1="455" x2="524" y2="452" stroke="rgba(255,180,100,0.9)" stroke-width="3.5"/>
+      <line x1="482" y1="455" x2="520" y2="440" stroke="rgba(255,100,60,0.75)" stroke-width="2.5"/>
+      <line x1="482" y1="455" x2="520" y2="470" stroke="rgba(255,100,60,0.75)" stroke-width="2.5"/>
+      <line x1="482" y1="455" x2="516" y2="430" stroke="rgba(255,80,50,0.55)" stroke-width="1.5"/>
+      <line x1="482" y1="455" x2="516" y2="480" stroke="rgba(255,80,50,0.55)" stroke-width="1.5"/>
+      <ellipse cx="482" cy="455" rx="46" ry="28" fill="#FF3D5A" filter="url(#blur-soft)" opacity="0.38"/>
+
+      <!-- ============================== -->
+      <!-- MAGE — centre-left (x≈552)    -->
+      <!-- ============================== -->
+      <!-- Robes / cloak base -->
+      <path d="M478,720 Q488,602 512,522 L512,398 Q532,382 552,380 Q572,382 592,398 L592,522 Q616,602 626,720 Z" fill="#120a20"/>
+      <path d="M478,720 Q488,602 512,522 L512,398" fill="none" stroke="#7B2FFF" stroke-width="1" opacity="0.35"/>
+      <path d="M626,720 Q616,602 592,522 L592,398" fill="none" stroke="#7B2FFF" stroke-width="1" opacity="0.35"/>
+      <!-- Body over robe -->
+      <path d="M516,398 L588,398 L582,502 L522,502 Z" fill="#1a0a30"/>
+      <rect x="520" y="494" width="64" height="12" rx="2" fill="#0f0820"/>
+      <!-- Arcane rune on chest -->
+      <path d="M540,418 L564,418 L568,444 L552,452 L536,444 Z" fill="none" stroke="rgba(123,47,255,0.5)" stroke-width="1.5"/>
+      <circle cx="552" cy="434" r="5.5" fill="#7B2FFF" filter="url(#gp)" opacity="0.7"/>
+      <!-- Shoulder pauldrons -->
+      <path d="M516,398 Q490,386 486,414 L502,428 L516,418 Z" fill="#1c0e35"/>
+      <path d="M588,398 Q614,386 618,414 L602,428 L588,418 Z" fill="#1c0e35"/>
+      <!-- Neck -->
+      <rect x="541" y="380" width="22" height="20" rx="3" fill="#1a0a30"/>
+      <!-- Head -->
+      <ellipse cx="552" cy="350" rx="34" ry="36" fill="#1a0a30"/>
+      <!-- Hood -->
+      <path d="M514,358 Q518,296 552,276 Q586,296 590,358 L574,378 Q552,386 530,378 Z" fill="#120a20"/>
+      <path d="M514,358 Q518,296 552,276 Q586,296 590,358" fill="none" stroke="#7B2FFF" stroke-width="1" opacity="0.5"/>
+      <!-- Glowing eyes -->
+      <ellipse cx="538" cy="354" rx="9" ry="7" fill="#7B2FFF" filter="url(#gp)"/>
+      <ellipse cx="566" cy="354" rx="9" ry="7" fill="#7B2FFF" filter="url(#gp)"/>
+      <circle cx="538" cy="354" r="3.5" fill="#e0d0ff" opacity="0.95"/>
+      <circle cx="566" cy="354" r="3.5" fill="#e0d0ff" opacity="0.95"/>
+      <ellipse cx="552" cy="354" rx="28" ry="14" fill="#7B2FFF" filter="url(#blur-xs)" opacity="0.55"/>
+      <!-- Left arm (down) -->
+      <path d="M516,410 L498,418 L492,494 L514,496 L520,470 L520,432 Z" fill="#1a0a30"/>
+      <!-- Right arm (holding staff) -->
+      <path d="M588,410 L606,422 L610,504 L590,504 L588,472 L584,432 Z" fill="#1a0a30"/>
+      <ellipse cx="600" cy="507" rx="12" ry="9" fill="#1a0a30"/>
+      <!-- Staff shaft -->
+      <line x1="602" y1="508" x2="572" y2="258" stroke="#2a1545" stroke-width="9" stroke-linecap="round"/>
+      <line x1="602" y1="508" x2="572" y2="258" stroke="#7B2FFF" stroke-width="2" opacity="0.5"/>
+      <!-- Staff orb -->
+      <circle cx="572" cy="246" r="24" fill="#1a0825" stroke="#7B2FFF" stroke-width="1.5"/>
+      <circle cx="572" cy="246" r="15" fill="#7B2FFF" filter="url(#gp)" opacity="0.82"/>
+      <circle cx="572" cy="246" r="8" fill="#fff" opacity="0.6"/>
+      <circle cx="572" cy="246" r="32" fill="#7B2FFF" filter="url(#blur-soft)" opacity="0.45"/>
+      <!-- Staff crystal ornaments -->
+      <path d="M558,268 L572,244 L586,268 L572,280 Z" fill="#7B2FFF" opacity="0.55"/>
+
+      <!-- ============================== -->
+      <!-- ARCHER — far right (x≈1242)   -->
+      <!-- ============================== -->
+      <!-- Boots -->
+      <path d="M1190,620 L1240,624 L1242,645 L1238,665 L1182,665 L1178,645 L1184,624 Z" fill="#0a1410"/>
+      <path d="M1242,620 L1274,622 L1278,645 L1274,665 L1242,665 L1238,645 L1238,622 Z" fill="#0a1410"/>
+      <!-- Legs -->
+      <path d="M1200,532 L1240,532 L1236,622 L1218,626 L1196,574 Z" fill="#0d1c10"/>
+      <path d="M1244,532 L1282,532 L1275,574 L1260,626 L1238,622 Z" fill="#0d1c10"/>
+      <!-- Kneepads -->
+      <rect x="1196" y="574" width="30" height="18" rx="4" fill="#122018"/>
+      <rect x="1255" y="574" width="28" height="18" rx="4" fill="#122018"/>
+      <!-- Belt -->
+      <rect x="1194" y="522" width="92" height="14" rx="2" fill="#0a1510"/>
+      <rect x="1232" y="520" width="22" height="16" rx="2" fill="#0f1e15"/>
+      <!-- Torso armor -->
+      <path d="M1186,400 L1300,400 L1290,528 L1196,528 Z" fill="#0d1c10"/>
+      <path d="M1206,400 L1282,400 L1274,478 L1214,478 Z" fill="#122018"/>
+      <!-- Shoulder pads -->
+      <path d="M1186,400 Q1166,390 1170,418 L1188,428 Z" fill="#152215"/>
+      <path d="M1300,400 Q1320,390 1316,418 L1298,428 Z" fill="#152215"/>
+      <!-- Quiver -->
+      <rect x="1288" y="392" width="22" height="95" rx="6" fill="#0a1410" stroke="#00FF88" stroke-width="0.5" stroke-opacity="0.3"/>
+      <line x1="1282" y1="394" x2="1278" y2="360" stroke="#a08050" stroke-width="2.5"/>
+      <line x1="1290" y1="394" x2="1288" y2="358" stroke="#a08050" stroke-width="2.5"/>
+      <line x1="1298" y1="394" x2="1298" y2="358" stroke="#a08050" stroke-width="2.5"/>
+      <!-- LED strip on chest -->
+      <rect x="1235" y="416" width="16" height="4" rx="1.5" fill="#00FF88" filter="url(#gg)" opacity="0.85"/>
+      <line x1="1242" y1="412" x2="1242" y2="474" stroke="rgba(0,255,136,0.25)" stroke-width="1.5"/>
+      <!-- Neck -->
+      <rect x="1233" y="382" width="22" height="20" rx="3" fill="#0d1c10"/>
+      <!-- Head / helmet -->
+      <ellipse cx="1244" cy="354" rx="34" ry="32" fill="#0d1c10"/>
+      <path d="M1208,362 Q1212,308 1244,296 Q1276,308 1280,362 L1262,380 Q1244,388 1226,380 Z" fill="#0a1610"/>
+      <path d="M1208,362 Q1212,308 1244,296 Q1276,308 1280,362" fill="none" stroke="#00FF88" stroke-width="0.8" opacity="0.4"/>
+      <!-- Visor -->
+      <rect x="1224" y="352" width="40" height="22" rx="2" fill="#080f0a"/>
+      <rect x="1228" y="356" width="32" height="14" rx="1" fill="rgba(0,255,136,0.1)"/>
+      <ellipse cx="1244" cy="363" rx="24" ry="9" fill="#00FF88" filter="url(#blur-xs)" opacity="0.38"/>
+      <!-- Left arm — pulling string back -->
+      <path d="M1186,412 L1152,424 L1140,458 L1162,464 L1176,436 L1192,426 Z" fill="#0d1c10"/>
+      <path d="M1140,455 L1120,464 L1114,480 L1138,484 L1145,468 Z" fill="#0d1c10"/>
+      <path d="M1115,475 L1098,468 L1096,482 L1114,488 Z" fill="#122018"/>
+      <!-- Right arm — holding bow -->
+      <path d="M1300,412 L1328,424 L1336,458 L1312,464 L1302,434 Z" fill="#0d1c10"/>
+      <path d="M1336,454 L1365,446 L1368,462 L1338,468 Z" fill="#0d1c10"/>
+      <ellipse cx="1366" cy="453" rx="12" ry="9" fill="#122018"/>
+      <!-- BOW (vertical, at right of archer) -->
+      <path d="M1364,453 Q1376,392 1368,318" fill="none" stroke="#1a2e1a" stroke-width="9" stroke-linecap="round"/>
+      <path d="M1364,453 Q1376,392 1368,318" fill="none" stroke="#00FF88" stroke-width="2" opacity="0.65"/>
+      <path d="M1364,453 Q1376,514 1368,582" fill="none" stroke="#1a2e1a" stroke-width="9" stroke-linecap="round"/>
+      <path d="M1364,453 Q1376,514 1368,582" fill="none" stroke="#00FF88" stroke-width="2" opacity="0.65"/>
+      <!-- Bowstring -->
+      <line x1="1368" y1="318" x2="1104" y2="450" stroke="#00FF88" stroke-width="1.5" opacity="0.72"/>
+      <line x1="1368" y1="582" x2="1104" y2="456" stroke="#00FF88" stroke-width="1.5" opacity="0.72"/>
+      <!-- Nocked arrow -->
+      <line x1="1098" y1="453" x2="1364" y2="444" stroke="#c8a060" stroke-width="3.5" stroke-linecap="round"/>
+      <!-- Arrow tip glow -->
+      <ellipse cx="1364" cy="444" rx="14" ry="7" fill="#00FF88" filter="url(#gg)" opacity="0.92"/>
+      <ellipse cx="1364" cy="444" rx="6" ry="3" fill="#fff" opacity="0.75"/>
+      <!-- Bow glow -->
+      <path d="M1364,453 Q1376,392 1368,318" fill="none" stroke="#00FF88" filter="url(#blur-soft)" stroke-width="4" opacity="0.28"/>
+      <path d="M1364,453 Q1376,514 1368,582" fill="none" stroke="#00FF88" filter="url(#blur-soft)" stroke-width="4" opacity="0.28"/>
+
+      <!-- FLOATING ORBS -->
+      <circle cx="318" cy="202" r="15" fill="url(#orb-c)" filter="url(#blur-soft)" opacity="0.78"/>
+      <circle cx="318" cy="202" r="6" fill="#fff" opacity="0.62"/>
+      <circle cx="700" cy="148" r="11" fill="url(#orb-p)" filter="url(#blur-soft)" opacity="0.72"/>
+      <circle cx="700" cy="148" r="4.5" fill="#fff" opacity="0.5"/>
+      <circle cx="952" cy="282" r="13" fill="url(#orb-r)" filter="url(#blur-soft)" opacity="0.62"/>
+      <circle cx="952" cy="282" r="5" fill="#fff" opacity="0.5"/>
+      <circle cx="848" cy="388" r="8" fill="url(#orb-c)" filter="url(#blur-soft)" opacity="0.55"/>
+      <circle cx="1062" cy="192" r="9" fill="url(#orb-p)" filter="url(#blur-soft)" opacity="0.5"/>
+
+      <!-- SMALL DRIFTING PARTICLES -->
+      <circle cx="252" cy="452" r="3" fill="#00D4FF" opacity="0.7"/>
+      <circle cx="418" cy="322" r="2" fill="#7B2FFF" opacity="0.65"/>
+      <circle cx="682" cy="382" r="3" fill="#FF3D5A" opacity="0.55"/>
+      <circle cx="822" cy="252" r="2.5" fill="#00FF88" opacity="0.65"/>
+      <circle cx="1048" cy="342" r="3" fill="#00D4FF" opacity="0.55"/>
+      <circle cx="1152" cy="202" r="2" fill="#7B2FFF" opacity="0.7"/>
+      <circle cx="382" cy="552" r="2.5" fill="#FF3D5A" opacity="0.5"/>
+      <circle cx="902" cy="582" r="3" fill="#00D4FF" opacity="0.45"/>
+      <circle cx="138" cy="482" r="2" fill="#7B2FFF" opacity="0.55"/>
+      <circle cx="1298" cy="352" r="2.5" fill="#00FF88" opacity="0.5"/>
+      <circle cx="622" cy="522" r="2" fill="#00D4FF" opacity="0.6"/>
+      <circle cx="762" cy="298" r="3" fill="#FF3D5A" opacity="0.45"/>
+    </svg>
     <div class="hero-content">
         <div class="hero-eyebrow"><span></span> UK's Most Trusted Key Marketplace</div>
         <h1 class="hero-title">
@@ -1411,9 +1666,39 @@
         <p class="section-sub">Browse our most popular digital product categories.</p>
         <div class="categories-grid">
             <a href="#browse" class="category-card category-card--cyan">
-                <div class="category-img">
-                    <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=600&q=80"
-                         alt="Steam Gift Cards" style="width:100%;height:100%;object-fit:cover;">
+                <div class="category-img" style="background:#1b2838;display:flex;align-items:center;justify-content:center;">
+                    <svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+                      <defs>
+                        <radialGradient id="sc-bg" cx="50%" cy="50%" r="70%">
+                          <stop offset="0%" stop-color="#1e3a5f"/>
+                          <stop offset="100%" stop-color="#0d1b2e"/>
+                        </radialGradient>
+                        <filter id="sc-glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                        <filter id="sc-glow-soft"><feGaussianBlur stdDeviation="10"/></filter>
+                      </defs>
+                      <rect width="300" height="180" fill="url(#sc-bg)"/>
+                      <!-- glow halo -->
+                      <ellipse cx="150" cy="90" rx="100" ry="60" fill="#00D4FF" filter="url(#sc-glow-soft)" opacity="0.12"/>
+                      <!-- decorative circles -->
+                      <circle cx="150" cy="90" r="72" fill="none" stroke="#00D4FF" stroke-width="0.8" stroke-dasharray="5 3" opacity="0.3"/>
+                      <circle cx="150" cy="90" r="55" fill="none" stroke="#00D4FF" stroke-width="0.5" opacity="0.2"/>
+                      <!-- gift box body -->
+                      <rect x="110" y="102" width="80" height="58" rx="4" fill="#0d1b2e" stroke="#00D4FF" stroke-width="1.5" filter="url(#sc-glow)" opacity="0.9"/>
+                      <!-- gift box lid -->
+                      <rect x="106" y="90" width="88" height="16" rx="3" fill="#0d1b2e" stroke="#00D4FF" stroke-width="1.5" filter="url(#sc-glow)" opacity="0.9"/>
+                      <!-- ribbon vertical -->
+                      <rect x="145" y="90" width="10" height="70" fill="#00D4FF" opacity="0.55"/>
+                      <!-- ribbon horizontal -->
+                      <rect x="110" y="95" width="80" height="10" fill="#00D4FF" opacity="0.55"/>
+                      <!-- bow left loop -->
+                      <path d="M150,90 Q132,62 118,72 Q108,82 136,88 Z" fill="#00D4FF" opacity="0.7" filter="url(#sc-glow)"/>
+                      <!-- bow right loop -->
+                      <path d="M150,90 Q168,62 182,72 Q192,82 164,88 Z" fill="#00D4FF" opacity="0.7" filter="url(#sc-glow)"/>
+                      <!-- £ symbol -->
+                      <text x="150" y="145" text-anchor="middle" font-family="Orbitron,Arial,sans-serif" font-size="28" font-weight="700" fill="#00D4FF" opacity="0.85" filter="url(#sc-glow)">£</text>
+                      <!-- label text -->
+                      <text x="150" y="172" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="600" fill="#00D4FF" opacity="0.55" letter-spacing="2">GIFT CARD</text>
+                    </svg>
                 </div>
                 <div class="category-body">
                     <div class="category-icon"><i class="fa fa-gift"></i></div>
