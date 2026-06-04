@@ -5,248 +5,560 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About & Contact | LegalKeys</title>
     <link rel="icon" href="logo.png?v=1" type="image/png">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config={theme:{extend:{colors:{
-            primary:'#4F8EF7',
-            secondary:'#22D3EE',
-            danger:'#EF4444',
-            success:'#10B981',
-            warning:'#F59E0B',
-            muted:'#94A3B8'
-        }}}}
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        *{box-sizing:border-box;}
-        body{background:#090B10;font-family:'Inter',sans-serif;}
-        .site-header{background:rgba(9,11,16,0.95);border-bottom:1px solid rgba(79,142,247,0.12);box-shadow:0 4px 30px rgba(0,0,0,0.5);backdrop-filter:blur(20px);}
-        .nav-link{color:#94A3B8;font-weight:500;transition:color 0.2s;}
-        .nav-link:hover{color:#60A5FA;}
-        .btn-login{border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;background:transparent;padding:8px 20px;border-radius:8px;font-size:0.875rem;cursor:pointer;transition:all 0.2s;}
-        .btn-login:hover{border-color:#4F8EF7;color:#60A5FA;}
-        .btn-register{background:linear-gradient(135deg,#4F8EF7,#A855F7);color:#ffffff;border:none;padding:8px 20px;border-radius:8px;font-size:0.875rem;font-weight:600;cursor:pointer;box-shadow:0 0 20px rgba(79,142,247,0.3);transition:all 0.2s;}
-        .btn-register:hover{box-shadow:0 0 30px rgba(79,142,247,0.5);transform:translateY(-1px);}
-        .btn-gradient{background:linear-gradient(135deg,#4F8EF7,#A855F7);color:#fff;border:none;box-shadow:0 0 20px rgba(79,142,247,0.3);transition:all 0.2s;cursor:pointer;}
-        .btn-gradient:hover{box-shadow:0 0 30px rgba(79,142,247,0.5);transform:translateY(-1px);}
-        .dark-card{background:#131720;border:1px solid rgba(79,142,247,0.12);border-radius:16px;padding:32px;margin-bottom:24px;transition:border-color 0.25s;}
-        .dark-card:hover{border-color:rgba(79,142,247,0.3);}
-        .form-input{background:#0E1118;border:1px solid rgba(79,142,247,0.2);border-radius:8px;padding:10px 14px;color:#E2E8F0;width:100%;font-size:0.9rem;font-family:'Inter',sans-serif;transition:border-color 0.2s;}
-        .form-input:focus{border-color:#4F8EF7;outline:none;box-shadow:0 0 0 3px rgba(79,142,247,0.1);}
-        .form-input option{background:#131720;}
-        .accent-line{width:72px;height:4px;background:linear-gradient(90deg,#4F8EF7,#A855F7,#EC4899);border-radius:2px;margin:0.5rem auto 0;}
-        .page-hero{
-            background-image:
-                linear-gradient(to bottom, rgba(9,11,16,0.85) 0%, rgba(9,11,16,0.7) 50%, rgba(9,11,16,0.95) 100%),
-                url('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1600&q=80');
-            background-size: cover;
-            background-position: center;
+        :root {
+            --bg: #0A0A0F;
+            --red: #FF3D5A;
+            --purple: #7B2FFF;
+            --cyan: #00D4FF;
+            --green: #00FF88;
+            --text: #E2E8F0;
+            --muted: #64748B;
+            --card-bg: rgba(255,255,255,0.03);
+            --card-border: rgba(255,255,255,0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        .orb { position: fixed; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; animation: float 8s ease-in-out infinite; }
+        .orb-blue { width: 500px; height: 500px; background: radial-gradient(circle, rgba(0,212,255,0.15) 0%, transparent 70%); top: -150px; left: -150px; animation-delay: 0s; }
+        .orb-purple { width: 600px; height: 600px; background: radial-gradient(circle, rgba(123,47,255,0.12) 0%, transparent 70%); top: -200px; right: -200px; animation-delay: -3s; }
+        .orb-cyan { width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,61,90,0.1) 0%, transparent 70%); bottom: -100px; right: -100px; animation-delay: -6s; }
+
+        @keyframes float { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-20px); } }
+        @keyframes pulse { 0%,100%{ opacity:1; transform:scale(1); } 50%{ opacity:0.5; transform:scale(1.5); } }
+
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: transparent;
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        header.scrolled {
+            background: rgba(10,10,15,0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 0 rgba(255,61,90,0.1), 0 8px 32px rgba(0,0,0,0.5);
+        }
+
+        .header-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 68px;
+            transition: height 0.3s;
+        }
+
+        header.scrolled .header-inner { height: 60px; }
+
+        .logo img { height: 38px; width: auto; }
+
+        nav { display: flex; gap: 32px; }
+
+        nav a {
+            color: rgba(226,232,240,0.7);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: color 0.2s;
             position: relative;
         }
-        .page-hero h1 { font-family: 'Rajdhani', sans-serif; letter-spacing: 1px; }
-        .dark-card h2 { font-family: 'Rajdhani', sans-serif; font-size: 1.4rem; letter-spacing: 0.5px; }
-        .footer-links a:nth-child(3n+1):hover { color: #4F8EF7 !important; }
-        .footer-links a:nth-child(3n+2):hover { color: #A855F7 !important; }
-        .footer-links a:nth-child(3n+0):hover { color: #22D3EE !important; }
+
+        nav a:hover, nav a.active { color: #fff; }
+
+        nav a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--red); transform: scaleX(0); transition: transform 0.2s; }
+        nav a:hover::after, nav a.active::after { transform: scaleX(1); }
+
+        .auth-buttons { display: flex; gap: 10px; align-items: center; }
+
+        .btn-login { background: transparent; border: 1px solid rgba(255,255,255,0.12); color: var(--text); padding: 8px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; font-family: 'Inter', sans-serif; transition: all 0.2s; }
+        .btn-login:hover { border-color: var(--red); color: var(--red); }
+
+        .btn-register { background: linear-gradient(135deg, var(--red), var(--purple)); border: none; color: white; padding: 8px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; font-family: 'Inter', sans-serif; font-weight: 600; transition: all 0.2s; box-shadow: 0 0 20px rgba(255,61,90,0.3); }
+        .btn-register:hover { box-shadow: 0 0 30px rgba(255,61,90,0.5); transform: translateY(-1px); }
+
+        .mobile-menu-btn { display: none; background: none; border: none; color: var(--text); font-size: 22px; cursor: pointer; }
+
+        #mobileMenu { display: none; background: rgba(10,10,15,0.97); backdrop-filter: blur(20px); border-top: 1px solid var(--card-border); padding: 16px 24px; }
+        #mobileMenu a { display: block; padding: 10px 0; color: rgba(226,232,240,0.7); text-decoration: none; font-size: 15px; border-bottom: 1px solid var(--card-border); }
+        #mobileMenu a:hover { color: white; }
+        .mobile-auth { display: flex; gap: 10px; padding-top: 12px; }
+
+        /* MODALS */
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); z-index: 200; align-items: center; justify-content: center; }
+        .modal.open { display: flex; }
+
+        .modal-box {
+            background: rgba(13,13,20,0.95);
+            border: 1px solid rgba(255,61,90,0.2);
+            border-radius: 20px;
+            padding: 32px;
+            width: 100%;
+            max-width: 440px;
+            margin: 16px;
+            box-shadow: 0 0 80px rgba(123,47,255,0.15);
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--red), var(--purple), var(--cyan)); }
+
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+        .modal-header h3 { font-family: 'Orbitron', sans-serif; font-size: 18px; font-weight: 700; color: white; letter-spacing: 1px; }
+        .modal-close { background: none; border: none; color: var(--muted); font-size: 22px; cursor: pointer; transition: color 0.2s; }
+        .modal-close:hover { color: var(--red); }
+
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: var(--text); padding: 11px 14px; border-radius: 10px; font-size: 14px; font-family: 'Inter', sans-serif; transition: all 0.2s; outline: none; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(255,61,90,0.1); background: rgba(255,61,90,0.04); }
+        .form-group select option { background: #0D0D14; }
+
+        .btn-primary { width: 100%; background: linear-gradient(135deg, var(--red), var(--purple)); border: none; color: white; padding: 12px; border-radius: 10px; font-size: 14px; font-weight: 700; font-family: 'Orbitron', sans-serif; letter-spacing: 1px; cursor: pointer; transition: all 0.2s; box-shadow: 0 0 24px rgba(255,61,90,0.3); }
+        .btn-primary:hover { box-shadow: 0 0 40px rgba(255,61,90,0.5); transform: translateY(-1px); }
+
+        #sellerFields { border-top: 1px solid var(--card-border); padding-top: 16px; margin-top: 4px; display: none; }
+        #sellerFields.visible { display: block; }
+        #sellerFields h4 { color: var(--red); font-size: 13px; font-weight: 600; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .radio-group { display: flex; gap: 20px; }
+        .radio-group label { display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 14px; color: var(--text); }
+        .checkbox-label { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--muted); cursor: pointer; margin-bottom: 16px; }
+        .checkbox-label a { color: var(--red); text-decoration: none; }
+        .checkbox-label a:hover { text-decoration: underline; }
+
+        /* PAGE HERO */
+        .page-hero {
+            position: relative;
+            padding: 160px 24px 80px;
+            text-align: center;
+            background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.78);
+        }
+
+        .page-hero-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+
+        .page-hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 900;
+            color: white;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .hero-divider { width: 80px; height: 3px; background: linear-gradient(90deg, var(--red), var(--purple), var(--cyan)); border-radius: 2px; margin: 0 auto 20px; box-shadow: 0 0 16px rgba(255,61,90,0.4); }
+
+        .page-hero p { color: rgba(226,232,240,0.7); font-size: 16px; line-height: 1.7; }
+
+        /* MAIN CONTENT */
+        main { position: relative; z-index: 1; max-width: 780px; margin: 0 auto; padding: 60px 24px 40px; }
+
+        .glass-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: border-color 0.3s;
+        }
+
+        .glass-card:hover { border-color: rgba(255,61,90,0.15); }
+
+        .card-heading {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-heading::before {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(180deg, var(--red), var(--purple));
+            border-radius: 2px;
+        }
+
+        .glass-card p { color: rgba(226,232,240,0.7); font-size: 15px; line-height: 1.8; margin-bottom: 12px; }
+        .glass-card p:last-child { margin-bottom: 0; }
+
+        /* LEGAL DETAIL ITEMS */
+        .legal-item {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            padding: 16px 18px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            transition: background 0.2s;
+        }
+
+        .legal-item:last-child { margin-bottom: 0; }
+        .legal-item:hover { background: rgba(255,255,255,0.03); }
+
+        .legal-item-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+
+        .legal-item:nth-child(1) .legal-item-icon { background: rgba(255,61,90,0.1); border: 1px solid rgba(255,61,90,0.2); color: var(--red); border-left: 3px solid var(--red); }
+        .legal-item:nth-child(2) .legal-item-icon { background: rgba(123,47,255,0.1); border: 1px solid rgba(123,47,255,0.2); color: var(--purple); border-left: 3px solid var(--purple); }
+        .legal-item:nth-child(3) .legal-item-icon { background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.2); color: var(--cyan); border-left: 3px solid var(--cyan); }
+        .legal-item:nth-child(4) .legal-item-icon { background: rgba(255,61,90,0.1); border: 1px solid rgba(255,61,90,0.2); color: var(--red); border-left: 3px solid var(--red); }
+        .legal-item:nth-child(5) .legal-item-icon { background: rgba(123,47,255,0.1); border: 1px solid rgba(123,47,255,0.2); color: var(--purple); border-left: 3px solid var(--purple); }
+
+        .legal-item-label { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+        .legal-item-value { font-size: 14px; color: var(--text); }
+
+        /* EMAIL BLOCK */
+        .email-block {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 20px;
+            border-radius: 12px;
+            background: rgba(255,61,90,0.06);
+            border: 1px solid rgba(255,61,90,0.2);
+            margin-bottom: 28px;
+        }
+
+        .email-block-icon { font-size: 22px; color: var(--red); }
+        .email-block p { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 3px; }
+        .email-block a { color: var(--red); text-decoration: none; font-weight: 500; }
+        .email-block a:hover { text-decoration: underline; }
+
+        /* CONTACT FORM */
+        .contact-form .form-group input,
+        .contact-form .form-group select,
+        .contact-form .form-group textarea {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: var(--text);
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+            outline: none;
+            width: 100%;
+        }
+
+        .contact-form .form-group input:focus,
+        .contact-form .form-group select:focus,
+        .contact-form .form-group textarea:focus {
+            border-color: var(--red);
+            box-shadow: 0 0 0 3px rgba(255,61,90,0.1);
+            background: rgba(255,61,90,0.04);
+        }
+
+        .contact-form .form-group select option { background: #0D0D14; }
+        .contact-form .form-group { margin-bottom: 16px; }
+
+        .contact-form .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--muted);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: linear-gradient(135deg, var(--red), #c0162f);
+            border: none;
+            color: white;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 0 28px rgba(255,61,90,0.35);
+        }
+
+        .btn-submit:hover { box-shadow: 0 0 44px rgba(255,61,90,0.55); transform: translateY(-1px); }
+
+        .success-msg { display: none; margin-top: 16px; padding: 14px 18px; border-radius: 12px; text-align: center; font-weight: 600; font-size: 14px; background: rgba(0,255,136,0.07); border: 1px solid rgba(0,255,136,0.25); color: var(--green); }
+
+        /* FOOTER */
+        footer { background: rgba(10,10,15,0.8); backdrop-filter: blur(20px); position: relative; padding: 52px 24px 36px; text-align: center; z-index: 1; }
+        footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--red), var(--purple), transparent); }
+        footer img { height: 34px; opacity: 0.65; margin-bottom: 16px; }
+        footer p { color: var(--muted); font-size: 13px; margin-bottom: 6px; }
+        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 24px; margin-top: 20px; }
+        .footer-links a { color: var(--muted); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+        .footer-links a:nth-child(3n+1):hover { color: var(--red); }
+        .footer-links a:nth-child(3n+2):hover { color: var(--purple); }
+        .footer-links a:nth-child(3n):hover { color: var(--cyan); }
+
+        @media (max-width: 768px) {
+            nav, .auth-buttons { display: none; }
+            .mobile-menu-btn { display: block; }
+        }
     </style>
 </head>
-<body class="font-sans flex flex-col min-h-screen text-white">
+<body>
+
+<div class="orb orb-blue"></div>
+<div class="orb orb-purple"></div>
+<div class="orb orb-cyan"></div>
 
 <!-- HEADER -->
-<header class="site-header sticky top-0 z-50">
-    <div class="container mx-auto px-4">
-        <div class="flex items-center justify-between h-16">
-            <a href="index.html"><img src="logo.png?v=1" alt="LegalKeys" style="height:40px;width:auto;"></a>
-            <nav class="hidden md:flex gap-6">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="index.html#browse" class="nav-link">Browse</a>
-                <a href="sell.html" class="nav-link">Sell Legally</a>
-                <a href="index.html#compliance" class="nav-link">Why Us</a>
-                <a href="about.html" class="nav-link" style="color:#4F8EF7;">About</a>
-            </nav>
-            <div class="flex items-center gap-2">
-                <div class="hidden md:flex gap-2" id="authButtons">
-                    <button onclick="openModal('loginModal')" class="btn-login">Login</button>
-                    <button onclick="openModal('registerModal')" class="btn-register">Register</button>
-                </div>
-                <button class="md:hidden text-2xl ml-2" style="color:#94A3B8;background:none;border:none;cursor:pointer;" onclick="toggleMobileMenu()" aria-label="Menu">
-                    <i class="fa fa-bars"></i>
-                </button>
-            </div>
+<header id="siteHeader">
+    <div class="header-inner">
+        <a href="index.html" class="logo"><img src="logo.png?v=1" alt="LegalKeys"></a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#browse">Browse</a>
+            <a href="sell.html">Sell Legally</a>
+            <a href="index.html#compliance">Why Us</a>
+            <a href="about.html" class="active">About</a>
+        </nav>
+        <div class="auth-buttons">
+            <button class="btn-login" onclick="openModal('loginModal')">Login</button>
+            <button class="btn-register" onclick="openModal('registerModal')">Register</button>
         </div>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+            <i class="fa fa-bars"></i>
+        </button>
     </div>
-    <div id="mobileMenu" class="hidden md:hidden px-4 py-3 space-y-2" style="border-top:1px solid rgba(255,255,255,0.07);">
-        <a href="index.html" class="nav-link block py-2">Home</a>
-        <a href="index.html#browse" class="nav-link block py-2">Browse</a>
-        <a href="sell.html" class="nav-link block py-2">Sell Legally</a>
-        <a href="index.html#compliance" class="nav-link block py-2">Why Us</a>
-        <a href="about.html" class="nav-link block py-2" style="color:#4F8EF7;">About</a>
-        <div class="flex gap-2 pt-2" style="border-top:1px solid rgba(255,255,255,0.07);">
-            <button onclick="openModal('loginModal');toggleMobileMenu()" class="btn-login flex-1">Login</button>
-            <button onclick="openModal('registerModal');toggleMobileMenu()" class="btn-register flex-1">Register</button>
+    <div id="mobileMenu">
+        <a href="index.html">Home</a>
+        <a href="index.html#browse">Browse</a>
+        <a href="sell.html">Sell Legally</a>
+        <a href="index.html#compliance">Why Us</a>
+        <a href="about.html">About</a>
+        <div class="mobile-auth">
+            <button class="btn-login" style="flex:1" onclick="openModal('loginModal');toggleMobileMenu()">Login</button>
+            <button class="btn-register" style="flex:1" onclick="openModal('registerModal');toggleMobileMenu()">Register</button>
         </div>
     </div>
 </header>
 
 <!-- LOGIN MODAL -->
-<div id="loginModal" class="fixed inset-0 z-50 hidden items-center justify-center" style="background:rgba(0,0,0,0.75);">
-    <div class="w-full max-w-md p-6 m-4 rounded-xl" style="background:#131720;border:1px solid rgba(79,142,247,0.2);">
-        <div class="flex justify-between items-center mb-4">
-            <h3 class="text-xl font-bold text-white">Login</h3>
-            <button onclick="closeModal('loginModal')" style="color:#94A3B8;background:none;border:none;font-size:1.5rem;cursor:pointer;">&times;</button>
+<div id="loginModal" class="modal">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h3>LOGIN</h3>
+            <button class="modal-close" onclick="closeModal('loginModal')">&times;</button>
         </div>
         <form action="login.php" method="POST">
-            <div class="mb-4">
-                <label class="block text-sm font-medium mb-1" style="color:#94A3B8;">Email</label>
-                <input type="email" name="email" class="form-input" required>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" required placeholder="you@example.com">
             </div>
-            <div class="mb-4">
-                <label class="block text-sm font-medium mb-1" style="color:#94A3B8;">Password</label>
-                <input type="password" name="password" class="form-input" required>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" required placeholder="••••••••">
             </div>
-            <button type="submit" class="w-full btn-gradient p-2 rounded font-medium">Login</button>
+            <button type="submit" class="btn-primary">Login</button>
         </form>
     </div>
 </div>
 
 <!-- REGISTER MODAL -->
-<div id="registerModal" class="fixed inset-0 z-50 hidden items-center justify-center overflow-y-auto" style="background:rgba(0,0,0,0.75);">
-    <div class="w-full max-w-md p-6 m-4 rounded-xl" style="background:#131720;border:1px solid rgba(79,142,247,0.2);">
-        <div class="flex justify-between items-center mb-4">
-            <h3 class="text-xl font-bold text-white">Register Account</h3>
-            <button onclick="closeModal('registerModal')" style="color:#94A3B8;background:none;border:none;font-size:1.5rem;cursor:pointer;">&times;</button>
+<div id="registerModal" class="modal" style="overflow-y:auto;">
+    <div class="modal-box" style="margin:16px auto;">
+        <div class="modal-header">
+            <h3>CREATE ACCOUNT</h3>
+            <button class="modal-close" onclick="closeModal('registerModal')">&times;</button>
         </div>
         <form action="register.php" method="POST" enctype="multipart/form-data">
-            <div class="mb-3">
-                <label class="block text-sm font-medium mb-1" style="color:#94A3B8;">Full Name</label>
-                <input type="text" name="name" class="form-input" required>
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" name="name" required placeholder="Your name">
             </div>
-            <div class="mb-3">
-                <label class="block text-sm font-medium mb-1" style="color:#94A3B8;">Email</label>
-                <input type="email" name="email" class="form-input" required>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" required placeholder="you@example.com">
             </div>
-            <div class="mb-3">
-                <label class="block text-sm font-medium mb-1" style="color:#94A3B8;">Password</label>
-                <input type="password" name="password" class="form-input" required>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" required placeholder="••••••••">
             </div>
-            <div class="mb-4">
-                <label class="block text-sm font-medium mb-1" style="color:#94A3B8;">Account Type</label>
-                <div class="flex gap-4 text-white">
-                    <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="type" value="buyer" checked onchange="toggleSellerFields()"> Buyer</label>
-                    <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="type" value="seller" onchange="toggleSellerFields()"> Seller (Business)</label>
+            <div class="form-group">
+                <label>Account Type</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="type" value="buyer" checked onchange="toggleSellerFields()"> Buyer</label>
+                    <label><input type="radio" name="type" value="seller" onchange="toggleSellerFields()"> Seller (Business)</label>
                 </div>
             </div>
-            <div id="sellerFields" class="pt-4 mb-4 hidden" style="border-top:1px solid rgba(255,255,255,0.07);">
-                <h4 class="font-semibold text-primary mb-3">Business Details (Required)</h4>
-                <div class="mb-3"><label class="block text-sm font-medium mb-1" style="color:#94A3B8;">Company / Trading Name</label><input type="text" name="company_name" class="form-input"></div>
-                <div class="mb-3"><label class="block text-sm font-medium mb-1" style="color:#94A3B8;">Company Reg Number</label><input type="text" name="company_number" class="form-input"></div>
-                <div class="mb-3"><label class="block text-sm font-medium mb-1" style="color:#94A3B8;">VAT Number (if registered)</label><input type="text" name="vat_number" class="form-input"></div>
-                <div class="mb-3">
-                    <label class="block text-sm font-medium mb-1" style="color:#94A3B8;">Proof of Authorised Supply (PDF/Image)</label>
-                    <input type="file" name="supply_proof" accept=".pdf,.jpg,.png" class="w-full text-sm" style="color:#94A3B8;">
-                    <p class="text-xs mt-1" style="color:rgba(148,163,184,0.6);">e.g. distributor agreement or authorisation letter</p>
+            <div id="sellerFields">
+                <h4>Business Details</h4>
+                <div class="form-group">
+                    <label>Company / Trading Name</label>
+                    <input type="text" name="company_name" placeholder="Your company name">
+                </div>
+                <div class="form-group">
+                    <label>Company Reg Number</label>
+                    <input type="text" name="company_number" placeholder="e.g. 12345678">
+                </div>
+                <div class="form-group">
+                    <label>VAT Number (if registered)</label>
+                    <input type="text" name="vat_number" placeholder="e.g. GB123456789">
+                </div>
+                <div class="form-group">
+                    <label>Proof of Authorised Supply</label>
+                    <input type="file" name="supply_proof" accept=".pdf,.jpg,.png">
+                    <p style="font-size:12px;color:var(--muted);margin-top:4px;">e.g. distributor agreement or authorisation letter</p>
                 </div>
             </div>
-            <div class="mb-4">
-                <label class="flex items-start gap-2 text-sm" style="color:#94A3B8;">
-                    <input type="checkbox" required class="mt-1">
-                    <span>I agree to the <a href="Legal/terms.html" class="text-primary hover:underline">Terms of Service</a> and <a href="Legal/privacy.html" class="text-primary hover:underline">Privacy Policy</a>.</span>
-                </label>
-            </div>
-            <button type="submit" class="w-full btn-gradient p-2 rounded font-medium">Create Account</button>
+            <label class="checkbox-label">
+                <input type="checkbox" required style="margin-top:2px;">
+                <span>I agree to the <a href="Legal/terms.html">Terms of Service</a> and <a href="Legal/privacy.html">Privacy Policy</a>.</span>
+            </label>
+            <button type="submit" class="btn-primary">Create Account</button>
         </form>
     </div>
 </div>
 
 <!-- PAGE HERO -->
-<section class="page-hero py-14 px-4 text-center">
-    <div class="max-w-2xl mx-auto">
-        <h1 class="text-4xl font-bold text-white mb-2">About LegalKeys</h1>
-        <div class="accent-line mb-4"></div>
-        <p style="color:#94A3B8;">A transparent, UK-based game key marketplace built on trust and legal compliance.</p>
+<div class="page-hero">
+    <div class="page-hero-content">
+        <h1>About LegalKeys</h1>
+        <div class="hero-divider"></div>
+        <p>A transparent, UK-based game key marketplace built on trust and legal compliance.</p>
     </div>
-</section>
+</div>
 
-<main class="container mx-auto px-4 py-10 max-w-3xl">
+<main>
 
     <!-- WHO WE ARE -->
-    <div class="dark-card">
-        <h2 class="font-semibold text-white mb-4">Who We Are</h2>
-        <p class="leading-relaxed mb-4" style="color:#94A3B8;">LegalKeys is a UK-based digital game key marketplace operated as a sole trader. We sell game activation keys for PC, PlayStation, Xbox, and Nintendo platforms, sourcing all stock through authorised distributors.</p>
-        <p class="leading-relaxed mb-4" style="color:#94A3B8;">Our mission is simple: give gamers a safe, transparent place to buy keys — with none of the uncertainty that comes with unverified grey-market sites like G2A or Kinguin.</p>
-        <p class="leading-relaxed" style="color:#94A3B8;">We work with verified distributor partners, ensuring all products are legitimately sourced.</p>
+    <div class="glass-card">
+        <div class="card-heading">Who We Are</div>
+        <p>LegalKeys is a UK-based digital game key marketplace operated as a sole trader. We sell game activation keys for PC, PlayStation, Xbox, and Nintendo platforms, sourcing all stock through authorised distributors.</p>
+        <p>Our mission is simple: give gamers a safe, transparent place to buy keys — with none of the uncertainty that comes with unverified grey-market sites like G2A or Kinguin.</p>
+        <p>We work with verified distributor partners, ensuring all products are legitimately sourced.</p>
     </div>
 
     <!-- LEGAL DETAILS -->
-    <div class="dark-card">
-        <h2 class="font-semibold text-white mb-4">Legal &amp; Business Details</h2>
-        <p class="text-xs mb-5" style="color:rgba(148,163,184,0.6);">Under the Electronic Commerce (EC Directive) Regulations 2002, we are required to publish the following information.</p>
-        <div class="space-y-4">
-            <div class="flex gap-3 items-start p-3 rounded-lg" style="background:rgba(79,142,247,0.05);border:1px solid rgba(79,142,247,0.15);">
-                <i class="fa fa-briefcase mt-0.5 w-5 text-center" style="color:#4F8EF7;"></i>
-                <div>
-                    <p class="font-medium text-white text-sm">Trading Name</p>
-                    <p class="text-sm" style="color:#94A3B8;">LegalKeys</p>
-                </div>
+    <div class="glass-card">
+        <div class="card-heading">Legal &amp; Business Details</div>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:20px;">Under the Electronic Commerce (EC Directive) Regulations 2002, we are required to publish the following information.</p>
+
+        <div class="legal-item">
+            <div class="legal-item-icon"><i class="fa fa-briefcase"></i></div>
+            <div>
+                <div class="legal-item-label">Trading Name</div>
+                <div class="legal-item-value">LegalKeys</div>
             </div>
-            <div class="flex gap-3 items-start p-3 rounded-lg" style="background:rgba(168,85,247,0.05);border:1px solid rgba(168,85,247,0.15);">
-                <i class="fa fa-user mt-0.5 w-5 text-center" style="color:#A855F7;"></i>
-                <div>
-                    <p class="font-medium text-white text-sm">Business Structure</p>
-                    <p class="text-sm" style="color:#94A3B8;">Sole Trader — not a limited company</p>
-                </div>
+        </div>
+        <div class="legal-item">
+            <div class="legal-item-icon"><i class="fa fa-user"></i></div>
+            <div>
+                <div class="legal-item-label">Business Structure</div>
+                <div class="legal-item-value">Sole Trader — not a limited company</div>
             </div>
-            <div class="flex gap-3 items-start p-3 rounded-lg" style="background:rgba(34,211,238,0.05);border:1px solid rgba(34,211,238,0.15);">
-                <i class="fa fa-map-marker mt-0.5 w-5 text-center" style="color:#22D3EE;"></i>
-                <div>
-                    <p class="font-medium text-white text-sm">Location</p>
-                    <p class="text-sm" style="color:#94A3B8;">United Kingdom</p>
-                </div>
+        </div>
+        <div class="legal-item">
+            <div class="legal-item-icon"><i class="fa fa-map-marker"></i></div>
+            <div>
+                <div class="legal-item-label">Location</div>
+                <div class="legal-item-value">United Kingdom</div>
             </div>
-            <div class="flex gap-3 items-start p-3 rounded-lg" style="background:rgba(236,72,153,0.05);border:1px solid rgba(236,72,153,0.15);">
-                <i class="fa fa-money mt-0.5 w-5 text-center" style="color:#EC4899;"></i>
-                <div>
-                    <p class="font-medium text-white text-sm">VAT</p>
-                    <p class="text-sm" style="color:#94A3B8;">Not VAT registered. No VAT is charged on purchases.</p>
-                </div>
+        </div>
+        <div class="legal-item">
+            <div class="legal-item-icon"><i class="fa fa-money"></i></div>
+            <div>
+                <div class="legal-item-label">VAT</div>
+                <div class="legal-item-value">Not VAT registered. No VAT is charged on purchases.</div>
             </div>
-            <div class="flex gap-3 items-start p-3 rounded-lg" style="background:rgba(79,142,247,0.05);border:1px solid rgba(79,142,247,0.15);">
-                <i class="fa fa-gavel mt-0.5 w-5 text-center" style="color:#4F8EF7;"></i>
-                <div>
-                    <p class="font-medium text-white text-sm">Governing Law</p>
-                    <p class="text-sm" style="color:#94A3B8;">England and Wales</p>
-                </div>
+        </div>
+        <div class="legal-item">
+            <div class="legal-item-icon"><i class="fa fa-gavel"></i></div>
+            <div>
+                <div class="legal-item-label">Governing Law</div>
+                <div class="legal-item-value">England and Wales</div>
             </div>
         </div>
     </div>
 
     <!-- CONTACT -->
-    <div class="dark-card">
-        <h2 class="font-semibold text-white mb-4">Contact Us</h2>
-        <p class="mb-6" style="color:#94A3B8;">For order issues, seller enquiries, copyright takedown requests, or any other matter, please use the form below or email us directly.</p>
+    <div class="glass-card">
+        <div class="card-heading">Contact Us</div>
+        <p style="margin-bottom:20px;">For order issues, seller enquiries, copyright takedown requests, or any other matter, please use the form below or email us directly.</p>
 
-        <div class="flex items-center gap-3 mb-6 p-4 rounded-lg" style="background:rgba(79,142,247,0.1);border:1px solid rgba(79,142,247,0.3);">
-            <i class="fa fa-envelope text-xl" style="color:#4F8EF7;"></i>
+        <div class="email-block">
+            <div class="email-block-icon"><i class="fa fa-envelope"></i></div>
             <div>
-                <p class="font-medium text-white text-sm">Email</p>
-                <a href="mailto:support@legalkeys.to" class="text-primary hover:underline text-sm">support@legalkeys.to</a>
+                <p>Direct Email</p>
+                <a href="mailto:support@legalkeys.to">support@legalkeys.to</a>
             </div>
         </div>
 
-        <form action="https://formspree.io/f/mykayqab" method="POST" class="space-y-4">
+        <form class="contact-form" action="https://formspree.io/f/mykayqab" method="POST">
             <input type="hidden" name="_next" value="https://legalkeys.to/about.html?sent=1">
-            <div>
-                <label class="block text-sm font-medium mb-1" style="color:#94A3B8;">Your Name</label>
-                <input type="text" name="name" class="form-input" required>
+            <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" name="name" required placeholder="Your name">
             </div>
-            <div>
-                <label class="block text-sm font-medium mb-1" style="color:#94A3B8;">Your Email</label>
-                <input type="email" name="email" class="form-input" required>
+            <div class="form-group">
+                <label>Your Email</label>
+                <input type="email" name="email" required placeholder="you@example.com">
             </div>
-            <div>
-                <label class="block text-sm font-medium mb-1" style="color:#94A3B8;">Subject</label>
-                <select name="subject" class="form-input">
+            <div class="form-group">
+                <label>Subject</label>
+                <select name="subject">
                     <option>Order issue / missing key</option>
                     <option>Seller enquiry</option>
                     <option>Copyright / takedown request</option>
@@ -254,45 +566,58 @@
                     <option>Other</option>
                 </select>
             </div>
-            <div>
-                <label class="block text-sm font-medium mb-1" style="color:#94A3B8;">Message</label>
-                <textarea name="message" rows="5" class="form-input" style="resize:vertical;" required></textarea>
+            <div class="form-group">
+                <label>Message</label>
+                <textarea name="message" rows="5" style="resize:vertical;" required placeholder="How can we help?"></textarea>
             </div>
-            <button type="submit" class="w-full btn-gradient p-3 rounded-lg font-medium text-base">Send Message</button>
+            <button type="submit" class="btn-submit">Send Message</button>
         </form>
-        <div id="contactSuccess" class="hidden mt-4 p-4 rounded-lg text-center font-medium" style="background:rgba(0,180,42,0.1);color:#00B42A;border:1px solid rgba(0,180,42,0.3);">
-            <i class="fa fa-check-circle mr-2"></i>Message sent! We aim to respond within 1 business day.
+
+        <div id="contactSuccess" class="success-msg">
+            <i class="fa fa-check-circle" style="margin-right:8px;"></i>Message sent! We aim to respond within 1 business day.
         </div>
     </div>
 
-    <p class="text-center text-sm mb-10" style="color:#94A3B8;">We aim to respond to all enquiries within 1 business day.</p>
+    <p style="text-align:center;font-size:13px;color:var(--muted);margin-bottom:40px;">We aim to respond to all enquiries within 1 business day.</p>
 
 </main>
 
 <!-- FOOTER -->
-<footer class="py-10 mt-auto" style="background:#0E1118;border-top:1px solid rgba(79,142,247,0.15);">
-    <div class="container mx-auto px-4 text-center">
-        <a href="index.html"><img src="logo.png?v=1" alt="LegalKeys" style="height:36px;width:auto;" class="mx-auto mb-4 opacity-60"></a>
-        <p class="mb-1" style="color:#94A3B8;">© 2026 LegalKeys • All Rights Reserved</p>
-        <p class="text-xs mb-1" style="color:rgba(148,163,184,0.5);">LegalKeys is a trading name of a sole trader business based in the United Kingdom.</p>
-        <p class="text-xs" style="color:rgba(148,163,184,0.5);">Not VAT registered. No VAT is charged on purchases.</p>
-        <div class="footer-links mt-5 text-sm flex flex-wrap justify-center gap-x-4 gap-y-1">
-            <a href="Legal/terms.html" style="color:#94A3B8;text-decoration:none;transition:color 0.2s;">Terms of Service</a>
-            <a href="Legal/privacy.html" style="color:#94A3B8;text-decoration:none;transition:color 0.2s;">Privacy Policy</a>
-            <a href="Legal/copyright.html" style="color:#94A3B8;text-decoration:none;transition:color 0.2s;">Copyright Policy</a>
-            <a href="Legal/VAT.html" style="color:#94A3B8;text-decoration:none;transition:color 0.2s;">Pricing &amp; Tax</a>
-            <a href="about.html" style="color:#94A3B8;text-decoration:none;transition:color 0.2s;">About &amp; Contact</a>
-        </div>
+<footer>
+    <a href="index.html"><img src="logo.png?v=1" alt="LegalKeys"></a>
+    <p>© 2026 LegalKeys • All Rights Reserved</p>
+    <p>LegalKeys is a trading name of a sole trader business based in the United Kingdom.</p>
+    <p>Not VAT registered. No VAT is charged on purchases.</p>
+    <div class="footer-links">
+        <a href="Legal/terms.html">Terms of Service</a>
+        <a href="Legal/privacy.html">Privacy Policy</a>
+        <a href="Legal/copyright.html">Copyright Policy</a>
+        <a href="Legal/VAT.html">Pricing &amp; Tax</a>
+        <a href="about.html">About &amp; Contact</a>
     </div>
 </footer>
 
 <script>
-function openModal(id) { document.getElementById(id).classList.remove('hidden'); document.getElementById(id).classList.add('flex'); }
-function closeModal(id) { document.getElementById(id).classList.add('hidden'); document.getElementById(id).classList.remove('flex'); }
-function toggleSellerFields() { const d=document.getElementById('sellerFields'); d.classList.toggle('hidden', event.target.value!=='seller'); }
-function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('hidden'); }
-if(window.location.search.includes('sent=1')){document.getElementById('contactSuccess').classList.remove('hidden');}
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+function toggleMobileMenu() {
+    const m = document.getElementById('mobileMenu');
+    m.style.display = m.style.display === 'block' ? 'none' : 'block';
+}
+function toggleSellerFields() {
+    const d = document.getElementById('sellerFields');
+    d.classList.toggle('visible', event.target.value === 'seller');
+}
+document.querySelectorAll('.modal').forEach(m => {
+    m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
+});
+const header = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+});
+if (window.location.search.includes('sent=1')) {
+    document.getElementById('contactSuccess').style.display = 'block';
+}
 </script>
-
 </body>
 </html>
