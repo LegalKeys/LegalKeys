@@ -16,216 +16,328 @@
             danger:'#F53F3F',
             success:'#00B42A',
             warning:'#FF7D00',
-            page:'#0D0F14',
-            card:'#1A1D27',
-            hdr:'#13151C',
-            muted:'#A0A8B8',
-            rim:'#2A2D3A'
+            muted:'#A0A8B8'
         }}}}
     </script>
     <style>
+        *{box-sizing:border-box;}
         body{background:#0D0F14;}
-        .form-focus:focus{border-color:#165DFF !important;outline:none;box-shadow:0 0 0 2px rgba(22,93,255,0.2);}
-        .product-card{transition:all 0.25s;cursor:default;}
-        .product-card:hover{box-shadow:0 0 28px rgba(22,93,255,0.3);border-color:rgba(22,93,255,0.5) !important;}
-        .verified-glow{box-shadow:0 0 10px rgba(0,180,42,0.7);}
-        .header-glow{border-bottom:1px solid rgba(22,93,255,0.3);}
-        .footer-glow{border-top:1px solid rgba(22,93,255,0.3);}
-        .hero-grid{
-            background-image:
-                linear-gradient(rgba(22,93,255,0.04) 1px,transparent 1px),
-                linear-gradient(90deg,rgba(22,93,255,0.04) 1px,transparent 1px);
-            background-size:50px 50px;
+
+        /* HEADER */
+        .site-header{
+            background:#13151C;
+            border-bottom:1px solid rgba(22,93,255,0.2);
+            box-shadow:0 4px 30px rgba(0,0,0,0.5);
         }
-        .hero-radial{background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(22,93,255,0.18) 0%,transparent 70%);}
-        .btn-gradient{background:linear-gradient(135deg,#165DFF,#2979FF);transition:opacity 0.2s;}
+        .nav-link{color:#ffffff;font-weight:500;transition:color 0.2s;}
+        .nav-link:hover{color:#165DFF;}
+        .btn-login{
+            border:1px solid rgba(255,255,255,0.2);
+            color:#ffffff;
+            background:transparent;
+            padding:8px 16px;
+            border-radius:8px;
+            font-size:0.875rem;
+            cursor:pointer;
+            transition:border-color 0.2s,background 0.2s;
+        }
+        .btn-login:hover{border-color:rgba(22,93,255,0.5);background:rgba(22,93,255,0.05);}
+        .btn-register{
+            background:linear-gradient(135deg,#165DFF,#7B2FFF);
+            color:#ffffff;
+            border:none;
+            padding:8px 16px;
+            border-radius:8px;
+            font-size:0.875rem;
+            font-weight:500;
+            cursor:pointer;
+            transition:opacity 0.2s;
+        }
+        .btn-register:hover{opacity:0.88;}
+
+        /* HERO */
+        .hero-section{
+            background:
+                radial-gradient(rgba(22,93,255,0.15) 1px,transparent 1px),
+                radial-gradient(ellipse at top,#1a1f3a 0%,#0D0F14 60%);
+            background-size:30px 30px,100% 100%;
+        }
+        .hero-underline{
+            background:linear-gradient(90deg,#165DFF,#7B2FFF);
+            height:3px;
+            display:block;
+            border-radius:2px;
+            width:120px;
+            margin:8px auto 24px;
+        }
+        .btn-primary{
+            background:linear-gradient(135deg,#165DFF,#7B2FFF);
+            color:#ffffff;
+            padding:12px 32px;
+            border-radius:8px;
+            font-weight:500;
+            box-shadow:0 0 20px rgba(22,93,255,0.4);
+            text-decoration:none;
+            transition:opacity 0.2s;
+        }
+        .btn-primary:hover{opacity:0.88;}
+        .btn-secondary{
+            border:1px solid rgba(22,93,255,0.5);
+            color:#ffffff;
+            background:#1A1D27;
+            padding:12px 32px;
+            border-radius:8px;
+            font-weight:500;
+            text-decoration:none;
+            transition:border-color 0.2s,background 0.2s;
+        }
+        .btn-secondary:hover{border-color:rgba(22,93,255,0.8);background:#1f2333;}
+        .badge-pill{
+            background:rgba(22,93,255,0.1);
+            border:1px solid rgba(22,93,255,0.3);
+            color:#A0AEC0;
+            border-radius:999px;
+            padding:6px 12px;
+            font-size:0.875rem;
+        }
+
+        /* COMPLIANCE CARDS */
+        .compliance-card{
+            background:#1A1D27;
+            border:1px solid rgba(22,93,255,0.15);
+            border-radius:16px;
+            padding:24px;
+            transition:border-color 0.25s,box-shadow 0.25s;
+        }
+        .compliance-card:hover{
+            border-color:rgba(22,93,255,0.5);
+            box-shadow:0 0 30px rgba(22,93,255,0.1);
+        }
+
+        /* PRODUCT CARDS */
+        .product-card{
+            background:#1A1D27;
+            border:1px solid rgba(255,255,255,0.06);
+            border-radius:16px;
+            overflow:hidden;
+            transition:border-color 0.25s,box-shadow 0.25s,transform 0.25s;
+        }
+        .product-card:hover{
+            border-color:rgba(22,93,255,0.4);
+            box-shadow:0 0 30px rgba(22,93,255,0.15);
+            transform:translateY(-4px);
+        }
+
+        /* FILTER BUTTONS */
+        .filter-btn{
+            background:#1A1D27;
+            border:1px solid rgba(255,255,255,0.1);
+            color:#A0A8B8;
+            border-radius:999px;
+            padding:8px 16px;
+            font-size:0.875rem;
+            font-weight:500;
+            cursor:pointer;
+            transition:all 0.2s;
+        }
+        .filter-btn:hover{border-color:rgba(22,93,255,0.4);color:#fff;}
+
+        /* MISC */
+        .form-focus:focus{border-color:#165DFF !important;outline:none;box-shadow:0 0 0 2px rgba(22,93,255,0.2);}
+        .btn-gradient{
+            background:linear-gradient(135deg,#165DFF,#7B2FFF);
+            color:#fff;
+            transition:opacity 0.2s;
+        }
         .btn-gradient:hover{opacity:0.88;}
-        .accent-line{width:72px;height:4px;background:linear-gradient(90deg,#165DFF,#36CFC9);border-radius:2px;margin:0.6rem auto 0;}
-        .filter-btn{transition:all 0.2s;}
-        /* active state driven by JS */
+        .accent-line{
+            width:72px;height:4px;
+            background:linear-gradient(90deg,#165DFF,#7B2FFF);
+            border-radius:2px;
+            margin:0.5rem auto 0;
+        }
     </style>
 </head>
 <body class="font-sans flex flex-col min-h-screen text-white">
 
 <!-- HEADER -->
-<header class="sticky top-0 z-50 header-glow" style="background:#13151C;">
+<header class="site-header sticky top-0 z-50">
     <div class="container mx-auto px-4">
         <div class="flex items-center justify-between h-16">
             <a href="index.html"><img src="logo.png?v=1" alt="LegalKeys" style="height:40px;width:auto;"></a>
             <nav class="hidden md:flex gap-6">
-                <a href="#home" class="font-medium text-muted hover:text-white transition-colors">Home</a>
-                <a href="#browse" class="font-medium text-muted hover:text-white transition-colors">Browse</a>
-                <a href="sell.html" class="font-medium text-muted hover:text-white transition-colors">Sell Legally</a>
-                <a href="#compliance" class="font-medium text-muted hover:text-white transition-colors">Why Us</a>
-                <a href="about.html" class="font-medium text-muted hover:text-white transition-colors">About</a>
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#browse" class="nav-link">Browse</a>
+                <a href="sell.html" class="nav-link">Sell Legally</a>
+                <a href="#compliance" class="nav-link">Why Us</a>
+                <a href="about.html" class="nav-link">About</a>
             </nav>
             <div class="flex items-center gap-2">
                 <div class="hidden md:flex gap-2" id="authButtons">
-                    <button onclick="openModal('loginModal')" class="px-4 py-2 rounded-lg text-muted hover:text-white border border-rim hover:border-primary/60 transition-colors text-sm" style="background:transparent;">Login</button>
-                    <button onclick="openModal('registerModal')" class="btn-gradient text-white px-4 py-2 rounded-lg text-sm font-medium">Register</button>
+                    <button onclick="openModal('loginModal')" class="btn-login">Login</button>
+                    <button onclick="openModal('registerModal')" class="btn-register">Register</button>
                 </div>
-                <button class="md:hidden text-muted text-2xl ml-2" onclick="toggleMobileMenu()" aria-label="Menu">
+                <button class="md:hidden text-2xl ml-2" style="color:#A0A8B8;background:none;border:none;cursor:pointer;" onclick="toggleMobileMenu()" aria-label="Menu">
                     <i class="fa fa-bars"></i>
                 </button>
             </div>
         </div>
     </div>
     <!-- Mobile Menu -->
-    <div id="mobileMenu" class="hidden md:hidden border-t border-rim px-4 py-3 space-y-2" style="background:#13151C;">
-        <a href="#home" class="block py-2 font-medium text-muted hover:text-white transition-colors" onclick="toggleMobileMenu()">Home</a>
-        <a href="#browse" class="block py-2 font-medium text-muted hover:text-white transition-colors" onclick="toggleMobileMenu()">Browse</a>
-        <a href="sell.html" class="block py-2 font-medium text-muted hover:text-white transition-colors">Sell Legally</a>
-        <a href="#compliance" class="block py-2 font-medium text-muted hover:text-white transition-colors" onclick="toggleMobileMenu()">Why Us</a>
-        <a href="about.html" class="block py-2 font-medium text-muted hover:text-white transition-colors">About</a>
-        <div class="flex gap-2 pt-2 border-t border-rim">
-            <button onclick="openModal('loginModal');toggleMobileMenu()" class="flex-1 px-4 py-2 border border-rim rounded-lg text-muted text-sm hover:text-white transition-colors">Login</button>
-            <button onclick="openModal('registerModal');toggleMobileMenu()" class="flex-1 btn-gradient text-white px-4 py-2 rounded-lg text-sm font-medium">Register</button>
+    <div id="mobileMenu" class="hidden md:hidden px-4 py-3 space-y-2" style="border-top:1px solid rgba(255,255,255,0.07);">
+        <a href="#home" class="nav-link block py-2" onclick="toggleMobileMenu()">Home</a>
+        <a href="#browse" class="nav-link block py-2" onclick="toggleMobileMenu()">Browse</a>
+        <a href="sell.html" class="nav-link block py-2">Sell Legally</a>
+        <a href="#compliance" class="nav-link block py-2" onclick="toggleMobileMenu()">Why Us</a>
+        <a href="about.html" class="nav-link block py-2">About</a>
+        <div class="flex gap-2 pt-2" style="border-top:1px solid rgba(255,255,255,0.07);">
+            <button onclick="openModal('loginModal');toggleMobileMenu()" class="btn-login flex-1">Login</button>
+            <button onclick="openModal('registerModal');toggleMobileMenu()" class="btn-register flex-1">Register</button>
         </div>
     </div>
 </header>
 
 <!-- LOGIN MODAL -->
-<div id="loginModal" class="fixed inset-0 bg-black/70 z-50 hidden items-center justify-center">
-    <div class="rounded-xl w-full max-w-md p-6 m-4 border border-rim" style="background:#1A1D27;">
+<div id="loginModal" class="fixed inset-0 z-50 hidden items-center justify-center" style="background:rgba(0,0,0,0.75);">
+    <div class="w-full max-w-md p-6 m-4 rounded-xl" style="background:#1A1D27;border:1px solid rgba(22,93,255,0.2);">
         <div class="flex justify-between items-center mb-4">
             <h3 class="text-xl font-bold text-white">Login</h3>
-            <button onclick="closeModal('loginModal')" class="text-muted hover:text-white text-xl">&times;</button>
+            <button onclick="closeModal('loginModal')" style="color:#A0A8B8;background:none;border:none;font-size:1.5rem;cursor:pointer;">&times;</button>
         </div>
         <form action="login.php" method="POST">
             <div class="mb-4">
-                <label class="block text-sm font-medium mb-1 text-muted">Email</label>
-                <input type="email" name="email" class="w-full p-2 rounded form-focus text-white" style="background:#0D0F14;border:1px solid #2A2D3A;" required>
+                <label class="block text-sm font-medium mb-1" style="color:#A0A8B8;">Email</label>
+                <input type="email" name="email" class="w-full p-2 rounded form-focus text-white" style="background:#0D0F14;border:1px solid rgba(22,93,255,0.3);" required>
             </div>
             <div class="mb-4">
-                <label class="block text-sm font-medium mb-1 text-muted">Password</label>
-                <input type="password" name="password" class="w-full p-2 rounded form-focus text-white" style="background:#0D0F14;border:1px solid #2A2D3A;" required>
+                <label class="block text-sm font-medium mb-1" style="color:#A0A8B8;">Password</label>
+                <input type="password" name="password" class="w-full p-2 rounded form-focus text-white" style="background:#0D0F14;border:1px solid rgba(22,93,255,0.3);" required>
             </div>
-            <button type="submit" class="w-full btn-gradient text-white p-2 rounded font-medium">Login</button>
+            <button type="submit" class="w-full btn-gradient p-2 rounded font-medium">Login</button>
         </form>
     </div>
 </div>
 
 <!-- REGISTER MODAL -->
-<div id="registerModal" class="fixed inset-0 bg-black/70 z-50 hidden items-center justify-center overflow-y-auto">
-    <div class="rounded-xl w-full max-w-md p-6 m-4 border border-rim" style="background:#1A1D27;">
+<div id="registerModal" class="fixed inset-0 z-50 hidden items-center justify-center overflow-y-auto" style="background:rgba(0,0,0,0.75);">
+    <div class="w-full max-w-md p-6 m-4 rounded-xl" style="background:#1A1D27;border:1px solid rgba(22,93,255,0.2);">
         <div class="flex justify-between items-center mb-4">
             <h3 class="text-xl font-bold text-white">Register Account</h3>
-            <button onclick="closeModal('registerModal')" class="text-muted hover:text-white text-xl">&times;</button>
+            <button onclick="closeModal('registerModal')" style="color:#A0A8B8;background:none;border:none;font-size:1.5rem;cursor:pointer;">&times;</button>
         </div>
         <form action="register.php" method="POST" enctype="multipart/form-data">
             <div class="mb-3">
-                <label class="block text-sm font-medium mb-1 text-muted">Full Name</label>
-                <input type="text" name="name" class="w-full p-2 rounded form-focus text-white" style="background:#0D0F14;border:1px solid #2A2D3A;" required>
+                <label class="block text-sm font-medium mb-1" style="color:#A0A8B8;">Full Name</label>
+                <input type="text" name="name" class="w-full p-2 rounded form-focus text-white" style="background:#0D0F14;border:1px solid rgba(22,93,255,0.3);" required>
             </div>
             <div class="mb-3">
-                <label class="block text-sm font-medium mb-1 text-muted">Email</label>
-                <input type="email" name="email" class="w-full p-2 rounded form-focus text-white" style="background:#0D0F14;border:1px solid #2A2D3A;" required>
+                <label class="block text-sm font-medium mb-1" style="color:#A0A8B8;">Email</label>
+                <input type="email" name="email" class="w-full p-2 rounded form-focus text-white" style="background:#0D0F14;border:1px solid rgba(22,93,255,0.3);" required>
             </div>
             <div class="mb-3">
-                <label class="block text-sm font-medium mb-1 text-muted">Password</label>
-                <input type="password" name="password" class="w-full p-2 rounded form-focus text-white" style="background:#0D0F14;border:1px solid #2A2D3A;" required>
+                <label class="block text-sm font-medium mb-1" style="color:#A0A8B8;">Password</label>
+                <input type="password" name="password" class="w-full p-2 rounded form-focus text-white" style="background:#0D0F14;border:1px solid rgba(22,93,255,0.3);" required>
             </div>
             <div class="mb-4">
-                <label class="block text-sm font-medium mb-1 text-muted">Account Type</label>
+                <label class="block text-sm font-medium mb-1" style="color:#A0A8B8;">Account Type</label>
                 <div class="flex gap-4 text-white">
                     <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="type" value="buyer" checked onchange="toggleSellerFields()"> Buyer</label>
                     <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="type" value="seller" onchange="toggleSellerFields()"> Seller (Business)</label>
                 </div>
             </div>
             <!-- SELLER LEGAL FIELDS -->
-            <div id="sellerFields" class="border-t border-rim pt-4 mb-4 hidden">
+            <div id="sellerFields" class="pt-4 mb-4 hidden" style="border-top:1px solid rgba(255,255,255,0.07);">
                 <h4 class="font-semibold text-primary mb-3">Business Details (Required)</h4>
                 <div class="mb-3">
-                    <label class="block text-sm font-medium mb-1 text-muted">Company / Trading Name</label>
-                    <input type="text" name="company_name" class="w-full p-2 rounded form-focus text-white" style="background:#0D0F14;border:1px solid #2A2D3A;">
+                    <label class="block text-sm font-medium mb-1" style="color:#A0A8B8;">Company / Trading Name</label>
+                    <input type="text" name="company_name" class="w-full p-2 rounded form-focus text-white" style="background:#0D0F14;border:1px solid rgba(22,93,255,0.3);">
                 </div>
                 <div class="mb-3">
-                    <label class="block text-sm font-medium mb-1 text-muted">Company Reg Number (if limited company)</label>
-                    <input type="text" name="company_number" class="w-full p-2 rounded form-focus text-white" style="background:#0D0F14;border:1px solid #2A2D3A;">
+                    <label class="block text-sm font-medium mb-1" style="color:#A0A8B8;">Company Reg Number (if limited company)</label>
+                    <input type="text" name="company_number" class="w-full p-2 rounded form-focus text-white" style="background:#0D0F14;border:1px solid rgba(22,93,255,0.3);">
                 </div>
                 <div class="mb-3">
-                    <label class="block text-sm font-medium mb-1 text-muted">VAT Number (if VAT registered)</label>
-                    <input type="text" name="vat_number" class="w-full p-2 rounded form-focus text-white" style="background:#0D0F14;border:1px solid #2A2D3A;">
+                    <label class="block text-sm font-medium mb-1" style="color:#A0A8B8;">VAT Number (if VAT registered)</label>
+                    <input type="text" name="vat_number" class="w-full p-2 rounded form-focus text-white" style="background:#0D0F14;border:1px solid rgba(22,93,255,0.3);">
                 </div>
                 <div class="mb-3">
-                    <label class="block text-sm font-medium mb-1 text-muted">Proof of Authorised Supply (PDF/Image)</label>
-                    <input type="file" name="supply_proof" accept=".pdf,.jpg,.png" class="w-full text-sm text-muted">
-                    <p class="text-xs text-muted mt-1">e.g. distributor agreement or authorisation letter</p>
+                    <label class="block text-sm font-medium mb-1" style="color:#A0A8B8;">Proof of Authorised Supply (PDF/Image)</label>
+                    <input type="file" name="supply_proof" accept=".pdf,.jpg,.png" class="w-full text-sm" style="color:#A0A8B8;">
+                    <p class="text-xs mt-1" style="color:#A0A8B8;">e.g. distributor agreement or authorisation letter</p>
                 </div>
             </div>
             <div class="mb-4">
-                <label class="flex items-start gap-2 text-sm text-muted">
+                <label class="flex items-start gap-2 text-sm" style="color:#A0A8B8;">
                     <input type="checkbox" required class="mt-1">
                     <span>I agree to the <a href="Legal/terms.html" class="text-primary hover:underline">Terms of Service</a> and <a href="Legal/privacy.html" class="text-primary hover:underline">Privacy Policy</a>.</span>
                 </label>
             </div>
-            <button type="submit" class="w-full btn-gradient text-white p-2 rounded font-medium">Create Account</button>
+            <button type="submit" class="w-full btn-gradient p-2 rounded font-medium">Create Account</button>
         </form>
     </div>
 </div>
 
 <!-- HERO -->
-<section id="home" class="relative py-24 px-4 text-center hero-grid overflow-hidden" style="background:#0D0F14;">
-    <div class="hero-radial absolute inset-0 pointer-events-none"></div>
+<section id="home" class="hero-section relative py-24 px-4 text-center overflow-hidden">
     <div class="max-w-3xl mx-auto relative z-10">
-        <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold mb-1 text-white leading-tight">Buy Game Keys You Can Actually Trust</h1>
-        <div class="accent-line mb-6"></div>
-        <p class="text-muted text-lg mb-8">Every key on LegalKeys comes from authorised distributors. No stolen keys, no scams — just legitimate digital goods sold transparently by a UK-based business.</p>
+        <h1 style="font-size:clamp(2.5rem,6vw,4rem);font-weight:800;color:#ffffff;line-height:1.15;" class="mb-0">Buy Game Keys You Can Actually Trust</h1>
+        <span class="hero-underline"></span>
+        <p class="text-lg mb-8" style="color:#A0A8B8;">Every key on LegalKeys comes from authorised distributors. No stolen keys, no scams — just legitimate digital goods sold transparently by a UK-based business.</p>
         <div class="flex flex-col sm:flex-row gap-3 justify-center">
-            <a href="#browse" class="btn-gradient text-white px-6 py-3 rounded-lg font-medium" style="box-shadow:0 4px 20px rgba(22,93,255,0.35);">Browse Games</a>
-            <a href="sell.html" class="border border-rim text-muted px-6 py-3 rounded-lg hover:border-primary hover:text-white transition-colors" style="background:#1A1D27;">Become a Seller</a>
+            <a href="#browse" class="btn-primary inline-block">Browse Games</a>
+            <a href="sell.html" class="btn-secondary inline-block">Become a Seller</a>
         </div>
         <div class="flex flex-wrap justify-center gap-3 mt-10">
-            <span class="px-3 py-1.5 rounded-full text-sm text-white border" style="background:#1A1D27;border-color:rgba(22,93,255,0.4);"><i class="fa fa-check-circle text-success mr-1"></i> GDPR Compliant</span>
-            <span class="px-3 py-1.5 rounded-full text-sm text-white border" style="background:#1A1D27;border-color:rgba(22,93,255,0.4);"><i class="fa fa-check-circle text-success mr-1"></i> Authorised Sources Only</span>
-            <span class="px-3 py-1.5 rounded-full text-sm text-white border" style="background:#1A1D27;border-color:rgba(22,93,255,0.4);"><i class="fa fa-check-circle text-success mr-1"></i> Copyright Safe</span>
-            <span class="px-3 py-1.5 rounded-full text-sm text-white border" style="background:#1A1D27;border-color:rgba(22,93,255,0.4);"><i class="fa fa-check-circle text-success mr-1"></i> UK Based</span>
+            <span class="badge-pill"><i class="fa fa-check-circle text-success mr-1"></i> GDPR Compliant</span>
+            <span class="badge-pill"><i class="fa fa-check-circle text-success mr-1"></i> Authorised Sources Only</span>
+            <span class="badge-pill"><i class="fa fa-check-circle text-success mr-1"></i> Copyright Safe</span>
+            <span class="badge-pill"><i class="fa fa-check-circle text-success mr-1"></i> UK Based</span>
         </div>
     </div>
 </section>
 
 <!-- WHY LEGALKEYS vs COMPETITORS -->
-<section class="py-16" style="background:#0D0F14;">
+<section class="py-16" style="background:#13151C;">
     <div class="container mx-auto px-4 max-w-5xl">
         <h2 class="text-3xl font-bold text-center mb-2 text-white">Why Choose LegalKeys?</h2>
-        <p class="text-center text-muted mb-10">Not all key marketplaces are built the same. Here's what sets us apart.</p>
-        <div class="overflow-x-auto rounded-xl border" style="border-color:#2A2D3A;background:#1A1D27;">
+        <p class="text-center mb-10" style="color:#A0A8B8;">Not all key marketplaces are built the same. Here's what sets us apart.</p>
+        <div class="overflow-x-auto rounded-xl" style="background:#1A1D27;border:1px solid rgba(22,93,255,0.15);">
             <table class="w-full text-sm">
                 <thead>
-                    <tr style="background:#0D0F14;border-bottom:1px solid #2A2D3A;">
-                        <th class="p-4 text-left font-semibold text-muted">Feature</th>
+                    <tr style="background:rgba(22,93,255,0.1);border-bottom:1px solid rgba(22,93,255,0.15);">
+                        <th class="p-4 text-left font-semibold text-white">Feature</th>
                         <th class="p-4 text-center font-semibold text-primary">⚖️ LegalKeys</th>
-                        <th class="p-4 text-center font-semibold text-muted">Typical Grey Market Sites</th>
+                        <th class="p-4 text-center font-semibold text-white">Typical Grey Market Sites</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr style="border-bottom:1px solid #2A2D3A;">
-                        <td class="p-4 text-muted">Verified authorised supply</td>
+                    <tr style="border-bottom:1px solid rgba(22,93,255,0.08);">
+                        <td class="p-4" style="color:#A0A8B8;">Verified authorised supply</td>
                         <td class="p-4 text-center text-success font-bold text-lg">✓</td>
                         <td class="p-4 text-center text-danger font-bold text-lg">✗</td>
                     </tr>
-                    <tr style="border-bottom:1px solid #2A2D3A;background:#151820;">
-                        <td class="p-4 text-muted">No stolen / fraudulent keys</td>
+                    <tr style="border-bottom:1px solid rgba(22,93,255,0.08);background:#13151C;">
+                        <td class="p-4" style="color:#A0A8B8;">No stolen / fraudulent keys</td>
                         <td class="p-4 text-center text-success font-bold text-lg">✓</td>
-                        <td class="p-4 text-center text-muted">Not guaranteed</td>
+                        <td class="p-4 text-center" style="color:#A0A8B8;">Not guaranteed</td>
                     </tr>
-                    <tr style="border-bottom:1px solid #2A2D3A;">
-                        <td class="p-4 text-muted">UK-based &amp; UK law compliant</td>
-                        <td class="p-4 text-center text-success font-bold text-lg">✓</td>
-                        <td class="p-4 text-center text-danger font-bold text-lg">✗</td>
-                    </tr>
-                    <tr style="border-bottom:1px solid #2A2D3A;background:#151820;">
-                        <td class="p-4 text-muted">Clear pricing (no hidden fees)</td>
-                        <td class="p-4 text-center text-success font-bold text-lg">✓</td>
-                        <td class="p-4 text-center text-muted">Often added at checkout</td>
-                    </tr>
-                    <tr style="border-bottom:1px solid #2A2D3A;">
-                        <td class="p-4 text-muted">GDPR compliant data handling</td>
+                    <tr style="border-bottom:1px solid rgba(22,93,255,0.08);">
+                        <td class="p-4" style="color:#A0A8B8;">UK-based &amp; UK law compliant</td>
                         <td class="p-4 text-center text-success font-bold text-lg">✓</td>
                         <td class="p-4 text-center text-danger font-bold text-lg">✗</td>
                     </tr>
-                    <tr style="background:#151820;">
-                        <td class="p-4 text-muted">Consumer Rights Act protections</td>
+                    <tr style="border-bottom:1px solid rgba(22,93,255,0.08);background:#13151C;">
+                        <td class="p-4" style="color:#A0A8B8;">Clear pricing (no hidden fees)</td>
+                        <td class="p-4 text-center text-success font-bold text-lg">✓</td>
+                        <td class="p-4 text-center" style="color:#A0A8B8;">Often added at checkout</td>
+                    </tr>
+                    <tr style="border-bottom:1px solid rgba(22,93,255,0.08);">
+                        <td class="p-4" style="color:#A0A8B8;">GDPR compliant data handling</td>
+                        <td class="p-4 text-center text-success font-bold text-lg">✓</td>
+                        <td class="p-4 text-center text-danger font-bold text-lg">✗</td>
+                    </tr>
+                    <tr style="background:#13151C;">
+                        <td class="p-4" style="color:#A0A8B8;">Consumer Rights Act protections</td>
                         <td class="p-4 text-center text-success font-bold text-lg">✓</td>
                         <td class="p-4 text-center text-danger font-bold text-lg">✗</td>
                     </tr>
@@ -236,25 +348,25 @@
 </section>
 
 <!-- COMPLIANCE -->
-<section id="compliance" class="py-16" style="background:#13151C;">
+<section id="compliance" class="py-16" style="background:#0D0F14;">
     <div class="container mx-auto px-4 max-w-6xl">
         <h2 class="text-3xl font-bold text-center text-white mb-1">How We Keep It Legal</h2>
         <div class="accent-line mb-12"></div>
         <div class="grid md:grid-cols-3 gap-8">
-            <div class="p-6 rounded-xl border border-rim" style="background:#1A1D27;">
-                <div class="w-12 h-12 rounded-lg flex items-center justify-center text-xl mb-4 text-primary" style="background:rgba(22,93,255,0.15);"><i class="fa fa-id-card"></i></div>
+            <div class="compliance-card">
+                <div class="w-12 h-12 rounded-lg flex items-center justify-center text-xl mb-4" style="background:rgba(22,93,255,0.15);color:#165DFF;"><i class="fa fa-id-card"></i></div>
                 <h3 class="text-xl font-semibold mb-2 text-white">Authorised Sources Only</h3>
-                <p class="text-muted">All stock comes from our verified distributor partners. No grey market, no anonymous sellers — every product is traceable back to an authorised source.</p>
+                <p style="color:#A0A8B8;">All stock comes from our verified distributor partners. No grey market, no anonymous sellers — every product is traceable back to an authorised source.</p>
             </div>
-            <div class="p-6 rounded-xl border border-rim" style="background:#1A1D27;">
-                <div class="w-12 h-12 rounded-lg flex items-center justify-center text-xl mb-4 text-primary" style="background:rgba(22,93,255,0.15);"><i class="fa fa-shield"></i></div>
+            <div class="compliance-card">
+                <div class="w-12 h-12 rounded-lg flex items-center justify-center text-xl mb-4" style="background:rgba(22,93,255,0.15);color:#165DFF;"><i class="fa fa-shield"></i></div>
                 <h3 class="text-xl font-semibold mb-2 text-white">Copyright Compliant</h3>
-                <p class="text-muted">We only sell keys that are legitimately resaleable. No stolen keys, no chargeback fraud, no region violations. Infringing items are removed immediately.</p>
+                <p style="color:#A0A8B8;">We only sell keys that are legitimately resaleable. No stolen keys, no chargeback fraud, no region violations. Infringing items are removed immediately.</p>
             </div>
-            <div class="p-6 rounded-xl border border-rim" style="background:#1A1D27;">
-                <div class="w-12 h-12 rounded-lg flex items-center justify-center text-xl mb-4 text-primary" style="background:rgba(22,93,255,0.15);"><i class="fa fa-lock"></i></div>
+            <div class="compliance-card">
+                <div class="w-12 h-12 rounded-lg flex items-center justify-center text-xl mb-4" style="background:rgba(22,93,255,0.15);color:#165DFF;"><i class="fa fa-lock"></i></div>
                 <h3 class="text-xl font-semibold mb-2 text-white">Your Rights Protected</h3>
-                <p class="text-muted">As a UK-based business, we operate under the Consumer Rights Act 2015. If a key is faulty or doesn't work, you get a replacement or full refund — guaranteed.</p>
+                <p style="color:#A0A8B8;">As a UK-based business, we operate under the Consumer Rights Act 2015. If a key is faulty or doesn't work, you get a replacement or full refund — guaranteed.</p>
             </div>
         </div>
     </div>
@@ -267,89 +379,87 @@
 
         <!-- PLATFORM FILTER -->
         <div class="flex flex-wrap gap-2 mb-8">
-            <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium" style="background:#165DFF;color:#fff;border:1px solid #165DFF;" onclick="filterProducts('all', this)">All Platforms</button>
-            <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium" style="background:#1A1D27;color:#A0A8B8;border:1px solid #2A2D3A;" onclick="filterProducts('pc', this)"><i class="fa fa-windows mr-1"></i> PC</button>
-            <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium" style="background:#1A1D27;color:#A0A8B8;border:1px solid #2A2D3A;" onclick="filterProducts('ps', this)"><i class="fa fa-gamepad mr-1"></i> PlayStation</button>
-            <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium" style="background:#1A1D27;color:#A0A8B8;border:1px solid #2A2D3A;" onclick="filterProducts('xbox', this)">Xbox</button>
-            <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium" style="background:#1A1D27;color:#A0A8B8;border:1px solid #2A2D3A;" onclick="filterProducts('nintendo', this)">Nintendo</button>
+            <button class="filter-btn" onclick="filterProducts('all', this)">All Platforms</button>
+            <button class="filter-btn" onclick="filterProducts('pc', this)"><i class="fa fa-windows mr-1"></i> PC</button>
+            <button class="filter-btn" onclick="filterProducts('ps', this)"><i class="fa fa-gamepad mr-1"></i> PlayStation</button>
+            <button class="filter-btn" onclick="filterProducts('xbox', this)">Xbox</button>
+            <button class="filter-btn" onclick="filterProducts('nintendo', this)">Nintendo</button>
         </div>
 
         <!-- COMING SOON BANNER -->
-        <div class="rounded-xl p-px mb-8" style="background:linear-gradient(135deg,rgba(22,93,255,0.7),rgba(110,50,255,0.7));">
-            <div class="rounded-[11px] p-5 text-center" style="background:#1A1D27;">
-                <p class="text-white font-semibold text-base mb-1">🚀 We're finalising our supplier partnership — full stock coming very soon. Register your interest below.</p>
-                <form class="flex flex-col sm:flex-row gap-2 justify-center mt-4 max-w-md mx-auto" onsubmit="handleNotify(event)">
-                    <input type="email" id="notifyEmail" placeholder="Your email address" required class="flex-1 p-2.5 rounded-lg text-white text-sm form-focus" style="background:#0D0F14;border:1px solid #2A2D3A;">
-                    <button type="submit" class="btn-gradient text-white px-5 py-2.5 rounded-lg font-medium text-sm">Notify Me</button>
-                </form>
-                <p id="notifySuccess" class="hidden text-success text-sm mt-3 font-medium">Thanks! We'll let you know when stock arrives.</p>
-            </div>
+        <div class="mb-8 p-5 text-center rounded-xl" style="background:linear-gradient(135deg,rgba(22,93,255,0.15),rgba(123,47,255,0.15));border:1px solid rgba(22,93,255,0.3);">
+            <p class="text-white font-semibold text-base mb-1">🚀 We're finalising our supplier partnership — full stock coming very soon. Register your interest below.</p>
+            <form class="flex flex-col sm:flex-row gap-2 justify-center mt-4 max-w-md mx-auto" onsubmit="handleNotify(event)">
+                <input type="email" id="notifyEmail" placeholder="Your email address" required class="flex-1 form-focus text-white text-sm" style="background:#0D0F14;border:1px solid rgba(22,93,255,0.3);border-radius:8px;padding:10px 16px;">
+                <button type="submit" class="btn-gradient px-5 py-2.5 font-medium text-sm" style="border-radius:8px;border:none;cursor:pointer;">Notify Me</button>
+            </form>
+            <p id="notifySuccess" class="hidden text-success text-sm mt-3 font-medium">Thanks! We'll let you know when stock arrives.</p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6" id="productGrid">
-            <div class="product-card rounded-xl overflow-hidden border" style="background:#1A1D27;border-color:#2A2D3A;" data-platform="pc">
+            <div class="product-card" data-platform="pc">
                 <div class="h-48 relative">
                     <img src="https://picsum.photos/id/96/400/300" class="w-full h-full object-cover" alt="Cyberpunk 2077">
-                    <span class="verified-glow absolute top-2 left-2 bg-success text-white text-xs px-2 py-0.5 rounded font-medium">VERIFIED</span>
-                    <span class="absolute top-2 right-2 text-white text-xs px-2 py-0.5 rounded" style="background:rgba(0,0,0,0.75);"><i class="fa fa-windows mr-1"></i>PC</span>
+                    <span class="absolute top-2 left-2 text-xs px-2 py-0.5 rounded font-medium" style="background:rgba(0,180,42,0.2);color:#00B42A;border:1px solid rgba(0,180,42,0.4);">VERIFIED</span>
+                    <span class="absolute top-2 right-2 text-white text-xs px-2 py-0.5 rounded" style="background:rgba(0,0,0,0.7);"><i class="fa fa-windows mr-1"></i>PC</span>
                 </div>
                 <div class="p-4">
                     <h3 class="font-semibold text-lg mb-1 text-white">Cyberpunk 2077</h3>
-                    <p class="text-muted text-sm mb-3">GOG.com • Verified Source</p>
+                    <p class="text-sm mb-3" style="color:#A0A8B8;">GOG.com • Verified Source</p>
                     <div class="flex justify-between items-center">
-                        <span class="font-bold text-xl text-white">£24.99</span>
-                        <a href="checkout.html?id=1" class="btn-gradient text-white px-3 py-1.5 rounded text-sm">Buy Now</a>
+                        <span class="font-bold text-xl" style="color:#165DFF;">£24.99</span>
+                        <a href="checkout.html?id=1" class="btn-gradient text-white px-3 py-1.5 text-sm" style="border-radius:6px;border:none;">Buy Now</a>
                     </div>
                 </div>
             </div>
-            <div class="product-card rounded-xl overflow-hidden border" style="background:#1A1D27;border-color:#2A2D3A;" data-platform="pc">
+            <div class="product-card" data-platform="pc">
                 <div class="h-48 relative">
                     <img src="https://picsum.photos/id/90/400/300" class="w-full h-full object-cover" alt="Elden Ring DLC">
-                    <span class="verified-glow absolute top-2 left-2 bg-success text-white text-xs px-2 py-0.5 rounded font-medium">VERIFIED</span>
-                    <span class="absolute top-2 right-2 text-white text-xs px-2 py-0.5 rounded" style="background:rgba(0,0,0,0.75);"><i class="fa fa-windows mr-1"></i>PC</span>
+                    <span class="absolute top-2 left-2 text-xs px-2 py-0.5 rounded font-medium" style="background:rgba(0,180,42,0.2);color:#00B42A;border:1px solid rgba(0,180,42,0.4);">VERIFIED</span>
+                    <span class="absolute top-2 right-2 text-white text-xs px-2 py-0.5 rounded" style="background:rgba(0,0,0,0.7);"><i class="fa fa-windows mr-1"></i>PC</span>
                 </div>
                 <div class="p-4">
                     <h3 class="font-semibold text-lg mb-1 text-white">Elden Ring DLC</h3>
-                    <p class="text-muted text-sm mb-3">Steam • Verified Source</p>
+                    <p class="text-sm mb-3" style="color:#A0A8B8;">Steam • Verified Source</p>
                     <div class="flex justify-between items-center">
-                        <span class="font-bold text-xl text-white">£19.99</span>
-                        <a href="checkout.html?id=2" class="btn-gradient text-white px-3 py-1.5 rounded text-sm">Buy Now</a>
+                        <span class="font-bold text-xl" style="color:#165DFF;">£19.99</span>
+                        <a href="checkout.html?id=2" class="btn-gradient text-white px-3 py-1.5 text-sm" style="border-radius:6px;border:none;">Buy Now</a>
                     </div>
                 </div>
             </div>
-            <div class="product-card rounded-xl overflow-hidden border" style="background:#1A1D27;border-color:#2A2D3A;" data-platform="pc">
+            <div class="product-card" data-platform="pc">
                 <div class="h-48 relative">
                     <img src="https://picsum.photos/id/68/400/300" class="w-full h-full object-cover" alt="Red Dead Redemption 2">
-                    <span class="verified-glow absolute top-2 left-2 bg-success text-white text-xs px-2 py-0.5 rounded font-medium">VERIFIED</span>
-                    <span class="absolute top-2 right-2 text-white text-xs px-2 py-0.5 rounded" style="background:rgba(0,0,0,0.75);"><i class="fa fa-windows mr-1"></i>PC</span>
+                    <span class="absolute top-2 left-2 text-xs px-2 py-0.5 rounded font-medium" style="background:rgba(0,180,42,0.2);color:#00B42A;border:1px solid rgba(0,180,42,0.4);">VERIFIED</span>
+                    <span class="absolute top-2 right-2 text-white text-xs px-2 py-0.5 rounded" style="background:rgba(0,0,0,0.7);"><i class="fa fa-windows mr-1"></i>PC</span>
                 </div>
                 <div class="p-4">
                     <h3 class="font-semibold text-lg mb-1 text-white">Red Dead Redemption 2</h3>
-                    <p class="text-muted text-sm mb-3">Rockstar • Verified Source</p>
+                    <p class="text-sm mb-3" style="color:#A0A8B8;">Rockstar • Verified Source</p>
                     <div class="flex justify-between items-center">
-                        <span class="font-bold text-xl text-white">£29.99</span>
-                        <a href="checkout.html?id=3" class="btn-gradient text-white px-3 py-1.5 rounded text-sm">Buy Now</a>
+                        <span class="font-bold text-xl" style="color:#165DFF;">£29.99</span>
+                        <a href="checkout.html?id=3" class="btn-gradient text-white px-3 py-1.5 text-sm" style="border-radius:6px;border:none;">Buy Now</a>
                     </div>
                 </div>
             </div>
-            <div class="product-card rounded-xl overflow-hidden border" style="background:#1A1D27;border-color:#2A2D3A;" data-platform="ps">
+            <div class="product-card" data-platform="ps">
                 <div class="h-48 relative">
                     <img src="https://picsum.photos/id/119/400/300" class="w-full h-full object-cover" alt="FIFA 25">
-                    <span class="verified-glow absolute top-2 left-2 bg-success text-white text-xs px-2 py-0.5 rounded font-medium">VERIFIED</span>
-                    <span class="absolute top-2 right-2 text-white text-xs px-2 py-0.5 rounded" style="background:rgba(0,0,0,0.75);"><i class="fa fa-gamepad mr-1"></i>PS5</span>
+                    <span class="absolute top-2 left-2 text-xs px-2 py-0.5 rounded font-medium" style="background:rgba(0,180,42,0.2);color:#00B42A;border:1px solid rgba(0,180,42,0.4);">VERIFIED</span>
+                    <span class="absolute top-2 right-2 text-white text-xs px-2 py-0.5 rounded" style="background:rgba(0,0,0,0.7);"><i class="fa fa-gamepad mr-1"></i>PS5</span>
                 </div>
                 <div class="p-4">
                     <h3 class="font-semibold text-lg mb-1 text-white">FIFA 25</h3>
-                    <p class="text-muted text-sm mb-3">PSN • Verified Source</p>
+                    <p class="text-sm mb-3" style="color:#A0A8B8;">PSN • Verified Source</p>
                     <div class="flex justify-between items-center">
-                        <span class="font-bold text-xl text-white">£34.99</span>
-                        <a href="checkout.html?id=4" class="btn-gradient text-white px-3 py-1.5 rounded text-sm">Buy Now</a>
+                        <span class="font-bold text-xl" style="color:#165DFF;">£34.99</span>
+                        <a href="checkout.html?id=4" class="btn-gradient text-white px-3 py-1.5 text-sm" style="border-radius:6px;border:none;">Buy Now</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="noResults" class="hidden text-center py-12 text-muted">
+        <div id="noResults" class="hidden text-center py-12" style="color:#A0A8B8;">
             <i class="fa fa-gamepad text-4xl mb-3 block"></i>
             <p>No products in this category yet — check back soon.</p>
         </div>
@@ -357,18 +467,18 @@
 </section>
 
 <!-- FOOTER -->
-<footer class="footer-glow py-10 mt-auto" style="background:#13151C;">
+<footer class="py-10 mt-auto" style="background:#13151C;border-top:1px solid rgba(22,93,255,0.15);">
     <div class="container mx-auto px-4 text-center">
         <a href="index.html"><img src="logo.png?v=1" alt="LegalKeys" style="height:36px;width:auto;" class="mx-auto mb-4 opacity-60"></a>
-        <p class="mb-1 text-white/70">© 2026 LegalKeys • All Rights Reserved</p>
-        <p class="text-xs text-white/40 mb-1">LegalKeys is a trading name of a sole trader business based in the United Kingdom.</p>
-        <p class="text-xs text-white/40">Not VAT registered. No VAT is charged on purchases.</p>
+        <p class="mb-1" style="color:#A0A8B8;">© 2026 LegalKeys • All Rights Reserved</p>
+        <p class="text-xs mb-1" style="color:rgba(160,168,184,0.5);">LegalKeys is a trading name of a sole trader business based in the United Kingdom.</p>
+        <p class="text-xs" style="color:rgba(160,168,184,0.5);">Not VAT registered. No VAT is charged on purchases.</p>
         <div class="mt-5 text-sm flex flex-wrap justify-center gap-x-4 gap-y-1">
-            <a href="Legal/terms.html" class="text-white/40 hover:text-white transition-colors">Terms of Service</a>
-            <a href="Legal/privacy.html" class="text-white/40 hover:text-white transition-colors">Privacy Policy</a>
-            <a href="Legal/copyright.html" class="text-white/40 hover:text-white transition-colors">Copyright Policy</a>
-            <a href="Legal/VAT.html" class="text-white/40 hover:text-white transition-colors">Pricing &amp; Tax</a>
-            <a href="about.html" class="text-white/40 hover:text-white transition-colors">About &amp; Contact</a>
+            <a href="Legal/terms.html" class="transition-colors hover:text-white" style="color:#A0A8B8;">Terms of Service</a>
+            <a href="Legal/privacy.html" class="transition-colors hover:text-white" style="color:#A0A8B8;">Privacy Policy</a>
+            <a href="Legal/copyright.html" class="transition-colors hover:text-white" style="color:#A0A8B8;">Copyright Policy</a>
+            <a href="Legal/VAT.html" class="transition-colors hover:text-white" style="color:#A0A8B8;">Pricing &amp; Tax</a>
+            <a href="about.html" class="transition-colors hover:text-white" style="color:#A0A8B8;">About &amp; Contact</a>
         </div>
     </div>
 </footer>
@@ -389,11 +499,11 @@ function filterProducts(platform, btn) {
     document.querySelectorAll('.filter-btn').forEach(b => {
         b.style.background = '#1A1D27';
         b.style.color = '#A0A8B8';
-        b.style.borderColor = '#2A2D3A';
+        b.style.border = '1px solid rgba(255,255,255,0.1)';
     });
-    btn.style.background = '#165DFF';
+    btn.style.background = 'linear-gradient(135deg,#165DFF,#7B2FFF)';
     btn.style.color = '#fff';
-    btn.style.borderColor = '#165DFF';
+    btn.style.border = '1px solid transparent';
     const cards = document.querySelectorAll('.product-card');
     let visible = 0;
     cards.forEach(card => {
@@ -403,6 +513,9 @@ function filterProducts(platform, btn) {
     });
     document.getElementById('noResults').classList.toggle('hidden', visible > 0);
 }
+
+// Set initial active filter
+filterProducts('all', document.querySelector('.filter-btn'));
 </script>
 
 </body>
